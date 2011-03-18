@@ -59,7 +59,7 @@
 		
 		<div id="list">
 			<c:forEach items="${links}" var="link" varStatus="i">
-				<div class="link" style="${i.index%2 == 0 ? 'background-color: #fbfbfb' : ''}">
+				<div class="link">
 					<div class="fleft mr">${link.ldate}</div>
 					<div class="fleft mr"><a href="${link.address}">${link.name == '' ? link.address : link.name}</a></div>
 					<div class="fright mr"><security:authorize access="hasRole('ROLE_ADMIN')"><a href="delete.html?id=${link.id}">Delete</a></security:authorize></div>
