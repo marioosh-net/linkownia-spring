@@ -8,8 +8,9 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css" media="screen">
 </head>
-<body style="margin: 8px; font-family: arial, tahoma; font-size: 13px;">
-	<a href=".">This</a>
+<body>
+	<div id="container">
+	<a href=".">LIKNOWNIA</a>
 
 	<!-- login form -->
 	<security:authorize access="!hasRole('ROLE_ADMIN')">
@@ -54,19 +55,16 @@
 	</form>
 	</div>
 	
-	<div>
 	<c:forEach items="${links}" var="link" varStatus="i">
-		<div style="${i.index%2 == 0 ? 'background-color: #fbfbfb' : ''}">
-			<!-- ${link.id} -->
-			<div>
-				<div class="fleft mr">${link.ldate}</div>
-				<div class="fleft mr"><a href="${link.address}">${link.name == '' ? link.address : link.name}</a></div>
-				<div class="fleft mr"><a href="delete.html?id=${link.id}">Delete</a></div>
-				<div style="clear: both;">${link.address}</div>
-			</div>
+		<div class="link" style="${i.index%2 == 0 ? 'background-color: #fbfbfb' : ''}">
+			<div class="fleft mr">${link.ldate}</div>
+			<div class="fleft mr"><a href="${link.address}">${link.name == '' ? link.address : link.name}</a></div>
+			<div class="fright mr"><a href="delete.html?id=${link.id}">Delete</a></div>
+			<div class="url" style="clear: both;">${link.address}</div>
+			<div class="description">${link.description}</div>
 		</div>
 	</c:forEach>
-	</div>
+	</div>		
 </body>
 </html>
 

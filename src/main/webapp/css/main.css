@@ -1,6 +1,25 @@
+body, html {
+	font-family: arial, tahoma;
+	margin: 8px;  
+	font-size: 13px;
+}
+#container {
+	width: 1000px;
+}
 .fleft {
 	float: left;
 }
+.fright {
+	float: right;
+}
 .mr {
 	margin-right: 5px;
+}
+.link {
+	margin-bottom: 5px;
+}
+.url {
+	color: #555;
+	font-size: 10px;
+	padding-left: 10px;
 }
