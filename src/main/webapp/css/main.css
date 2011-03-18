@@ -30,6 +30,7 @@ form {
 #search {
 	padding: 10px;
 	border-bottom: 1px solid #ffffff;
+	border-top: 1px solid #ffffff;
 	background-color: #B6C0D2;
 }
 #list {

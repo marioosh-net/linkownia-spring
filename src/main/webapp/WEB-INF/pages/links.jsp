@@ -40,9 +40,10 @@
 		
 		<div id="new">
 			<form method="post" action="add.html">
-				<label style="margin-right: 160px;">Address</label><label>Name</label><br/>
-				<input type="text" name="address" style="width: 200px;"/>
-				<input type="text" name="name" style="width: 200px;"/><br/>
+				<label>Address</label><form:errors path="address" /><br/>
+				<input type="text" name="address" style="width: 404px;"/><br/>
+				<label>Name</label><br/>
+				<input type="text" name="name" style="width: 404px;"/><br/>
 				<label>Description</label><br/>
 				<textarea name="description" style="width: 404px;"></textarea><br/>
 				<input type="submit" value="Add link"/>
