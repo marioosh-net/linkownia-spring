@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -9,6 +10,25 @@
 </head>
 <body style="margin: 8px; font-family: arial, tahoma; font-size: 13px;">
 	<a href=".">This</a>
+
+	<!-- login form -->
+	<security:authorize access="!hasRole('ROLE_ADMIN')">
+		<form id="jf" name="f" action="#{request.contextPath}/j_spring_security_check" method="post">
+			<div style="float: left">
+				<div class="smalllabel">login</div>
+				<div><input type="text" name="j_username" value="" size="5"/></div>
+			</div>
+			<div style="float: left">
+				<div class="smalllabel">&#160;password</div>
+				<div>&#160;<input type="password" name="j_password" value="" size="6" /></div>
+			</div>
+			<div style="float: left">
+				<div>&#160;</div>
+				<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="#" onclick="jQuery('#jf').submit()">#{m['button.login']}</a></div>
+			</div>
+			<div style="clear: both;"></div>
+		</form>
+	</security:authorize>
 	
 	<div style="border-bottom: 1px solid #000000;">
 	<form method="post" action="search.html">
@@ -32,11 +52,11 @@
 	        </c:forEach>
         </spring:hasBindErrors>
 	</form>
+	</div>
 	
 	<div>
 	<c:forEach items="${links}" var="link" varStatus="i">
 		<div style="${i.index%2 == 0 ? 'background-color: #fbfbfb' : ''}">
-			<!-- ${link.id} -->
 			<div>
 				<div class="fleft mr">${link.ldate}</div>
 				<div class="fleft mr"><a href="${link.address}">${link.name == '' ? link.address : link.name}</a></div>

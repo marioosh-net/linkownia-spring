@@ -24,6 +24,7 @@
 
 	<properties>
 		<springVersion>3.0.5.RELEASE</springVersion>
+		<springSecurityVersion>3.0.4.RELEASE</springSecurityVersion>
 	</properties>
 
 	<repositories>
@@ -108,6 +109,28 @@
 			<artifactId>org.springframework.jdbc</artifactId>
 			<version>${springVersion}</version>
 		</dependency>
+		
+		<!-- spring security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>org.springframework.security.core</artifactId>
+			<version>${springSecurityVersion}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>org.springframework.security.config</artifactId>
+			<version>${springSecurityVersion}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>org.springframework.security.web</artifactId>
+			<version>${springSecurityVersion}</version>
+		</dependency>		
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>org.springframework.security.taglibs</artifactId>
+	        <version>${springSecurityVersion}</version>
+	    </dependency>		
 
 		<dependency>
 			<groupId>javax.servlet</groupId>

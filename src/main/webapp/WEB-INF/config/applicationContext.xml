@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:aop="http://www.springframework.org/schema/aop" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:security="http://www.springframework.org/schema/security" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
      http://www.springframework.org/schema/beans 
@@ -13,7 +14,9 @@
      http://www.springframework.org/schema/aop 
      http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	 http://www.springframework.org/schema/mvc
-	 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd     
+	 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+     http://www.springframework.org/schema/security
+     http://www.springframework.org/schema/security/spring-security-3.0.3.xsd	      
      http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
@@ -53,21 +56,32 @@
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/springonly?charSet=UTF-8" />
 		<property name="username" value="springonly" />
-		<property name="password" value="springonly" />						
-	</bean>	
-	
+		<property name="password" value="springonly" />
+	</bean>
+
 	<!-- JSR-303 Validator / Bean Validator -->
 	<!-- A JSR-303 provider, such as Hibernate Validator, is expected to be present in the classpath and will be detected automatically -->
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/> -->
 	<!-- -->
 	<!-- wykryj automatycznie JSR-303 Provider'a np. hibernate validator'a i utworz validatora o nazwie "validator" -->
 	<mvc:annotation-driven />
-	
+
 	<!-- message source -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-    	<property name="basename" value="messages"/>
+		<property name="basename" value="messages" />
 	</bean>
-	
-	<mvc:view-controller path="/WEB-INF/pages/links.jsp"/>
+
+	<!-- Spring Security -->
+	<security:http auto-config="true">
+		<security:form-login />
+		<security:logout logout-success-url="/index.html" logout-url="/logout.html" />
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="admin" password="admin" authorities="ROLE_ADMIN" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
 
 </beans>
