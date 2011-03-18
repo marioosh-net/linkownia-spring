@@ -57,6 +57,7 @@
 	<div>
 	<c:forEach items="${links}" var="link" varStatus="i">
 		<div style="${i.index%2 == 0 ? 'background-color: #fbfbfb' : ''}">
+			<!-- ${link.id} -->
 			<div>
 				<div class="fleft mr">${link.ldate}</div>
 				<div class="fleft mr"><a href="${link.address}">${link.name == '' ? link.address : link.name}</a></div>
