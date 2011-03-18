@@ -1,10 +1,39 @@
 body, html {
 	font-family: arial, tahoma;
-	margin: 8px;  
+	margin: 0px;
+	padding: 0px;  
 	font-size: 13px;
+}
+form {
+	margin: 0px;
+	padding: 0px;
 }
 #container {
 	width: 1000px;
+}
+#header {
+	height: 30px;
+	background-color: #000000;
+	padding: 10px;
+	color: #ffffff;
+}
+#header a {
+	color: #FF8000;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 1.4em;
+}
+#new {
+	padding: 10px;
+	background-color: #B6C0D2;
+}
+#search {
+	padding: 10px;
+	border-bottom: 1px solid #ffffff;
+	background-color: #B6C0D2;
+}
+#list {
+	margin: 10px;
 }
 .fleft {
 	float: left;
