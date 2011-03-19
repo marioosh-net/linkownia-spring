@@ -12,10 +12,18 @@ form {
 	width: 1000px;
 }
 #header {
-	height: 30px;
+	height: 40px;
 	background-color: #000000;
-	padding: 10px;
 	color: #ffffff;
+	/*background-image: url('../images/logo.png');
+	background-repeat: no-repeat;
+	background-position: bottom left;*/
+	padding: 15px;
+}
+a.logo {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
 }
 #header a {
 	color: #FF8000;
@@ -28,10 +36,8 @@ form {
 	background-color: #B6C0D2;
 }
 #search {
+	float: right;
 	padding: 10px;
-	border-bottom: 1px solid #ffffff;
-	border-top: 1px solid #ffffff;
-	background-color: #B6C0D2;
 }
 #list {
 	margin: 10px;

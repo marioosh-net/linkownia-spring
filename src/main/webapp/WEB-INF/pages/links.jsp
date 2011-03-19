@@ -6,11 +6,23 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css" media="screen">
 </head>
-<body>
+<body onload="jQuery('#text').focus();">
 	<div id="container">
-		<div id="header"><a href=".">LIKNOWNIA</a></div>
+		
+		<div id="header">
+			<div style="float: left;"><a class="logo" href="."><img src="images/logo.png"></img></a></div>
+			<div id="search">
+				<form method="post" action="search.html">
+					<input id="text" type="text" name="text" style="width: 150px;"/>
+					<input type="submit" value="Search"/>
+				</form>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+
 	
 		<!-- login form -->
 		<security:authorize access="!hasRole('ROLE_ADMIN')">
@@ -30,13 +42,6 @@
 				<div style="clear: both;"></div>
 			</form>
 		</security:authorize>
-		
-		<div id="search">
-			<form method="post" action="search.html">
-				<input type="text" name="text" style="width: 350px;"/>
-				<input type="submit" value="Search"/>
-			</form>
-		</div>
 		
 		<div id="new">
 			<form method="post" action="add.html">
