@@ -74,3 +74,6 @@ a.logo {
 	font-size: 10px;
 	padding-left: 70px;
 }
+.errors {
+	color: red;
+}

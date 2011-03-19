@@ -93,6 +93,7 @@ public class LinksController {
 			linkDAO.add(link);
 			return "redirect:/index.html";
 		} else {
+			model.addAttribute("errors", result.getAllErrors());
 			model.addAttribute("someErrors", true);
 			return "links";
 		}

@@ -43,24 +43,17 @@
 		</security:authorize>
 		
 		<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');">New</a></div>
-		
 		<div id="new" style="${someErrors ? '' : 'display: none;'}">
-			<form method="post" action="add.html">
-				<label>Address</label><form:errors path="address" /><br/>
+			<!-- <form method="post" action="add.html"> -->
+			<form:form commandName="link" action="add.html">
+				<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
 				<input type="text" name="address" style="width: 404px;"/><br/>
 				<label>Name</label><br/>
 				<input type="text" name="name" style="width: 404px;"/><br/>
 				<label>Description</label><br/>
 				<textarea name="description" style="width: 404px;"></textarea><br/>
 				<input type="submit" value="Add link"/>
-				
-				<!-- dostep do bledow bez uzycia form:form i form:errors -->
-				<spring:hasBindErrors name="link" >
-					<c:forEach items="${errors.allErrors}" var="error">
-						${error.code}
-			        </c:forEach>
-		        </spring:hasBindErrors>
-			</form>
+			</form:form>
 		</div>
 		
 		<div id="list">
