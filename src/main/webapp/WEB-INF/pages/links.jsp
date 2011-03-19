@@ -44,7 +44,7 @@
 		
 		<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');">New</a></div>
 		
-		<div id="new" style="display: none;">
+		<div id="new" style="${someErrors ? '' : 'display: none;'}">
 			<form method="post" action="add.html">
 				<label>Address</label><form:errors path="address" /><br/>
 				<input type="text" name="address" style="width: 404px;"/><br/>

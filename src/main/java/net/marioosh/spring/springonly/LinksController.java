@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -80,7 +81,7 @@ public class LinksController {
 	}
 
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
-	public String processSubmit(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status) {
+	public String processSubmit(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
@@ -92,6 +93,7 @@ public class LinksController {
 			linkDAO.add(link);
 			return "redirect:/index.html";
 		} else {
+			model.addAttribute("someErrors", true);
 			return "links";
 		}
 	}
