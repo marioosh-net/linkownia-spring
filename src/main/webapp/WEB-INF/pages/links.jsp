@@ -12,6 +12,7 @@
 <body onload="jQuery('#text').focus();">
 	<div id="container">
 		
+		<div id="topc">
 		<div id="header">
 			<div style="float: left;"><a class="logo" href="."><img src="images/logo.png"></img></a></div>
 			<div id="search">
@@ -41,7 +42,7 @@
 				<div style="clear: both;"></div>
 			</form>
 		</security:authorize>
-		
+
 		<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');"><img width="51" height="20" src="images/add.png"/></a></div>
 		<div id="new" style="${someErrors ? '' : 'display: none;'}">
 			<!-- <form method="post" action="add.html"> -->
@@ -55,18 +56,44 @@
 				<input type="submit" value="Add link"/>
 			</form:form>
 		</div>
-		
-		<div id="list">
-			<c:forEach items="${links}" var="link" varStatus="i">
-				<div class="link">
-					<div class="fleft mr">${link.ldate}</div>
-					<div class="fleft mr"><a href="${link.address}">${link.name == '' ? link.address : link.name}</a></div>
-					<div class="fright mr"><security:authorize access="hasRole('ROLE_ADMIN')"><a href="delete.html?id=${link.id}">Delete</a></security:authorize></div>
-					<div class="url" style="clear: both;">${link.address}</div>
-					<div class="description">${link.description}</div>
-				</div>
-			</c:forEach>
 		</div>
+		
+<div class="inner">
+        	<div class="innersub">
+            	<div class="innerLeft">
+               	  <div class="leftTop">
+                    <h3>Links</h3>
+                    
+					<ul class="innerdata">
+						<c:forEach items="${links}" var="link" varStatus="i">
+							<li>
+								<div class="fleft mr">${link.ldate}</div>
+								<div class="fleft mr"><p><a href="${link.address}">${link.name == '' ? link.address : link.name}</a></p></div>
+								<div class="fright mr"><security:authorize access="hasRole('ROLE_ADMIN')"><a href="delete.html?id=${link.id}">Delete</a></security:authorize></div>
+								<div class="url" style="clear: both;">${link.address}</div>
+								<div class="description">${link.description}</div>
+							</li>
+						</c:forEach>
+					</ul>
+                    
+                    <img src="images/leftBtm.png" align="bottom" alt="">
+                  </div>
+  				</div>
+  				                  
+                <div class="innerRight">
+                	<div class="rightTop">
+                       <h3>Top 10</h3>
+                       <ul>
+                       </ul>
+                       <img src="images/rightBtm.png" alt="" align="bottom">                       
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <img src="images/inner_btm.png" alt="" align="bottom">
+        </div>		
+				
 	</div>		
 </body>
 </html>
