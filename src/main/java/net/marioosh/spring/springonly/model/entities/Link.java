@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Link {
 	private Integer id;
 
-	@NotEmpty
+	@NotEmpty(message="Address may not be empty")
 	private String address;
 
 	private String name;
