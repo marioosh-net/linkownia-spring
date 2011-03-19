@@ -44,11 +44,13 @@ a.logo {
 }
 #menu {
 	padding: 5px;
-	padding-left: 10px;	
+	padding-left: 10px;
+	border: 1px solid #ffffff;
+	background-color: #81A594;	
 }
 #new {
 	padding: 10px;
-	background-color: #B6C0D2;
+	background-color:#B6C0D2;
 }
 #search {
 	float: right;

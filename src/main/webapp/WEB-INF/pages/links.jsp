@@ -42,7 +42,7 @@
 			</form>
 		</security:authorize>
 		
-		<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');">New</a></div>
+		<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');"><img width="20" height="20" src="images/add.png"/></a></div>
 		<div id="new" style="${someErrors ? '' : 'display: none;'}">
 			<!-- <form method="post" action="add.html"> -->
 			<form:form commandName="link" action="add.html">
