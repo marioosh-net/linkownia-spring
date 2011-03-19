@@ -55,7 +55,6 @@ public class LinksController {
 	 */
 	@ModelAttribute("links")
 	public List<Link> populateLinks() {
-		log.debug("populatePersons()");
 		return linkDAO.findAll(null);
 	}
 
@@ -74,7 +73,7 @@ public class LinksController {
 	@RequestMapping(value="/{search}", method = RequestMethod.GET)
 	public String search(@PathVariable String search, Model model) {
 		// tutaj dostep do atrybutu modelu ustawionego wczesniej w metodzie populateLinks
-		log.debug("XXXXXX"+model.asMap().get("links"));
+		// log.debug("XXXXXX"+model.asMap().get("links"));
 		
 		model.addAttribute("links", linkDAO.findAll(search));
 		return "links";
