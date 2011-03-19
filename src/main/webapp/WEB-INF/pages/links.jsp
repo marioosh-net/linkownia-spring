@@ -22,7 +22,6 @@
 			</div>
 			<div style="clear: both;"></div>
 		</div>
-
 	
 		<!-- login form -->
 		<security:authorize access="!hasRole('ROLE_ADMIN')">
@@ -43,7 +42,9 @@
 			</form>
 		</security:authorize>
 		
-		<div id="new">
+		<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');">New</a></div>
+		
+		<div id="new" style="display: none;">
 			<form method="post" action="add.html">
 				<label>Address</label><form:errors path="address" /><br/>
 				<input type="text" name="address" style="width: 404px;"/><br/>

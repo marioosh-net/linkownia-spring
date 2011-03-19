@@ -1,8 +1,9 @@
 body, html {
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	margin: 0px;
-	padding: 0px;  
 	font-size: 13px;
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
 }
 a {
 	
@@ -12,8 +13,10 @@ form {
 	padding: 0px;
 }
 #container {
+	margin:0px auto;
 	width: 1000px;
 	background-color: #E3E3E3;
+	text-align: left;
 }
 #header {
 	height: 40px;
@@ -23,11 +26,10 @@ form {
 	background-repeat: no-repeat;
 	background-position: bottom left;*/
 	padding: 15px;
-	
 	border-bottom: 1px solid #656767;
-border-bottom-width: 1px;
-border-bottom-style: solid;
-border-bottom-color: #656767;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #656767;
 }
 a.logo {
 	margin: 0px;
@@ -39,6 +41,9 @@ a.logo {
 	font-weight: bold;
 	text-decoration: none;
 	font-size: 1.4em;
+}
+#menu {
+	padding-left: 10px;
 }
 #new {
 	padding: 10px;
