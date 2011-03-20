@@ -566,6 +566,12 @@ ul#menu li a:hover span,ul#menu li a.active span {
 	margin: 15px 0 0 10px;
 }
 
+#footer-wrap {
+float: left;
+height: 235px;
+width: 100%;
+}
+
 .footersub {
 	float: left;
 	width: 900px;
