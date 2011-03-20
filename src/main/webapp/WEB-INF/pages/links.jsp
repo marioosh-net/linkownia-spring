@@ -10,19 +10,22 @@
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css" media="screen">
 </head>
 <body onload="jQuery('#text').focus();">
-	<div id="container">
-		
-		<div id="topc">
-		<div id="header">
-			<div style="float: left;"><a class="logo" href="."><img src="images/logo.png"></img></a></div>
+	<div id="wrapper">
+	<div id="topfull">
+		<div class="centered">
+			<a class="logo" href="."><img src="images/logo.png"></img></a>
 			<div id="search">
 				<form method="post" action="search.html">
 					<input id="text" type="text" name="text" style="width: 150px;"/>
 					<input type="submit" value="Search"/>
 				</form>
 			</div>
-			<div style="clear: both;"></div>
+			<div style="clear: both;"></div>			
 		</div>
+	</div>
+	<div id="container">
+		
+		<div id="topc">
 	
 		<!-- login form -->
 		<security:authorize access="!hasRole('ROLE_ADMIN')">
@@ -95,6 +98,7 @@
         </div>		
 				
 	</div>		
+	</div>
 </body>
 </html>
 

@@ -70,6 +70,7 @@ public class LinksController {
 		return "links";		
 	}
 	
+	/*
 	@RequestMapping(value="/{search}", method = RequestMethod.GET)
 	public String search(@PathVariable String search, Model model) {
 		// tutaj dostep do atrybutu modelu ustawionego wczesniej w metodzie populateLinks
@@ -78,6 +79,7 @@ public class LinksController {
 		model.addAttribute("links", linkDAO.findAll(search));
 		return "links";
 	}
+	*/
 
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
 	public String processSubmit(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {

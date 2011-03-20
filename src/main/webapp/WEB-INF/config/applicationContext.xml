@@ -83,5 +83,8 @@
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	<!-- simple controller -->
+	<mvc:view-controller path="/test.html" view-name="test"/>
 
 </beans>
