@@ -819,3 +819,34 @@ div.socialbookmarking p.rights a{
 .mr {
 	margin-right: 5px;
 }
+.story-item-details {
+	margin-bottom: 7px;
+}
+.story-item-title {
+color: #AEC3E7;
+float: left;
+font-size: 1.33333em;
+line-height: 1.125em;
+margin-bottom: 4px;
+}
+.story-item-title a {
+border-bottom: 1px solid #AEC3E7;
+color: #2854BB;
+font-weight: bold;
+}
+.story-item-description {
+clear: left;
+font-size: 1.08333em;
+line-height: 1.23077em;
+padding-right: 10px;
+}
+.story-item-source {
+border-bottom: 1px solid #CEDBF1;
+color: #5F88CE;
+}
+story-item-teaser .timestamp {
+font-size: 0.916667em;
+}
+.story-item .timestamp {
+color: #999;
+}

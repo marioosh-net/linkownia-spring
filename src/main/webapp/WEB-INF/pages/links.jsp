@@ -67,14 +67,23 @@
 			</div>
                    	
                         	<h2>Links by date</h2> 
-                            	 <ul class="usefullinks">                            	 
+                            	                            	 
 		                           	<c:forEach items="${links}" var="link" varStatus="i">
-								        <li><div><span class="date">${link.ldate}</span><a class="link" href="${link.address}">${link.name == '' ? link.address : link.name}</a>&#160;[${link.clicks}]</div> 
-								          <p class="post" style="display: none;">${link.description}</p> 
-								           <p style="display: none;"><a href="${link.address}" class="readMore">${link.address}</a></p> 
-								        </li> 
+		                           	
+<div class="story-item-details">
+                    <h3 class="story-item-title">
+                                                    <a href="${link.address}" target="_blank">${link.name}</a>
+                                            </h3>
+                                            
+                        <p class="story-item-description">
+                            <a href="/search?q=site:torrentfreak.com" class="story-item-source">torrentfreak.com</a>                            <a href="/news/technology/the_copyright_monopoly_is_a_limitation_of_property_rights" class="story-item-teaser">— The copyright monopoly is not a property right. It is a limitation of property rights. Copyright is a government-sanctioned private monopoly that l...
+                                <span class="timestamp">${link.ldate}</span>                            </a>
+                                                    </p>
+                        
+                                    </div>		                     
+                                          	
 									</c:forEach>
-							    </ul> 
+							     
                       </div> 
                 	</div> 
                     
