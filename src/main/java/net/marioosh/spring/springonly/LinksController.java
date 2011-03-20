@@ -10,6 +10,7 @@ import net.htmlparser.jericho.HTMLElementName;
 import net.htmlparser.jericho.Source;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
+import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class LinksController {
 	 */
 	@ModelAttribute("links")
 	public List<Link> populateLinks() {
-		return linkDAO.findAll(null);
+		return linkDAO.findAll(new BrowseParams());
 	}
 
 	@RequestMapping(value = "/index.html")

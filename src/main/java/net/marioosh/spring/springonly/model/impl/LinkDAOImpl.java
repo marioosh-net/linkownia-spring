@@ -6,6 +6,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
+import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,6 +50,31 @@ public class LinkDAOImpl implements LinkDAO {
 
 	public void delete(Integer id) {
 		jdbcTemplate.update("delete from tlink where id = "+id);
+	}
+
+	public List<Link> findAll(BrowseParams browseParams) {
+
+		String sort = "id desc";
+		if(browseParams.getSort() != null) {
+			sort = browseParams.getSort();
+		}
+		String limit = "";
+		if(browseParams.getRange() != null) {
+			 limit = browseParams.getRange().getStart() + ", "+browseParams.getRange().getMax(); 
+		}
+		String s = browseParams.getSearch() != null ? "where address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%'" : "";
+		SqlQuery<Link> query = new MappingSqlQuery<Link>(jdbcTemplate.getDataSource(), "select * from tlink "+s+" order by "+sort + " " + limit){
+			@Override
+			protected Link mapRow(ResultSet resultset, int i)
+					throws SQLException {
+				Link link = new Link(resultset.getInt("id"), resultset.getString("address"), resultset.getString("name"));
+				link.setLdate(resultset.getDate("ldate"));
+				link.setClicks(resultset.getInt("clicks"));
+				return link;
+			}
+		};
+		return query.execute(); 
+		
 	}
 
 }
