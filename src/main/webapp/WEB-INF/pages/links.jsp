@@ -67,31 +67,14 @@
 			</div>
                    	
                         	<h2>Links by date</h2> 
-                            	 <ul class="usefullinks">
-                            	 
+                            	 <ul class="usefullinks">                            	 
 		                           	<c:forEach items="${links}" var="link" varStatus="i">
-										<li>
-											<div class="fleft mr">${link.ldate}</div>
-											<div class="fleft mr"><p><a href="${link.address}">${link.name == '' ? link.address : link.name}</a>&#160;[${link.clicks}]</p></div>
-											<div class="fright mr"><security:authorize access="hasRole('ROLE_ADMIN')"><a href="delete.html?id=${link.id}">Delete</a></security:authorize></div>
-											<div class="url" style="clear: both;">${link.address}</div>
-											<div class="description">${link.description}</div>
-										</li>
+								        <li><div><span class="date">${link.ldate}</span><a class="link" href="${link.address}">${link.name == '' ? link.address : link.name}</a>&#160;[${link.clicks}]</div> 
+								          <p class="post" style="display: none;">${link.description}</p> 
+								           <p style="display: none;"><a href="${link.address}" class="readMore">${link.address}</a></p> 
+								        </li> 
 									</c:forEach>
-                            	  
-        <li><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3> 
-          <p class="post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ipsum, sollicitudin ornare molestie nec, pretium id quam. Aliquam erat volutpat.Nullam dui ipsum, pharetra eu bibendum ut, porta et turpis. Vivamus hendrerit velit eget urna placerat pretium. Aenean a dolor mi. Vestibulum iaculis vehicula tellus, a varius massa adipiscing id. Fusce eleifend neque eu mi sagittis quis viverra nisl dapibus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ipsum, sollicitudin ornare molestie nec, pretium id quam.</p> 
-           <p><a href="more.html" class="readMore">Read More</a></p> 
-        </li> 
-        <li><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3> 
-          <p class="post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ipsum, sollicitudin ornare molestie nec, pretium id quam. Aliquam erat volutpat.Nullam dui ipsum, pharetra eu bibendum ut, porta et turpis. Vivamus hendrerit velit eget urna placerat pretium. Aenean a dolor mi. Vestibulum iaculis vehicula tellus, a varius massa adipiscing id. Fusce eleifend neque eu mi sagittis quis viverra nisl dapibus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ipsum, sollicitudin ornare molestie nec, pretium id quam.</p> 
-           <p><a href="more.html" class="readMore">Read More</a></p> 
-        </li> 
-        <li><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3> 
-          <p class="post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ipsum, sollicitudin ornare molestie nec, pretium id quam. Aliquam erat volutpat.Nullam dui ipsum, pharetra eu bibendum ut, porta et turpis. Vivamus hendrerit velit eget urna placerat pretium. Aenean a dolor mi. Vestibulum iaculis vehicula tellus, a varius massa adipiscing id. Fusce eleifend neque eu mi sagittis quis viverra nisl dapibus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ipsum, sollicitudin ornare molestie nec, pretium id quam.</p> 
-           <p><a href="more.html" class="readMore">Read More</a></p> 
-        </li> 
-    </ul> 
+							    </ul> 
                       </div> 
                 	</div> 
                     
@@ -105,9 +88,7 @@
                         <h2>Top 10</h2> 
                             <ul class="news">
 								<c:forEach items="${toplinks}" var="link" varStatus="i">
-									<li>
-										<a href="${link.address}"><span>${link.ldate}</span>${link.name == '' ? link.address : link.name}&#160;[${link.clicks}]</a>
-									</li>
+									<li><a href="${link.address}"><span>${link.ldate}</span>${link.name == '' ? link.address : link.name}&#160;[${link.clicks}]</a></li>
 								</c:forEach>
                                 <li class="nobg"><a href="more.html" class="viewMore">View More</a></li> 
                             </ul> 

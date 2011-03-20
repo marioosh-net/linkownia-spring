@@ -769,6 +769,7 @@ div.socialbookmarking p.rights a{
     width:647px;
     float:left;
     border-bottom:1px dashed #c9c0b4;
+    padding-bottom: 5px;
 }
 #leftPan ul.usefullinks li h3{
     font-size: 22px;
@@ -780,7 +781,12 @@ div.socialbookmarking p.rights a{
     margin:0;
     padding:0 0 6px 0;
 }
-
+#leftPan ul.usefullinks li a.link {
+	font-size: 14px;
+}
+#leftPan ul.usefullinks li span.date {
+	padding-right: 5px;
+}
 /*s tylin site map  */
 #leftPan ul.sitemap{
     width: 150px;
