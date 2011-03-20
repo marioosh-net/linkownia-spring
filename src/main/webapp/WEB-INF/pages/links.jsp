@@ -86,6 +86,15 @@
 	                	<div class="rightTop">
 	                       <h3>Top 10</h3>
 	                       <ul>
+								<c:forEach items="${toplinks}" var="link" varStatus="i">
+									<li>
+										<div class="fleft mr">${link.ldate}</div>
+										<div class="fleft mr"><p><a href="${link.address}">${link.name == '' ? link.address : link.name}</a>&#160;[${link.clicks}]</p></div>
+										<div class="fright mr"><security:authorize access="hasRole('ROLE_ADMIN')"><a href="delete.html?id=${link.id}">Delete</a></security:authorize></div>
+										<div class="url" style="clear: both;">${link.address}</div>
+										<div class="description">${link.description}</div>
+									</li>
+								</c:forEach>
 	                       </ul>
 	                       <img src="images/rightBtm.png" alt="" align="bottom">                       
 	                    </div>

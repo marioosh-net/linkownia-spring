@@ -11,6 +11,7 @@ import net.htmlparser.jericho.Source;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
+import net.marioosh.spring.springonly.model.helpers.Range;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,14 @@ public class LinksController {
 	@ModelAttribute("links")
 	public List<Link> populateLinks() {
 		return linkDAO.findAll(new BrowseParams());
+	}
+	
+	@ModelAttribute("toplinks")
+	public List<Link> populateTopLinks() {
+		BrowseParams b = new BrowseParams();
+		b.setRange(new Range(0,10));
+		b.setSort("clicks");
+		return linkDAO.findAll(b);
 	}
 
 	@RequestMapping(value = "/index.html")

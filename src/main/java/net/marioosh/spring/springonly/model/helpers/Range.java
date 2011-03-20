@@ -5,6 +5,12 @@ public class Range {
 	private int start;
 	private int max;
 	
+	public Range(int start, int max) {
+		super();
+		this.start = start;
+		this.max = max;
+	}
+
 	public int getStart() {
 		return start;
 	}

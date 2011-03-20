@@ -56,14 +56,16 @@ public class LinkDAOImpl implements LinkDAO {
 
 		String sort = "id desc";
 		if(browseParams.getSort() != null) {
-			sort = browseParams.getSort();
+			sort = browseParams.getSort() + " desc";
 		}
 		String limit = "";
 		if(browseParams.getRange() != null) {
-			 limit = browseParams.getRange().getStart() + ", "+browseParams.getRange().getMax(); 
+			 limit = "limit " + browseParams.getRange().getStart() + ", "+browseParams.getRange().getMax(); 
 		}
 		String s = browseParams.getSearch() != null ? "where address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%'" : "";
-		SqlQuery<Link> query = new MappingSqlQuery<Link>(jdbcTemplate.getDataSource(), "select * from tlink "+s+" order by "+sort + " " + limit){
+		String sql = "select * from tlink "+s+" order by "+sort + " " + limit;
+		log.debug("SQL: "+sql);
+		SqlQuery<Link> query = new MappingSqlQuery<Link>(jdbcTemplate.getDataSource(), sql){
 			@Override
 			protected Link mapRow(ResultSet resultset, int i)
 					throws SQLException {
