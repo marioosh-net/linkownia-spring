@@ -1,6 +1,5 @@
 body,html {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	
 	text-align: center;
 	margin: 0px;
 	padding: 0px;
@@ -16,22 +15,23 @@ form {
 }
 
 #wraper {
-float: left;
-margin: 0px;
-width: 100%;
+	float: left;
+	margin: 0px;
+	width: 100%;
 }
 
 #topfull {
-	width: 100%; 
-	background-color: #000000; 
-	color: #fff; 
+	width: 100%;
+	background-color: #000000;
+	color: #fff;
 	float: left;
+	height: 60px;
 }
 
 .centered {
 	margin: 0px auto;
 	width: 970px;
-	text-align: left;	
+	text-align: left;
 }
 
 #container {
@@ -62,10 +62,6 @@ a.logo {
 	text-decoration: none;
 }
 
-#topc {
-	margin: 0px 0px 0px;
-	padding: 0px 0px 20px;
-}
 #header a {
 	color: #FF8000;
 	font-weight: bold;
@@ -76,9 +72,9 @@ a.logo {
 #menu {
 	padding: 5px;
 	padding-left: 10px;
-	/*border: 1px solid #ffffff;*/
-	/*background-color: #81A594;*/
+	/*border: 1px solid #ffffff;*/ /*background-color: #81A594;*/
 	background-color: #ffffff;
+	height: 25px;
 }
 
 #new {
@@ -89,6 +85,11 @@ a.logo {
 #search {
 	float: right;
 	padding: 10px;
+}
+
+.clear {
+	clear: both;
+	height: 0px;
 }
 
 #list {
@@ -162,8 +163,8 @@ ul {
 	list-style: none;
 }
 
-p {
-	/*text-align: justify;*/
+p { /*text-align: justify;*/
+	
 }
 
 img {
@@ -318,8 +319,8 @@ ul#menu li a:hover span,ul#menu li a.active span {
 	float: left;
 	width: 970px;
 	background: url(../images/inner_top.png) no-repeat top left;
-	padding: 11px 0 20px 0;
-	margin: 20px 0 0 0;
+	padding: 5px 0 20px 0;
+	margin: 0px 0 0 0;
 }
 
 .innersub {

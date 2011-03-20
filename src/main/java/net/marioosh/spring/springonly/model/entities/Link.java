@@ -14,6 +14,8 @@ public class Link {
 	private String description;
 	
 	private Date ldate;
+	
+	private int clicks;
 
 	public Link() {}
 
@@ -68,5 +70,13 @@ public class Link {
 	
 	public void setLdate(Date ldate) {
 		this.ldate = ldate;
+	}
+	
+	public int getClicks() {
+		return clicks;
+	}
+	
+	public void setClicks(int clicks) {
+		this.clicks = clicks;
 	}
 }
