@@ -73,10 +73,10 @@
                   						<h3 class="story-item-title">
                                           	<a href="${link.address}" target="_blank">${link.name}</a>
                                           </h3>
-									<p class="story-item-description">
+									<!-- <p class="story-item-description">
                           					<a href="/search?q=site:torrentfreak.com" class="story-item-source">torrentfreak.com</a>
                           					<a href="${link.address}" class="story-item-teaser">— ${link.description} <span class="timestamp">${link.ldate}</span></a>
-									</p>
+									</p> -->
                                    </div>		                     
 							</c:forEach>
 							     
