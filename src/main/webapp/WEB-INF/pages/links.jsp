@@ -120,7 +120,7 @@
                      </div>
                      <div>
                      	<c:forEach items="${pages}" var="page" varStatus="i">
-                     		<span>${page[0]}[${page[1]},${page[2]}]&#160;</span>
+                     		<span><a href="#?p=${page[0]}">${page[0]}[${page[1]},${page[2]}]</a>&#160;</span>
                      	</c:forEach>
                      </div>
                       
