@@ -69,7 +69,7 @@
 							</div>
 							<div style="float: left">
 								<div>&#160;</div>
-								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="#" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --></div>
+								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="#" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/></div>
 							</div>
 							<div style="clear: both;"></div>
 						</form>
@@ -86,7 +86,7 @@
 							<label>Description</label><br/>
 							<textarea name="description" style="width: 404px;"></textarea><br/>
 							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>
-							<!-- <input type="submit" value="Add link"/> -->
+							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
                   	
