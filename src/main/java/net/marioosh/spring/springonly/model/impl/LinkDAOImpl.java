@@ -15,6 +15,7 @@ import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
+import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,12 @@ public class LinkDAOImpl implements LinkDAO {
 	}	
 	
 	public List<Link> findAll(String search) {
+		BrowseParams b = new BrowseParams();
+		b.setSearch(search);
+		b.setRange(new Range(0,20));
+		return findAll(b);
+		
+		/*
 		String s = search != null ? "where address like '%"+search+"%' or name like '%"+search+"%'" : "";
 		SqlQuery<Link> query = new MappingSqlQuery<Link>(jdbcTemplate.getDataSource(), "select * from tlink "+s+" order by id desc"){
 			@Override
@@ -62,7 +69,8 @@ public class LinkDAOImpl implements LinkDAO {
 				return link;
 			}
 		};
-		return query.execute(); 
+		return query.execute();
+		*/ 
 	}
 
 	public void add(Link link) {
