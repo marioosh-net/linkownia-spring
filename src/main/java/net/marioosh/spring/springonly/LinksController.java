@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
@@ -69,14 +71,16 @@ public class LinksController {
 	}
 
 	@RequestMapping(value = "/index.html")
-	public String welcomeHandler(Model model, @RequestParam(value="p", required=false, defaultValue="1") int p, @CookieValue(value="JSESSIONID", required=false) String cookie) {
+	public String welcomeHandler(HttpSession session, Model model, @RequestParam(value="p", required=false, defaultValue="1") int p, @CookieValue(value="JSESSIONID", required=false) String cookie) {
 		log.debug("JSESSIONID: "+ cookie);
 		log.debug("PAGE: "+p);
+		log.error("q: "+session.getAttribute("q"));
 		
 		BrowseParams b = new BrowseParams();
+		b.setSearch((String) session.getAttribute("q"));
 		b.setRange(new Range(p-1,20));		
 		model.addAttribute("links", linkDAO.findAll(b));
-		int count = linkDAO.countAll((String)null);
+		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
 		model.addAttribute("pages", pages(count));
 		model.addAttribute("page", p);
@@ -84,12 +88,14 @@ public class LinksController {
 	}
 	
 	@RequestMapping(value="/search.html")
-	public String searchByForm(@RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model) {
+	public String searchByForm(HttpSession session, @RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model) {
+		model.addAttribute("q", search);
 		model.addAttribute("links", linkDAO.findAll(search));
 		int count = linkDAO.countAll(search);
 		model.addAttribute("count", linkDAO.countAll(search));
 		model.addAttribute("pages", pages(count));
 		model.addAttribute("page", p);
+		session.setAttribute("q", search);
 		return "links";		
 	}
 	

@@ -123,7 +123,7 @@
                      	<c:forEach items="${pages}" var="p" varStatus="i">
                      		<c:if test="${i.index == 0}">Pages:&#160;</c:if>
                      		<span>
-                     			<c:if test="${p[0] != page}"><a href="?p=${p[0]}">${p[0]}</a></c:if>
+                     			<c:if test="${p[0] != page}"><a href="index.html?p=${p[0]}">${p[0]}</a></c:if>
                      			<c:if test="${p[0] == page}">${p[0]}</c:if>
                      			&#160;
                      		</span>
