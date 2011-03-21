@@ -68,7 +68,7 @@
                    	
                        	<!-- <h2>Links by date</h2> -->
                        	
-                       	<div style="border-bottom: 1px solid #80A1C1; margin-bottom: 0; padding-bottom: 7px; position: relative; color: #383529; font-size: 18px;" >Links by date</div>
+                       	<div class="link-items-header" >Links by date</div>
                            	                            	 
                        	<c:forEach items="${links}" var="link" varStatus="i">
                        		<div class="link-item">
@@ -95,22 +95,23 @@
 							<input type="button" class="button" onclick="submit()" />
 						</form>
 						
-                        <div class="latestNews"> 
-                        <h2>Top 10</h2> 
-                            <ul class="news">
-								<c:forEach items="${toplinks}" var="link" varStatus="i">
-									<li><a href="${link.address}"><span>${link.ldate}</span>${link.name == '' ? link.address : link.name}&#160;[${link.clicks}]</a></li>
-								</c:forEach>
-                                <li class="nobg"><a href="more.html" class="viewMore">View More</a></li> 
-                            </ul> 
-                      </div><!--end of latest news--> 
-                        
-                        <div class="testimonial" style="display: none;"> 
-                        	<h2>site Content</h2> 
-                        	<blockquote>Posuere cubilia Curaeis sagfa ettis risusat risus feu hregiat sed feugat nuctum. Etiam euismod dabus lorem, dui </blockquote>           					
-                            <br /> 
-                           	<blockquote>Sosuere cubilia Curaeis sagfa ettis risusat risus feu hregiat sed feugat nuctum tiam euismod dabus lorem</blockquote> 
-                        </div><!--end of testimonials--> 
+						<div class="link-items-header" >Top clicks</div>                        
+						<c:forEach items="${toplinks}" var="link" varStatus="i">
+                       		<div class="link-item">
+                       			<div class="clicks">${link.clicks}</div>
+                       			<div class="link-data" style="width: 200px;">
+                       				<div>
+										<div class="link-item-title">
+										<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
+										</div>                   				
+										<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
+										<span class="timestamp">${link.ldate }</span>										
+                       				</div>
+                       			</div>
+                       			<div style="clear: both;"></div>
+                       		</div>
+						</c:forEach>
+ 
                     </div> 
                     <!--end of right column --> 
                 </div> 

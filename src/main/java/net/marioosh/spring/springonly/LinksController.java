@@ -66,7 +66,7 @@ public class LinksController {
 	public List<Link> populateTopLinks() {
 		BrowseParams b = new BrowseParams();
 		b.setRange(new Range(0,10));
-		b.setSort("clicks");
+		b.setSort("clicks desc");
 		return linkDAO.findAll(b);
 	}
 
@@ -98,11 +98,6 @@ public class LinksController {
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
-			if(link.getName().isEmpty()) {
-				String title = pageTitle(link.getAddress());
-				log.debug("TITLE:"+title);
-				link.setName(title);
-			}
 			linkDAO.add(link);
 			return "redirect:/index.html";
 		} else {
@@ -118,24 +113,6 @@ public class LinksController {
 	public String delete(@RequestParam(value="id", required=false, defaultValue="-1") Integer id) {
 		linkDAO.delete(id);
 		return "redirect:/index.html"; 
-	}
-	
-	private String pageTitle(String u) {
-		try {
-			u = u.startsWith("http://") || u.startsWith("https://")  ? u : "http://"+u;
-			// jericho
-			Source source = new Source(new URL(u));
-			List<Element> titles = source.getAllElements(HTMLElementName.TITLE);
-			if (!titles.isEmpty()) {
-				Element title = titles.get(0);
-				// return new String(title.getContent().getTextExtractor().toString().getBytes(), "ISO-8859-2");
-				return title.getTextExtractor().toString();
-			}
-
-		} catch (IOException e) {
-			return "";
-		}
-		return "";
 	}
 	
 }

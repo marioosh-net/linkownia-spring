@@ -883,6 +883,15 @@ div.socialbookmarking p.rights a {
 	margin-right: 5px;
 }
 
+.link-items-header {
+	border-bottom: 1px solid #80A1C1;
+	margin-bottom: 0;
+	padding-bottom: 7px;
+	position: relative;
+	color: #383529;
+	font-size: 18px;
+}
+
 .link-item-details {
 	margin-bottom: 7px;
 }
@@ -932,14 +941,14 @@ div.socialbookmarking p.rights a {
 	height: 19px;
 	font-size: 18px;
 	font-weight: bold;
-	color: #716B14;
+	color: #999;
 	text-align: center;
 	padding-top: 5px;
 }
 
 .link-item .link-data {
-	float: left; 
-	width: 550px;
+	float: left;
+	width: 600px;
 }
 
 .link-item .timestamp {

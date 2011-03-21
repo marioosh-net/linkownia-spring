@@ -1,9 +1,16 @@
 package net.marioosh.spring.springonly.model.impl;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.sql.DataSource;
+import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.HTMLElementName;
+import net.htmlparser.jericho.Source;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
@@ -46,6 +53,15 @@ public class LinkDAOImpl implements LinkDAO {
 	}
 
 	public void add(Link link) {
+		if(link.getName().isEmpty()) {
+			Map<String, String> m = pageInfo(link.getAddress());
+			if(m.get("title") != null) {
+				link.setName(m.get("title"));
+			}
+			if(m.get("description") != null) {
+				link.setDescription(m.get("description"));
+			}
+		}
 		jdbcTemplate.update("insert into tlink (address, name, description, ldate) values(?, ?, ?, ?)", link.getAddress(), link.getName(), link.getDescription(), link.getLdate());
 	}
 
@@ -57,7 +73,7 @@ public class LinkDAOImpl implements LinkDAO {
 
 		String sort = "id desc";
 		if(browseParams.getSort() != null) {
-			sort = browseParams.getSort() + " desc";
+			sort = browseParams.getSort();
 		}
 		String limit = "";
 		if(browseParams.getRange() != null) {
@@ -81,4 +97,34 @@ public class LinkDAOImpl implements LinkDAO {
 		
 	}
 
+	private Map<String, String> pageInfo(String u) {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			u = u.startsWith("http://") || u.startsWith("https://")  ? u : "http://"+u;
+			// jericho
+			Source source = new Source(new URL(u));
+			List<Element> titles = source.getAllElements(HTMLElementName.TITLE);
+			if (!titles.isEmpty()) {
+				Element title = titles.get(0);
+				// return new String(title.getContent().getTextExtractor().toString().getBytes(), "ISO-8859-2");
+				map.put("title", title.getTextExtractor().toString());
+			}
+			
+			List<Element> meta = source.getAllElements(HTMLElementName.META);
+			if(!meta.isEmpty()) {
+				for(Element e: meta) {
+					if(e.getAttributeValue("name") != null) {
+						if(e.getAttributeValue("name").equalsIgnoreCase("description")) {
+							map.put("description", e.getAttributeValue("content"));
+						}
+					}
+				}
+			}
+
+		} catch (IOException e) {
+			return map;
+		}
+		return map;
+	}
+	
 }
