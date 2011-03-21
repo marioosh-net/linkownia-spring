@@ -6,6 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Linkownia - przechowalnia linków" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
 	<script>
@@ -109,7 +110,7 @@
 									<div class="link-item-title">
 									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
-									<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
+									<a href="search.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
                       				</div>
                       			</div>
@@ -132,7 +133,7 @@
 									<div class="link-item-title">
 									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
-									<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
+									<a href="search.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<span class="timestamp">${link.ldate }</span>										
                       				</div>
                       			</div>

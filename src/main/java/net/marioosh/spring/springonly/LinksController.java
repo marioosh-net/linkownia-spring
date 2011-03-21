@@ -93,6 +93,12 @@ public class LinksController {
 		return "links";		
 	}
 	
+	@RequestMapping(value="/search.html", method = RequestMethod.GET)
+	public String searchByLink(@RequestParam(value="q") String search, Model model) {
+		model.addAttribute("links", linkDAO.findAll(search));
+		return "links";		
+	}
+	
 	/*
 	@RequestMapping(value="/{search}", method = RequestMethod.GET)
 	public String search(@PathVariable String search, Model model) {
