@@ -85,6 +85,11 @@ a:focus {
 	margin-bottom: 35px;
 }
 
+.main-count {
+	/*float: right;*/ 
+	color: #999;
+}
+
 #search .button {
 	background: url(../images/Search-icon.png) no-repeat;
 	cursor: pointer;

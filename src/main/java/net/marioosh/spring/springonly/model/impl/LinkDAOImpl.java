@@ -102,7 +102,6 @@ public class LinkDAOImpl implements LinkDAO {
 		}
 		String s = browseParams.getSearch() != null ? "where address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%'" : "";
 		String sql = "select * from tlink "+s+" order by "+sort + " " + limit;
-		log.debug("SQL: "+sql);
 		
 		return jdbcTemplate.query(sql, new LinkRowMapper());
 		
@@ -111,6 +110,16 @@ public class LinkDAOImpl implements LinkDAO {
 	public void click(Integer id) {
 		String sql = "update tlink set clicks = clicks + 1 where id = ?";
 		jdbcTemplate.update(sql, new Object[]{id});
+	}
+
+	public int countAll(BrowseParams browseParams) {
+		String sql = "select count(*) from tlink " + (browseParams.getSearch() != null ? "where address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%'" : "");
+		return jdbcTemplate.queryForInt(sql);
+	}
+
+	public int countAll(String search) {
+		String sql = "select count(*) from tlink " + (search != null ? "where address like '%"+search+"%' or name like '%"+search+"%'" : "");
+		return jdbcTemplate.queryForInt(sql);
 	}
 	
 }

@@ -50,12 +50,14 @@ public class LinksController {
 	 * metoda adnotowana przez @ModelAttribute 
 	 * wywoływana jest PRZED metoda handlera (adnotowaną przez @RequestMapping) 
 	 */
+	/*
 	@ModelAttribute("links")
 	public List<Link> populateLinks() {
 		BrowseParams b = new BrowseParams();
-		b.setRange(new Range(0,20));		
+		b.setRange(new Range(0,20));
 		return linkDAO.findAll(b);
 	}
+	*/
 	
 	@ModelAttribute("toplinks")
 	public List<Link> populateTopLinks() {
@@ -66,8 +68,12 @@ public class LinksController {
 	}
 
 	@RequestMapping(value = "/index.html")
-	public String welcomeHandler(@CookieValue(value="JSESSIONID", required=false) String cookie) {
+	public String welcomeHandler(Model model, @CookieValue(value="JSESSIONID", required=false) String cookie) {
 		log.debug("JSESSIONID: "+ cookie);
+		BrowseParams b = new BrowseParams();
+		b.setRange(new Range(0,20));		
+		model.addAttribute("links", linkDAO.findAll(b));
+		model.addAttribute("count", linkDAO.countAll((String)null));
 		return "links";
 	}
 	
@@ -90,12 +96,14 @@ public class LinksController {
 	@RequestMapping(value="/search.html", method = RequestMethod.POST)
 	public String searchByForm(@RequestParam(value="text") String search, Model model) {
 		model.addAttribute("links", linkDAO.findAll(search));
+		model.addAttribute("count", linkDAO.countAll(search));
 		return "links";		
 	}
 	
 	@RequestMapping(value="/search.html", method = RequestMethod.GET)
 	public String searchByLink(@RequestParam(value="q") String search, Model model) {
 		model.addAttribute("links", linkDAO.findAll(search));
+		model.addAttribute("count", linkDAO.countAll(search));
 		return "links";		
 	}
 	
