@@ -54,7 +54,6 @@ public class LinkDAOImpl implements LinkDAO {
 
 	public void add(Link link) {
 		if(link.getName().isEmpty()) {
-			link.setClicks(0);
 			Map<String, String> m = pageInfo(link.getAddress());
 			if(m.get("title") != null) {
 				link.setName(m.get("title"));
@@ -63,7 +62,7 @@ public class LinkDAOImpl implements LinkDAO {
 				link.setDescription(m.get("description"));
 			}
 		}
-		jdbcTemplate.update("insert into tlink (address, name, description, ldate) values(?, ?, ?, ?)", link.getAddress(), link.getName(), link.getDescription(), link.getLdate());
+		jdbcTemplate.update("insert into tlink (address, name, description, ldate, clicks) values(?, ?, ?, ?, 0)", link.getAddress(), link.getName(), link.getDescription(), link.getLdate());
 	}
 
 	public void delete(Integer id) {

@@ -30,7 +30,7 @@
         </div>
         <div id="menu-full">
         		<div id="menu">
-						<a href="#" onclick="jQuery('#new').toggle('fast');"><img width="51" height="20" src="images/add.png"/></a>        		
+						<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>        		
         		</div> 
         
         </div> 
@@ -62,7 +62,7 @@
 							<!-- <form method="post" action="add.html"> -->
 							<form:form commandName="link" action="add.html">
 								<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
-								<input type="text" name="address" style="width: 404px;"/><br/>
+								<input type="text" id="address" name="address" style="width: 404px;"/><br/>
 								<label>Name</label><br/>
 								<input type="text" name="name" style="width: 404px;"/><br/>
 								<label>Description</label><br/>
@@ -92,11 +92,13 @@
                 	</div> 
                     
                     <div id="bodyRight">
-                    	<div class="link-items-header" >Search</div> 
-						<form method="post" action="search.html">
-							<input id="text" type="text" name="text"/>
-							<input type="button" class="button" onclick="submit()" />
-						</form>
+                    	<div class="link-items-header" >Search</div>
+                    	<div style="padding: 15px;">
+							<form method="post" action="search.html">
+								<input id="text" type="text" name="text"/>
+								<input type="button" class="button" onclick="submit()" />
+							</form>
+						</div>
 						
 						<div class="link-items-header" >Top clicks</div>                        
 						<c:forEach items="${toplinks}" var="link" varStatus="i">
@@ -125,10 +127,9 @@
                 	<div class="pages"> 
 	                    <h4>Pages</h4> 
                         <ul> 
-                        	<li><a href="index.html">Home</a></li> 
-                            <li><a href="about.html">About Us</a></li> 
-                            <li><a href="blog.html">Blog</a></li> 
-                            <li><a href="contact.html">Contact Us</a></li> 
+                        	<li><a href="index.html">Linkownia</a></li> 
+                            <li><a href="http://marioosh.net">Home</a></li> 
+                            <li><a href="http://marioosh.net/blog/">Blog</a></li> 
                         </ul> 
                     </div> 
                     <!--end of pages div--> 
