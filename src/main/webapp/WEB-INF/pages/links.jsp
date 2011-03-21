@@ -37,7 +37,7 @@
 			<div id="header"> 
 				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
 				<div id="search"> 
-					<form method="post" action="search.html">
+					<form method="get" action="search.html">
 						<input id="qtext" type="text" name="q"/>
 						<input type="button" class="button" onclick="submit()" />
 					</form>
@@ -118,9 +118,9 @@
                       		</div>
 						</c:forEach>
                      </div>
-                     <div>
+                     <div id="navi">
                      	<c:forEach items="${pages}" var="page" varStatus="i">
-                     		<span><a href="#?p=${page[0]}">${page[0]}[${page[1]},${page[2]}]</a>&#160;</span>
+                     		<span><a href="?p=${page[0]}">${page[0]}[${page[1]},${page[2]}]</a>&#160;</span>
                      	</c:forEach>
                      </div>
                       

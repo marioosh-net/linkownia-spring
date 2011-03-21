@@ -98,6 +98,19 @@ a:focus {
 	height: 23px;
 }
 
+#navi {
+}
+
+#navi a {
+	border-bottom: 1px solid #CEDBF1;
+	color: #5F88CE;
+}
+
+#navi a:hover {
+	border-bottom: 1px solid #000;
+	color: #000;
+}
+
 #login {
 }
 

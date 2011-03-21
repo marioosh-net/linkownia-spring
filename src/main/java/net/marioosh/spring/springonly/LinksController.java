@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,11 +69,12 @@ public class LinksController {
 	}
 
 	@RequestMapping(value = "/index.html")
-	public String welcomeHandler(Model model, @CookieValue(value="JSESSIONID", required=false) String cookie) {
+	public String welcomeHandler(Model model, @RequestParam(value="p", required=false, defaultValue="1") int p, @CookieValue(value="JSESSIONID", required=false) String cookie) {
 		log.debug("JSESSIONID: "+ cookie);
+		log.debug("PAGE: "+p);
 		
 		BrowseParams b = new BrowseParams();
-		b.setRange(new Range(0,20));		
+		b.setRange(new Range(p-1,20));		
 		model.addAttribute("links", linkDAO.findAll(b));
 		int count = linkDAO.countAll((String)null);
 		model.addAttribute("count", count);
@@ -81,7 +83,7 @@ public class LinksController {
 	}
 	
 	@RequestMapping(value="/search.html")
-	public String searchByForm(@RequestParam(value="q") String search, Model model) {
+	public String searchByForm(@RequestParam(value="q", required=false, defaultValue="") String search, Model model) {
 		model.addAttribute("links", linkDAO.findAll(search));
 		int count = linkDAO.countAll(search);
 		model.addAttribute("count", linkDAO.countAll(search));
@@ -136,6 +138,18 @@ public class LinksController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * ha
+	 * @param ex
+	 * @param response
+	 * @throws IOException
+	 */
+	@ExceptionHandler(Exception.class)
+	public void handleException(Exception ex, HttpServletResponse response) throws IOException {
+		// return ClassUtils.getShortName(ex.getClass());
+		response.getWriter().print("Error: "+ex.getMessage());
 	}
 	
 	private int[][] pages(int count) {

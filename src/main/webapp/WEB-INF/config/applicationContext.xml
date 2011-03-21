@@ -43,21 +43,22 @@
 		<property name="password" value="springonly" />
 	</bean>
 	-->
-	<!-- linkownia_small / marioosh.net 
+	<!-- linkownia_small / marioosh.net -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://marioosh.net:3306/linkownia_small" />
 		<property name="username" value="linkownia" />
 		<property name="password" value="linkownia" />		
 	</bean>
-	-->
-	<!-- local -->
+	
+	<!-- local
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/springonly?charSet=UTF-8" />
 		<property name="username" value="springonly" />
 		<property name="password" value="springonly" />
 	</bean>
+	-->
 
 	<!-- JSR-303 Validator / Bean Validator -->
 	<!-- A JSR-303 provider, such as Hibernate Validator, is expected to be present in the classpath and will be detected automatically -->
