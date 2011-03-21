@@ -558,7 +558,8 @@ div.copyright p.rights a {
 
 .link-item {
 	padding: 10px 0px;
-	border-bottom: 1px solid #CCDCEF;
+	/*border-bottom: 1px solid #CCDCEF;*/
+	border-bottom: dotted 1px #DDD;
 }
 
 .group {
