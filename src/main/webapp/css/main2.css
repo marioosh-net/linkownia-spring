@@ -80,6 +80,10 @@ a:focus {
 	padding-top: 15px;
 }
 
+.panel {
+	margin-bottom: 35px;
+}
+
 #search .button {
 	background: url(../images/Search-icon.png) no-repeat;
 	cursor: pointer;
