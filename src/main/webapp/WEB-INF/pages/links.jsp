@@ -25,6 +25,7 @@
 		window.open(url);
 	}
 	jQuery(document).ready(function(){
+		/*jQuery('#list').load('list.html');*/
 		/* nope */
 	});
 	</script>

@@ -93,6 +93,16 @@ public class LinksController {
 		return "links";		
 	}
 	
+	@RequestMapping(value="/list.html")
+	public String list(@RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model) {
+		model.addAttribute("links", linkDAO.findAll(search));
+		int count = linkDAO.countAll(search);
+		model.addAttribute("count", linkDAO.countAll(search));
+		model.addAttribute("pages", pages(count));
+		model.addAttribute("page", p);
+		return "list";		
+	}
+	
 	/*
 	@RequestMapping(value="/{search}", method = RequestMethod.GET)
 	public String search(@PathVariable String search, Model model) {
