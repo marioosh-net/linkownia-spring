@@ -41,7 +41,7 @@
 					<a href="#" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 				</div>
 				<div class="menu-item">
-					<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+					<a href="#" onclick="alert('not active'); return false; hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
 				</div>
 				<!--
 				<div class="menu-item">
