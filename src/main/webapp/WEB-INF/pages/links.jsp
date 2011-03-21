@@ -9,12 +9,13 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
 	<script>
-	function hidepanels(id) {
+	function hidepanels(id, fun) {
 		jQuery('.panel').each(function(index) {
-			if(jQuery(this).id != id) {
+			if(jQuery(this).attr('id') != id) {
 				jQuery(this).hide('fast');
 			}
 		});
+		jQuery('#'+id).toggle('fast', fun);
 	}
 	</script>
 </head>
@@ -37,10 +38,10 @@
         <div id="menu-full">
        		<div id="menu">
        			<div class="menu-item first-item">
-					<a href="#" onclick="hidepanels('new'); jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
+					<a href="#" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 				</div>
 				<div class="menu-item">
-					<a href="#" onclick="hidepanels('login'); jQuery('#login').toggle('fast', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+					<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
 				</div>
 				<!--
 				<div class="menu-item">
