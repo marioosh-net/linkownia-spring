@@ -14,19 +14,15 @@
  
 	<div id="wraper"> 
     	<div id="headerblank"> 
-       	  <div id="header"> 
-           	<ul style="display: none;"> 
-                	<li><a href="index.html">Home</a></li> 
-                    <li><a href="about.html">About</a></li> 
-                    <li><a href="blog.html">Blog</a></li> 
-                    <li><a href="services.html">Services</a></li> 
-                    <li><a href="portfolio.html">Portfolio</a></li> 
-                    <li><a href="usefullinks.html" class="active">Useful&nbsp;Links</a></li> 
-                    <li><a href="contact.html">Contact</a></li> 
-            </ul> 
-           	  <h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1><h3 style="display: none;">...</h3> 
-           	
-            </div> 
+			<div id="header"> 
+				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
+				<div id="search"> 
+					<form method="post" action="search.html">
+						<input id="text" type="text" name="text"/>
+						<input type="button" class="button" onclick="submit()" />
+					</form>
+ 				</div>
+			</div>
         </div>
         
         <div id="menu-full">
@@ -107,14 +103,6 @@
                 	</div> 
                     
                     <div id="bodyRight">
-                    	<div class="link-items-header" >Search</div>
-                    	<div style="padding: 15px;">
-							<form method="post" action="search.html">
-								<input id="text" type="text" name="text"/>
-								<input type="button" class="button" onclick="submit()" />
-							</form>
-						</div>
-						
 						<div class="link-items-header" >Top clicks</div>                        
 						<c:forEach items="${toplinks}" var="link" varStatus="i">
                        		<div class="link-item">

@@ -55,47 +55,6 @@ a:focus {
 	margin: 0px auto;
 }
 
-#header ul {
-	float: left;
-	margin: 0px;
-	padding: 0px;
-	width: 952px;
-	display: block;
-}
-
-#header ul li {
-	float: left;
-	margin: 0px;
-	padding: 0px;
-	display: block;
-	background: url(../images/fadeline.png) no-repeat right;
-}
-
-#header ul li a {
-	float: left;
-	padding: 11px 43px 0 43px;
-	height: 29px;
-	font-family: Verdana;
-	font-size: 13px;
-	font-weight: normal;
-	color: #fff;
-	line-height: 14px;
-	text-decoration: none;
-}
-
-#header ul li a:hover,a.active {
-	float: left;
-	padding: 11px 43px 0 43px;
-	height: 29px;
-	font-family: Verdana;
-	font-size: 13px;
-	font-weight: normal;
-	color: #fff;
-	line-height: 14px;
-	text-decoration: none;
-	background: #206ea6;
-}
-
 #header h1 {
 	float: left;
 	width: 324px;
@@ -116,64 +75,18 @@ a:focus {
 	padding: 0px;
 }
 
-#header #slideshow {
-	float: left;
-	margin: 12px 0 0 0;
-	padding: 0px;
-	background: url(../images/slideshowbg.png);
-	width: 950px;
-	border: 1px solid #c8e8f3;
-	height: 262px;
+#search {
+	float: right;
+	padding-top: 15px;
 }
 
-#header #slideshow .sliderleftcontent {
-	float: left;
-	margin: 29px 0 0 0;
-	padding: 0 0 0 40px;
-	width: 535px;
-}
+#search .button {
+	background: url(../images/Search-icon.png) no-repeat;
+	cursor: pointer;
+	border: none;
+	width: 23px;
+	height: 23px;
 
-#header #slideshow .sliderleftcontent h2 {
-	float: left;
-	margin: 0px;
-	padding: 0px;
-	width: 532px;
-	font-family: Verdana;
-	font-size: 30px;
-	font-weight: normal;
-	color: #fff;
-}
-
-#header #slideshow .sliderleftcontent p {
-	float: left;
-	margin: 11px 0 0 0;
-	padding: 0px;
-	width: 486px;
-	font-family: Verdana;
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: normal;
-	color: #fff;
-}
-
-#header #slideshow .sliderleftcontent a {
-	float: left;
-	margin: 23px 0 0 0;
-	padding: 0 0 0 16px;
-	background: url(../images/readmoreactive.png) no-repeat;
-	height: 29px;
-	width: 97px;
-	line-height: 27px;
-	font-family: Verdana;
-	font-weight: bold;
-	font-size: 12px;
-	color: #fff;
-	text-decoration: none;
-}
-
-#header #slideshow img {
-	margin: 11px 0 0 0;
-	float: left;
 }
 
 #menu-full {
