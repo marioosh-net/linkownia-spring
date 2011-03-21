@@ -76,6 +76,13 @@ public class LinksController {
 		return "links";
 	}
 	
+	@RequestMapping(value = "/open.html")
+	public String open(@RequestParam(value="id") Integer id) {
+		Link link = linkDAO.get(id);
+		log.debug(link.getAddress());
+		return "links";
+	}
+	
 	@RequestMapping(value="/search.html", method = RequestMethod.POST)
 	public String searchByForm(@RequestParam(value="text") String search, Model model) {
 		model.addAttribute("links", linkDAO.findAll(search));

@@ -90,15 +90,15 @@
 						</form:form>
 					</div>
                   	
-                  		<!-- links -->
-                      	<div class="link-items-header" >Links by date</div>
+               		<!-- links -->
+                   	<div class="link-items-header" >Links by date</div>
                       	<c:forEach items="${links}" var="link" varStatus="i">
                       		<div class="link-item">
                       			<div class="clicks">${link.clicks}</div>
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
-									<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
+									<a href="open.html?id=${link.id}">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
 									<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
@@ -106,9 +106,9 @@
                       			</div>
                       			<div style="clear: both;"></div>
                       		</div>
-					</c:forEach>
-						     
-                     </div> 
+						</c:forEach>
+                     </div>
+                      
                	</div> 
                    
                    <div id="bodyRight">

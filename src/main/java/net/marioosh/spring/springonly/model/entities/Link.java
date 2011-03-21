@@ -17,6 +17,8 @@ public class Link {
 	
 	private Date ldate;
 	
+	private Date dateMod;
+	
 	private int clicks;
 
 	public Link() {}
@@ -80,6 +82,14 @@ public class Link {
 	
 	public void setClicks(int clicks) {
 		this.clicks = clicks;
+	}
+	
+	public Date getDateMod() {
+		return dateMod;
+	}
+	
+	public void setDateMod(Date dateMod) {
+		this.dateMod = dateMod;
 	}
 	
 	public String getHostName() {

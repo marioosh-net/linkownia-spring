@@ -14,9 +14,12 @@ import net.htmlparser.jericho.Source;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
+import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.MappingSqlQuery;
 import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.stereotype.Repository;
@@ -35,6 +38,15 @@ public class LinkDAOImpl implements LinkDAO {
 	public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+	/**
+	 * BeanPropertyRowMapper - mapuje nazwy kolumn w bazie na nazwy pol w beanie
+	 */
+	public Link get(Integer id) {
+		String sql = "select * from tlink where id = ?";
+		Link link = (Link)jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<Link>(Link.class));
+		return link;
+	}	
 	
 	public List<Link> findAll(String search) {
 		String s = search != null ? "where address like '%"+search+"%' or name like '%"+search+"%'" : "";
@@ -82,18 +94,8 @@ public class LinkDAOImpl implements LinkDAO {
 		String s = browseParams.getSearch() != null ? "where address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%'" : "";
 		String sql = "select * from tlink "+s+" order by "+sort + " " + limit;
 		log.debug("SQL: "+sql);
-		SqlQuery<Link> query = new MappingSqlQuery<Link>(jdbcTemplate.getDataSource(), sql){
-			@Override
-			protected Link mapRow(ResultSet resultset, int i)
-					throws SQLException {
-				Link link = new Link(resultset.getInt("id"), resultset.getString("address"), resultset.getString("name"));
-				link.setLdate(resultset.getDate("ldate"));
-				link.setDescription(resultset.getString("description"));
-				link.setClicks(resultset.getInt("clicks"));
-				return link;
-			}
-		};
-		return query.execute(); 
+		
+		return jdbcTemplate.query(sql, new LinkRowMapper());
 		
 	}
 
