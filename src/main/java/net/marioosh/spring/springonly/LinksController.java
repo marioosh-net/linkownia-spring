@@ -80,7 +80,9 @@ public class LinksController {
 	public String open(@RequestParam(value="id") Integer id) {
 		Link link = linkDAO.get(id);
 		log.debug(link.getAddress());
-		return "links";
+		linkDAO.click(id);
+		return "redirect:"+link.getAddress();
+
 	}
 	
 	@RequestMapping(value="/search.html", method = RequestMethod.POST)

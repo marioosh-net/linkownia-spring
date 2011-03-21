@@ -15,6 +15,7 @@ import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
+import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -66,7 +67,7 @@ public class LinkDAOImpl implements LinkDAO {
 
 	public void add(Link link) {
 		if(link.getName().isEmpty()) {
-			Map<String, String> m = pageInfo(link.getAddress());
+			Map<String, String> m = WebUtils.pageInfo(link.getAddress());
 			if(m.get("title") != null) {
 				link.setName(m.get("title"));
 			}
@@ -99,34 +100,9 @@ public class LinkDAOImpl implements LinkDAO {
 		
 	}
 
-	private Map<String, String> pageInfo(String u) {
-		Map<String, String> map = new HashMap<String, String>();
-		try {
-			u = u.startsWith("http://") || u.startsWith("https://")  ? u : "http://"+u;
-			// jericho
-			Source source = new Source(new URL(u));
-			List<Element> titles = source.getAllElements(HTMLElementName.TITLE);
-			if (!titles.isEmpty()) {
-				Element title = titles.get(0);
-				// return new String(title.getContent().getTextExtractor().toString().getBytes(), "ISO-8859-2");
-				map.put("title", title.getTextExtractor().toString());
-			}
-			
-			List<Element> meta = source.getAllElements(HTMLElementName.META);
-			if(!meta.isEmpty()) {
-				for(Element e: meta) {
-					if(e.getAttributeValue("name") != null) {
-						if(e.getAttributeValue("name").equalsIgnoreCase("description")) {
-							map.put("description", e.getAttributeValue("content"));
-						}
-					}
-				}
-			}
-
-		} catch (IOException e) {
-			return map;
-		}
-		return map;
+	public void click(Integer id) {
+		String sql = "update tlink set clicks = clicks + 1 where id = ?";
+		jdbcTemplate.update(sql, new Object[]{id});
 	}
 	
 }

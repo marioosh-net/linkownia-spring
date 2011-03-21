@@ -10,4 +10,10 @@ public interface LinkDAO {
 	public Link get(Integer id);
 	public void add(Link link);
 	public void delete(Integer id);
+	
+	/**
+	 * clicks++
+	 * @param id
+	 */
+	public void click(Integer id);
 }
