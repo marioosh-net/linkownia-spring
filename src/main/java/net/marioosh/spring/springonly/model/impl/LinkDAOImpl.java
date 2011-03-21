@@ -37,6 +37,7 @@ public class LinkDAOImpl implements LinkDAO {
 					throws SQLException {
 				Link link = new Link(resultset.getInt("id"), resultset.getString("address"), resultset.getString("name"));
 				link.setLdate(resultset.getDate("ldate"));
+				link.setDescription(resultset.getString("description"));
 				link.setClicks(resultset.getInt("clicks"));
 				return link;
 			}
@@ -71,6 +72,7 @@ public class LinkDAOImpl implements LinkDAO {
 					throws SQLException {
 				Link link = new Link(resultset.getInt("id"), resultset.getString("address"), resultset.getString("name"));
 				link.setLdate(resultset.getDate("ldate"));
+				link.setDescription(resultset.getString("description"));
 				link.setClicks(resultset.getInt("clicks"));
 				return link;
 			}

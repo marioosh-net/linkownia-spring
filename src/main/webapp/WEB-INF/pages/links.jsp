@@ -8,7 +8,6 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/digg.css" media="screen">
 </head>
 
 <body id="TotalBodyId" onload="jQuery('#text').focus();"> 
@@ -67,38 +66,24 @@
 							</form:form>
 						</div>
                    	
-                       	<h2>Links by date</h2> 
+                       	<!-- <h2>Links by date</h2> -->
+                       	
+                       	<div style="border-bottom: 1px solid #80A1C1; margin-bottom: 0; padding-bottom: 7px; position: relative; color: #383529; font-size: 18px;" >Links by date</div>
                            	                            	 
                        	<c:forEach items="${links}" var="link" varStatus="i">
-                          	<div class="story-item">
-							<div class="story-item-gutters group">
-								<div class="story-item-diggbtn">
-									<div class="digg-btn has-tooltip">
-										<a href="${link.address}" class="digg-count-wrapper">
-											<span class="digg-count">
-												<span>${link.clicks}</span>
-											</span>
-										</a>
-										<a class="digg-it diggable group" href="${link.address}"></a>
-									</div>
-								</div>
-								<div class="story-item-content group">
-									<div class="story-item-details">
-										<h3 class="story-item-title">
+                       		<div class="link-item">
+                       			<div class="clicks">${link.clicks}</div>
+                       			<div class="link-data">
+                       				<div>
+										<div class="link-item-title">
 										<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
-										</h3>
-										<p class="story-item-description">
-											<a href="/search?q=site:${link.hostName}" class="story-item-source">${link.hostName}</a>
-											<a href="/news/lifestyle/why_is_america_so_anxious" class="story-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>
-										</p>
-									</div>
-									<div class="inline-comment-container">
-									</div>
-									<div class="story-item-activity group hidden">
-									</div>
-								</div>
-							</div>    
-							</div>                       	
+										</div>                   				
+										<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
+										<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
+                       				</div>
+                       			</div>
+                       			<div style="clear: both;"></div>
+                       		</div>
 						</c:forEach>
 							     
                       </div> 

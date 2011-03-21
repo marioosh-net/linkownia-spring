@@ -4,7 +4,7 @@
 body {
 	margin: 0px;
 	padding: 0;
-	background: #383738;
+	/*background: #383738;*/
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: normal;
@@ -43,7 +43,8 @@ a:focus {
 	float: left;
 	width: 100%;
 	margin: 0px;
-	/*padding:0 0 32px 0;*/ /*background:url(../images/header.png) repeat-x left top;*/
+	/*padding:0 0 32px 0;*/
+	/*background:url(../images/header.png) repeat-x left top;*/
 	background-color: #000000;
 	padding-top: 20px;
 }
@@ -177,7 +178,7 @@ a:focus {
 
 #bodycontentblank {
 	float: left;
-	background: #efe5d7;
+	/*background: #efe5d7;*/
 	width: 100%;
 	margin: 0px;
 	padding: 0px 0 29px 0;
@@ -709,7 +710,7 @@ div.socialbookmarking p.rights a {
 
 #leftPan p a {
 	color: #419bcb;
-	text-decoration: underline;
+	/*text-decoration: underline;*/
 	font-size: 11px;
 }
 
@@ -882,70 +883,101 @@ div.socialbookmarking p.rights a {
 	margin-right: 5px;
 }
 
-.story-item-details {
+.link-item-details {
 	margin-bottom: 7px;
 }
 
-.story-item-title {
+/*
+.link-item-title {
 	color: #AEC3E7;
 	float: left;
 	font-size: 1.3em;
 	line-height: 1.1em;
 	margin-bottom: 4px;
 }
+*/
+.link-item-title {
+	
+}
 
-.story-item-title a {
+.link-item-title a {
 	border-bottom: 1px solid #AEC3E7;
 	color: #2854BB;
 	font-weight: bold;
+	font-size: 15px;
 }
 
-.story-item-description {
-	clear: left;
-	font-size: 1.1em;
-	line-height: 1.2em;
-	padding-right: 10px;
+.link-item-title a:hover {
+	color: #000000;
+	border-bottom: 1px solid #000000;
 }
 
-.story-item-source {
+.link-item-source {
 	border-bottom: 1px solid #CEDBF1;
 	color: #5F88CE;
 }
 
-story-item-teaser .timestamp {
-	font-size: 1em;
+.link-item-teaser {
+	color: #666;
 }
 
-.story-item .timestamp {
+.link-item-teaser .timestamp {
+	font-size: 1em;
+	padding-left: 5px;
+}
+
+.link-item .clicks {
+	float: left;
+	width: 30px;
+	height: 19px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #716B14;
+	text-align: center;
+	padding-top: 5px;
+}
+
+.link-item .link-data {
+	float: left; 
+	width: 550px;
+}
+
+.link-item .timestamp {
 	color: #999;
 }
 
-.story-item {
-	border-bottom: ;
+.link-item {
 	padding: 10px 0px;
-	position: relative;
+	border-bottom: 1px solid #CCDCEF;
 }
+
 .group {
-min-height: 1%;
+	min-height: 1%;
 }
+
 .group {
-display: block;
+	display: block;
 }
-.story-item-gutters {
-padding: 0px 60px 0px 68px;
+
+.link-item-gutters {
+	padding: 0px 60px 0px 68px;
 }
+
 .group {
-min-height: 1%;
+	min-height: 1%;
 }
+
 .group {
-display: block;
+	display: block;
 }
-.story-item-diggbtn {
-float: left;
-margin-left: -64px;
-width: 54px;
+
+.link-item-diggbtn {
+	float: left;
+	margin-left: -64px;
+	width: 54px;
 }
-.story-item-content {
-float: left;
-width: 100%;
+
+.link-item-content {
+	float: left;
+	width: 100%;
 }
