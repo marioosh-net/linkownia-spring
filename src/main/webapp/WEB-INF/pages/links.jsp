@@ -23,6 +23,9 @@
 		});
 		window.open(url);
 	}
+	jQuery(document).ready(function(){
+		/* nope */
+	});
 	</script>
 </head>
 
