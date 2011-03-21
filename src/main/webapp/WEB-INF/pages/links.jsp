@@ -30,7 +30,7 @@
 	</script>
 </head>
 
-<body id="TotalBodyId" onload="jQuery('#text').focus();"> 
+<body id="TotalBodyId" onload="jQuery('#qtext').focus();"> 
  
 	<div id="wraper"> 
     	<div id="headerblank"> 
@@ -38,7 +38,7 @@
 				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
 				<div id="search"> 
 					<form method="post" action="search.html">
-						<input id="text" type="text" name="text"/>
+						<input id="qtext" type="text" name="q"/>
 						<input type="button" class="button" onclick="submit()" />
 					</form>
  				</div>
@@ -117,6 +117,11 @@
                       			<div style="clear: both;"></div>
                       		</div>
 						</c:forEach>
+                     </div>
+                     <div>
+                     	<c:forEach items="${pages}" var="page" varStatus="i">
+                     		<span>${page[0]}[${page[1]},${page[2]}]&#160;</span>
+                     	</c:forEach>
                      </div>
                       
                	</div> 

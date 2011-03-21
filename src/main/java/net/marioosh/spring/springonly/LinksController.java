@@ -73,35 +73,14 @@ public class LinksController {
 		BrowseParams b = new BrowseParams();
 		b.setRange(new Range(0,20));		
 		model.addAttribute("links", linkDAO.findAll(b));
-		model.addAttribute("count", linkDAO.countAll((String)null));
+		int count = linkDAO.countAll((String)null);
+		model.addAttribute("count", count);
+		model.addAttribute("pages", pages(count));
 		return "links";
 	}
 	
-	@RequestMapping(value = "/open.html")
-	public void open(@RequestParam(value="id") Integer id, HttpServletResponse response) {
-		Link link = linkDAO.get(id);
-		int i = link.getClicks();
-		log.debug(link.getAddress());
-		linkDAO.click(id);
-		// return "redirect:"+link.getAddress();
-		// return "links";
-		try {
-			response.getWriter().print(++i);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	@RequestMapping(value="/search.html", method = RequestMethod.POST)
-	public String searchByForm(@RequestParam(value="text") String search, Model model) {
-		model.addAttribute("links", linkDAO.findAll(search));
-		model.addAttribute("count", linkDAO.countAll(search));
-		return "links";		
-	}
-	
-	@RequestMapping(value="/search.html", method = RequestMethod.GET)
-	public String searchByLink(@RequestParam(value="q") String search, Model model) {
+	@RequestMapping(value="/search.html")
+	public String searchByForm(@RequestParam(value="q") String search, Model model) {
 		model.addAttribute("links", linkDAO.findAll(search));
 		model.addAttribute("count", linkDAO.countAll(search));
 		return "links";		
@@ -138,6 +117,34 @@ public class LinksController {
 	public String delete(@RequestParam(value="id", required=false, defaultValue="-1") Integer id) {
 		linkDAO.delete(id);
 		return "redirect:/index.html"; 
+	}
+
+	@RequestMapping(value = "/open.html")
+	public void open(@RequestParam(value="id") Integer id, HttpServletResponse response) {
+		Link link = linkDAO.get(id);
+		int i = link.getClicks();
+		log.debug(link.getAddress());
+		linkDAO.click(id);
+		// return "redirect:"+link.getAddress();
+		// return "links";
+		try {
+			response.getWriter().print(++i);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private int[][] pages(int count) {
+		int perPage = 20;
+		int pages = count / perPage + 1;
+		int[][] p = new int[pages][3];
+		for(int i = 0; i < p.length; i++) {
+			p[i][0] = i + 1; 
+			p[i][1] = i * perPage; 
+			p[i][2] = ((i+1) * perPage) - 1;
+		}
+		return p;
 	}
 	
 }
