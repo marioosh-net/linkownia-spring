@@ -88,7 +88,7 @@
 										<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
 										</h3>
 										<p class="story-item-description">
-											<a href="/search?q=site:salon.com" class="story-item-source">salon.com</a>
+											<a href="/search?q=site:${link.hostName}" class="story-item-source">${link.hostName}</a>
 											<a href="/news/lifestyle/why_is_america_so_anxious" class="story-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>
 										</p>
 									</div>

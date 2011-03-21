@@ -1,5 +1,7 @@
 package net.marioosh.spring.springonly.model.entities;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -78,5 +80,13 @@ public class Link {
 	
 	public void setClicks(int clicks) {
 		this.clicks = clicks;
+	}
+	
+	public String getHostName() {
+		try {
+			return new URL(address).getHost();
+		} catch (MalformedURLException e) {
+			return "";
+		}
 	}
 }
