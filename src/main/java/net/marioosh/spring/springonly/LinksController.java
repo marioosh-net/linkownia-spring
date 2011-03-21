@@ -79,15 +79,17 @@ public class LinksController {
 		int count = linkDAO.countAll((String)null);
 		model.addAttribute("count", count);
 		model.addAttribute("pages", pages(count));
+		model.addAttribute("page", p);
 		return "links";
 	}
 	
 	@RequestMapping(value="/search.html")
-	public String searchByForm(@RequestParam(value="q", required=false, defaultValue="") String search, Model model) {
+	public String searchByForm(@RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model) {
 		model.addAttribute("links", linkDAO.findAll(search));
 		int count = linkDAO.countAll(search);
 		model.addAttribute("count", linkDAO.countAll(search));
 		model.addAttribute("pages", pages(count));
+		model.addAttribute("page", p);
 		return "links";		
 	}
 	

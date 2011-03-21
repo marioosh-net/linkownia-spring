@@ -119,8 +119,13 @@
 						</c:forEach>
                      </div>
                      <div id="navi">
-                     	<c:forEach items="${pages}" var="page" varStatus="i">
-                     		<span><a href="?p=${page[0]}">${page[0]}[${page[1]},${page[2]}]</a>&#160;</span>
+                     	<c:forEach items="${pages}" var="p" varStatus="i">
+                     		<c:if test="${i.index == 0}">Pages:&#160;</c:if>
+                     		<span>
+                     			<c:if test="${p[0] != page}"><a href="?p=${p[0]}">${p[0]}</a></c:if>
+                     			<c:if test="${p[0] == page}">${p[0]}</c:if>
+                     			&#160;
+                     		</span>
                      	</c:forEach>
                      </div>
                       
