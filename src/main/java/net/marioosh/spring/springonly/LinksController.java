@@ -57,7 +57,9 @@ public class LinksController {
 	 */
 	@ModelAttribute("links")
 	public List<Link> populateLinks() {
-		return linkDAO.findAll(new BrowseParams());
+		BrowseParams b = new BrowseParams();
+		b.setRange(new Range(0,20));		
+		return linkDAO.findAll(b);
 	}
 	
 	@ModelAttribute("toplinks")

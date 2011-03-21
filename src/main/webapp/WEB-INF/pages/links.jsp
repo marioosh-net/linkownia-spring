@@ -8,6 +8,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/digg.css" media="screen">
 </head>
 
 <body id="TotalBodyId" onload="jQuery('#text').focus();"> 
@@ -33,52 +34,70 @@
                	  <div id="bodyleftcontent"> 
                    	<div id="leftPan"> 
                    	
-			<!-- login form -->
-			<security:authorize access="!hasRole('ROLE_ADMIN')">
-				<form id="jf" name="f" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
-					<div style="float: left">
-						<div class="smalllabel">login</div>
-						<div><input type="text" name="j_username" value="" size="5"/></div>
-					</div>
-					<div style="float: left">
-						<div class="smalllabel">&#160;password</div>
-						<div>&#160;<input type="password" name="j_password" value="" size="6" /></div>
-					</div>
-					<div style="float: left">
-						<div>&#160;</div>
-						<div style="vertical-align: bottom; padding-top: 3px;">&#160;<input type="submit" value="Login"/></div>
-					</div>
-					<div style="clear: both;"></div>
-				</form>
-			</security:authorize>
-
-			<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');"><img width="51" height="20" src="images/add.png"/></a></div>
-			<div id="new" style="${someErrors ? '' : 'display: none;'}">
-				<!-- <form method="post" action="add.html"> -->
-				<form:form commandName="link" action="add.html">
-					<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
-					<input type="text" name="address" style="width: 404px;"/><br/>
-					<label>Name</label><br/>
-					<input type="text" name="name" style="width: 404px;"/><br/>
-					<label>Description</label><br/>
-					<textarea name="description" style="width: 404px;"></textarea><br/>
-					<input type="submit" value="Add link"/>
-				</form:form>
-			</div>
+						<!-- login form -->
+						<security:authorize access="!hasRole('ROLE_ADMIN')">
+							<form id="jf" name="f" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
+								<div style="float: left">
+									<div class="smalllabel">login</div>
+									<div><input type="text" name="j_username" value="" size="5"/></div>
+								</div>
+								<div style="float: left">
+									<div class="smalllabel">&#160;password</div>
+									<div>&#160;<input type="password" name="j_password" value="" size="6" /></div>
+								</div>
+								<div style="float: left">
+									<div>&#160;</div>
+									<div style="vertical-align: bottom; padding-top: 3px;">&#160;<input type="submit" value="Login"/></div>
+								</div>
+								<div style="clear: both;"></div>
+							</form>
+						</security:authorize>
+			
+						<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');"><img width="51" height="20" src="images/add.png"/></a></div>
+						<div id="new" style="${someErrors ? '' : 'display: none;'}">
+							<!-- <form method="post" action="add.html"> -->
+							<form:form commandName="link" action="add.html">
+								<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
+								<input type="text" name="address" style="width: 404px;"/><br/>
+								<label>Name</label><br/>
+								<input type="text" name="name" style="width: 404px;"/><br/>
+								<label>Description</label><br/>
+								<textarea name="description" style="width: 404px;"></textarea><br/>
+								<input type="submit" value="Add link"/>
+							</form:form>
+						</div>
                    	
-                        	<h2>Links by date</h2> 
-                            	                            	 
-                           	<c:forEach items="${links}" var="link" varStatus="i">
-								<div class="story-item-details">
-                  						<h3 class="story-item-title">
-                                          	<a href="${link.address}" target="_blank">${link.name}</a>
-                                          </h3>
-									<!-- <p class="story-item-description">
-                          					<a href="/search?q=site:torrentfreak.com" class="story-item-source">torrentfreak.com</a>
-                          					<a href="${link.address}" class="story-item-teaser">— ${link.description} <span class="timestamp">${link.ldate}</span></a>
-									</p> -->
-                                   </div>		                     
-							</c:forEach>
+                       	<h2>Links by date</h2> 
+                           	                            	 
+                          	<c:forEach items="${links}" var="link" varStatus="i">
+							<div class="story-item-gutters group">
+								<div class="story-item-diggbtn">
+									<div class="digg-btn has-tooltip">
+										<a href="${link.address}" class="digg-count-wrapper">
+											<span class="digg-count">
+												<span>${link.clicks}</span>
+											</span>
+										</a>
+										<a class="digg-it diggable group" href="${link.address}"></a>
+									</div>
+								</div>
+								<div class="story-item-content group">
+									<div class="story-item-details">
+										<h3 class="story-item-title">
+										<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
+										</h3>
+										<p class="story-item-description">
+											<a href="/search?q=site:salon.com" class="story-item-source">salon.com</a>
+											<a href="/news/lifestyle/why_is_america_so_anxious" class="story-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>
+										</p>
+									</div>
+									<div class="inline-comment-container">
+									</div>
+									<div class="story-item-activity group hidden">
+									</div>
+								</div>
+							</div>                           	
+						</c:forEach>
 							     
                       </div> 
                 	</div> 

@@ -919,3 +919,33 @@ story-item-teaser .timestamp {
 .story-item .timestamp {
 	color: #999;
 }
+
+.story-item {
+	border-bottom: ;
+	padding: 10px 0px;
+	position: relative;
+}
+.group {
+min-height: 1%;
+}
+.group {
+display: block;
+}
+.story-item-gutters {
+padding: 0px 60px 0px 68px;
+}
+.group {
+min-height: 1%;
+}
+.group {
+display: block;
+}
+.story-item-diggbtn {
+float: left;
+margin-left: -64px;
+width: 54px;
+}
+.story-item-content {
+float: left;
+width: 100%;
+}
