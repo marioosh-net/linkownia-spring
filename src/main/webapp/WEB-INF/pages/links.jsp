@@ -28,23 +28,37 @@
            	
             </div> 
         </div>
-        <div id="menu-full">
-        		<div id="menu">
-						<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>        		
-        		</div> 
         
-        </div> 
+        <div id="menu-full">
+       		<div id="menu">
+       			<div class="menu-item first-item">
+					<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
+				</div>
+				
+					<div class="menu-item">
+						<a href="#" onclick="jQuery('#login').toggle('fast', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+					</div>
+				
+				<!--
+				<div class="menu-item">
+					<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
+				</div>
+				-->        		
+       		</div> 
+        </div>
+         
         	<div id="bodycontentblank">
             	<div id="bodycontent"> 
                	  <div id="bodyleftcontent"> 
                    	<div id="leftPan"> 
                    	
 						<!-- login form -->
-						<security:authorize access="!hasRole('ROLE_ADMIN')">
+						
+						<div id="login" style="display: none;">
 							<form id="jf" name="f" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
 								<div style="float: left">
 									<div class="smalllabel">login</div>
-									<div><input type="text" name="j_username" value="" size="5"/></div>
+									<div><input type="text" id="username" name="j_username" value="" size="5"/></div>
 								</div>
 								<div style="float: left">
 									<div class="smalllabel">&#160;password</div>
@@ -56,7 +70,8 @@
 								</div>
 								<div style="clear: both;"></div>
 							</form>
-						</security:authorize>
+						</div>
+						
 			
 						<div id="new" style="${someErrors ? '' : 'display: none;'}">
 							<!-- <form method="post" action="add.html"> -->
