@@ -60,7 +60,7 @@ public class LinkDAOImpl implements LinkDAO {
 		}
 		String limit = "";
 		if(browseParams.getRange() != null) {
-			 limit = "limit " + browseParams.getRange().getStart() + ", "+browseParams.getRange().getMax(); 
+			 limit = "limit " + browseParams.getRange().getMax() + " offset " + browseParams.getRange().getStart(); 
 		}
 		String s = browseParams.getSearch() != null ? "where address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%'" : "";
 		String sql = "select * from tlink "+s+" order by "+sort + " " + limit;
