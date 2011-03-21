@@ -54,6 +54,7 @@ public class LinkDAOImpl implements LinkDAO {
 
 	public void add(Link link) {
 		if(link.getName().isEmpty()) {
+			link.setClicks(0);
 			Map<String, String> m = pageInfo(link.getAddress());
 			if(m.get("title") != null) {
 				link.setName(m.get("title"));

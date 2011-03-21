@@ -27,8 +27,14 @@
            	  <h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1><h3 style="display: none;">...</h3> 
            	
             </div> 
+        </div>
+        <div id="menu-full">
+        		<div id="menu">
+						<a href="#" onclick="jQuery('#new').toggle('fast');"><img width="51" height="20" src="images/add.png"/></a>        		
+        		</div> 
+        
         </div> 
-        	<div id="bodycontentblank"> 
+        	<div id="bodycontentblank">
             	<div id="bodycontent"> 
                	  <div id="bodyleftcontent"> 
                    	<div id="leftPan"> 
@@ -52,7 +58,6 @@
 							</form>
 						</security:authorize>
 			
-						<div id="menu"><a href="#" onclick="jQuery('#new').toggle('fast');"><img width="51" height="20" src="images/add.png"/></a></div>
 						<div id="new" style="${someErrors ? '' : 'display: none;'}">
 							<!-- <form method="post" action="add.html"> -->
 							<form:form commandName="link" action="add.html">
@@ -66,10 +71,7 @@
 							</form:form>
 						</div>
                    	
-                       	<!-- <h2>Links by date</h2> -->
-                       	
                        	<div class="link-items-header" >Links by date</div>
-                           	                            	 
                        	<c:forEach items="${links}" var="link" varStatus="i">
                        		<div class="link-item">
                        			<div class="clicks">${link.clicks}</div>
@@ -89,9 +91,10 @@
                       </div> 
                 	</div> 
                     
-                    <div id="bodyRight"> 
+                    <div id="bodyRight">
+                    	<div class="link-items-header" >Search</div> 
 						<form method="post" action="search.html">
-							<input id="text" class="search" type="text" name="text"/>
+							<input id="text" type="text" name="text"/>
 							<input type="button" class="button" onclick="submit()" />
 						</form>
 						
@@ -125,64 +128,14 @@
                         	<li><a href="index.html">Home</a></li> 
                             <li><a href="about.html">About Us</a></li> 
                             <li><a href="blog.html">Blog</a></li> 
-                            <li><a href="services.html">Services</a></li> 
-                            <li><a href="portfolio.html">Portfolio</a></li> 
-                            <li><a href="usefullinks.html">Useful Links</a></li> 
                             <li><a href="contact.html">Contact Us</a></li> 
                         </ul> 
                     </div> 
                     <!--end of pages div--> 
                     
-                    <div class="services"> 
-                    	<h4>Services</h4> 
-                        <ul> 
-                        	<li><a href="more.html">Services One</a></li> 
-                            <li><a href="more.html">Services Two</a></li> 
-                            <li><a href="more.html">Services Three</a></li> 
-                            <li><a href="more.html">Services Four</a></li> 
-                            <li><a href="more.html">Services Five</a></li> 
-                            <li><a href="more.html">Services Six</a></li> 
-                            <li><a href="more.html">Services Seven</a></li> 
-                        </ul> 
-                    </div> 
-                    <!--end of services--> 
-                    
-                    <div class="various"> 
-                    	<h4>Services</h4> 
-                        <ul> 
-                        	<li><a href="more.html">Register</a></li> 
-                            <li><a href="more.html">Log in</a></li> 
-                            <li><a href="tos.html">Terms of Service</a></li> 
-                            <li><a href="contact.html">Contact</a></li> 
-                            <li><a href="sitemap.html">Site Map</a></li> 
-                        </ul> 
-                    </div> 
-                    <!--end of various--> 
-                    
-                    <div class="additional"> 
-                    	<h4>Additional</h4> 
-                        <ul> 
-                        	<li><a href="more.html">Lorem ipsum</a></li> 
-                            <li><a href="more.html">Vivamus sit mrus</a></li> 
-                            <li><a href="more.html">Vestim eeros elit</a></li> 
-                            <li><a href="more.html">Sit amet congue</a></li> 
-                            <li><a href="more.html">Suspe ndieoncus</a></li> 
-                        </ul> 
-                    </div> 
-                    <!--end of additional info--> 
                     
                     <div class="socialbookmarking"> 
-                    	<h4>Keep in touch!</h4> 
-                        <p>We will be glad to assist you if you have any problem with out products.</p> 
-                        
-                        <div class="bookmarkIcons"> 
-                   	    <img src="images/facebook_icon.gif" width="32" height="32" alt=" " /> 
-                        <img src="images/linken-icon.gif" width="32" height="32" alt=" " /> 
-                        <img src="images/in_icon.gif" width="32" height="32" alt=" " /> 
-                        <img src="images/rss_icon.gif" width="32" height="32" alt=" " /> 
-                        <img src="images/twitter_icon.gif" width="32" height="32" alt=" " /> 
-                        </div> 
-                        <p class="rights">&copy; Your Copyright Info Here. Designed by: <strong><a href="http://www.templateworld.com" title="Template World" target="_blank">Template World</a></strong></p> 
+                        <p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
                     </div> 
                     <!--end of additional info--> 
  

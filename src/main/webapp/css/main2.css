@@ -176,6 +176,20 @@ a:focus {
 	float: left;
 }
 
+#menu-full {
+	background-color: #555;
+	float: left;
+	width: 100%;
+	margin: 0px;
+	padding: 5px;	
+}
+
+#menu {
+	float: none;
+	margin: 0px auto;
+	width: 952px;
+}
+	
 #bodycontentblank {
 	float: left;
 	/*background: #efe5d7;*/
@@ -335,19 +349,18 @@ a:focus {
 	height: 50px;
 	float: none;
 	border: 0;
-	background: url(../images/search_bg.gif) no-repeat;
 }
 
 #bodyRight form input {
 	width: 190px;
 	height: 25px;
 	float: left;
-	border: 0;
-	margin: 12px 0 0 20px;
+	border: 1px solid #999;
+	margin-top: 10px;
+	margin-right: 5px;
 	padding-top: 4px;
 	font-size: 12px;
 	color: #8b8a89;
-	background: #fdfbf9;
 }
 
 #bodyRight form input.button {
@@ -356,6 +369,7 @@ a:focus {
 	float: left;
 	background: url(../images/search_icon.png) no-repeat;
 	cursor: pointer;
+	border: none;
 }
 
 /* Latest news  */
@@ -644,7 +658,7 @@ div.additional ul li a {
 
 /* -- stylin social bookmarking div -- */
 div.socialbookmarking {
-	width: 239px;
+	width: 339px;
 	float: left;
 }
 
@@ -666,7 +680,7 @@ div.socialbookmarking div.bookmarkIcons img {
 }
 
 div.socialbookmarking p.rights {
-	width: 163px;
+	/*width: 163px;*/
 	float: left;
 	font-size: 10px;
 }
