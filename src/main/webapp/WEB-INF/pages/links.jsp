@@ -17,6 +17,12 @@
 		});
 		jQuery('#'+id).toggle('fast', fun);
 	}
+	function openLink(id, url) {
+		jQuery.get('open.html?id='+id, function(data) {
+			jQuery('.count_'+id).html(data);
+		});
+		window.open(url);
+	}
 	</script>
 </head>
 
@@ -94,11 +100,11 @@
                    	<div class="link-items-header" >Links by date<!-- <span style="float: right; font-size: 12px;">Open links in new window&#160;<input type="checkbox"/></span> --></div>
                       	<c:forEach items="${links}" var="link" varStatus="i">
                       		<div class="link-item">
-                      			<div class="clicks">${link.clicks}</div>
+                      			<div class="clicks count_${link.id}">${link.clicks}</div>
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
-									<a href="open.html?id=${link.id}" onclick="window.open('${link.address}')">${link.name != '' ? link.name : link.address}</a>
+									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
 									<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
@@ -117,11 +123,11 @@
 					<div class="link-items-header" >Top clicks</div>                        
 					<c:forEach items="${toplinks}" var="link" varStatus="i">
                       		<div class="link-item">
-                      			<div class="clicks">${link.clicks}</div>
+                      			<div class="clicks count_${link.id}">${link.clicks}</div>
                       			<div class="link-data" style="width: 200px;">
                       				<div>
 									<div class="link-item-title">
-									<a href="open.html?id=${link.id}" onclick="window.open('${link.address}')">${link.name != '' ? link.name : link.address}</a>
+									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
 									<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<span class="timestamp">${link.ldate }</span>										

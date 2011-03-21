@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.HTMLElementName;
@@ -77,12 +78,19 @@ public class LinksController {
 	}
 	
 	@RequestMapping(value = "/open.html")
-	public String open(@RequestParam(value="id") Integer id) {
+	public void open(@RequestParam(value="id") Integer id, HttpServletResponse response) {
 		Link link = linkDAO.get(id);
+		int i = link.getClicks();
 		log.debug(link.getAddress());
 		linkDAO.click(id);
 		// return "redirect:"+link.getAddress();
-		return "links";
+		// return "links";
+		try {
+			response.getWriter().print(++i);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="/search.html", method = RequestMethod.POST)
