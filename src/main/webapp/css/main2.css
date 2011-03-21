@@ -86,7 +86,30 @@ a:focus {
 	border: none;
 	width: 23px;
 	height: 23px;
+}
 
+#login {
+}
+
+#login .button {
+	background: url(../images/ok.png) no-repeat;
+	cursor: pointer;
+	border: none;
+	width: 23px;
+	height: 23px;
+}
+
+#login a, #new a {
+	color: #2854BB;
+	text-decoration: none;
+	border-bottom: 1px solid #419bcb;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#login a:hover, #new a:hover {
+	color: #000;
+	border-bottom: 1px solid #000;
 }
 
 #menu-full {
@@ -121,6 +144,10 @@ a:focus {
 }
 #menu .menu-item a:hover {
 	text-decoration: underline;
+}
+
+.errors {
+	color: red;
 }
 	
 #bodycontentblank {
@@ -204,120 +231,36 @@ div.pages ul li a {
 	color: #909090;
 }
 
-/* -- stylin services div --- */
-div.services {
-	width: 150px;
-	float: left;
-	margin: 0 29px 0 0;
-}
-
-div.services ul {
-	width: 147px;
-	float: left;
-	padding: 6px 0 0 0;
-	margin: 0;
-}
-
-div.services ul li {
-	width: 107px;
-	float: none;
-	background: url(../images/small_arrow_foot.gif) 0 7px no-repeat;
-	margin-left: 6px;
-	padding: 2px 0 2px 2px;
-	border-bottom: 1px solid #3b3b3b;
-}
-
-div.services ul li a {
-	padding: 2px 0 2px 5px;
-	color: #909090;
-}
-
-/* --- stylin miscellanious div --*/
-div.various {
-	width: 150px;
-	float: left;
-	margin: 0 29px 0 0;
-}
-
-div.various ul {
-	width: 147px;
-	float: left;
-	padding: 6px 0 0 0;
-	margin: 0;
-}
-
-div.various ul li {
-	width: 107px;
-	float: none;
-	background: url(../images/small_arrow_foot.gif) 0 7px no-repeat;
-	margin-left: 6px;
-	padding: 2px 0 2px 2px;
-	border-bottom: 1px solid #3b3b3b;
-}
-
-div.various ul li a {
-	padding: 2px 0 2px 5px;
-	color: #909090;
-}
-
-/* --- stylin additional div --*/
-div.additional {
-	width: 150px;
-	float: left;
-	margin: 0 29px 0 0;
-}
-
-div.additional ul {
-	width: 147px;
-	float: left;
-	padding: 6px 0 0 0;
-	margin: 0;
-}
-
-div.additional ul li {
-	width: 107px;
-	float: none;
-	background: url(../images/small_arrow_foot.gif) 0 7px no-repeat;
-	margin-left: 6px;
-	padding: 2px 0 2px 2px;
-	border-bottom: 1px solid #3b3b3b;
-}
-
-div.additional ul li a {
-	padding: 2px 0 2px 5px;
-	color: #909090;
-}
-
 /* -- stylin social bookmarking div -- */
-div.socialbookmarking {
+div.copyright {
 	width: 339px;
 	float: left;
 }
 
-div.socialbookmarking p {
+div.copyright p {
 	color: #909090;
 	font-size: 11px;
 	padding-left: 8px;
 }
 
-div.socialbookmarking div.bookmarkIcons {
+div.copyright div.bookmarkIcons {
 	width: 239px;
 	float: left;
 	padding: 4px 0;
 }
 
-div.socialbookmarking div.bookmarkIcons img {
+div.copyright div.bookmarkIcons img {
 	float: left;
 	margin-left: 9px;
 }
 
-div.socialbookmarking p.rights {
+div.copyright p.rights {
 	/*width: 163px;*/
 	float: left;
 	font-size: 10px;
 }
 
-div.socialbookmarking p.rights a {
+div.copyright p.rights a {
 	color: #fff;
 }
 

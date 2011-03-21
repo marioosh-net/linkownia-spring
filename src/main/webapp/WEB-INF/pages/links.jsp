@@ -8,6 +8,15 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
+	<script>
+	function hidepanels(id) {
+		jQuery('.panel').each(function(index) {
+			if(jQuery(this).id != id) {
+				jQuery(this).hide('fast');
+			}
+		});
+	}
+	</script>
 </head>
 
 <body id="TotalBodyId" onload="jQuery('#text').focus();"> 
@@ -28,13 +37,11 @@
         <div id="menu-full">
        		<div id="menu">
        			<div class="menu-item first-item">
-					<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
+					<a href="#" onclick="hidepanels('new'); jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 				</div>
-				
-					<div class="menu-item">
-						<a href="#" onclick="jQuery('#login').toggle('fast', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
-					</div>
-				
+				<div class="menu-item">
+					<a href="#" onclick="hidepanels('login'); jQuery('#login').toggle('fast', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+				</div>
 				<!--
 				<div class="menu-item">
 					<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
@@ -43,108 +50,108 @@
        		</div> 
         </div>
          
-        	<div id="bodycontentblank">
-            	<div id="bodycontent"> 
-               	  <div id="bodyleftcontent"> 
-                   	<div id="leftPan"> 
-                   	
-						<!-- login form -->
-						
-						<div id="login" style="display: none;">
-							<form id="jf" name="f" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
-								<div style="float: left">
-									<div class="smalllabel">login</div>
-									<div><input type="text" id="username" name="j_username" value="" size="5"/></div>
-								</div>
-								<div style="float: left">
-									<div class="smalllabel">&#160;password</div>
-									<div>&#160;<input type="password" name="j_password" value="" size="6" /></div>
-								</div>
-								<div style="float: left">
-									<div>&#160;</div>
-									<div style="vertical-align: bottom; padding-top: 3px;">&#160;<input type="submit" value="Login"/></div>
-								</div>
-								<div style="clear: both;"></div>
-							</form>
-						</div>
-						
-			
-						<div id="new" style="${someErrors ? '' : 'display: none;'}">
-							<!-- <form method="post" action="add.html"> -->
-							<form:form commandName="link" action="add.html">
-								<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
-								<input type="text" id="address" name="address" style="width: 404px;"/><br/>
-								<label>Name</label><br/>
-								<input type="text" name="name" style="width: 404px;"/><br/>
-								<label>Description</label><br/>
-								<textarea name="description" style="width: 404px;"></textarea><br/>
-								<input type="submit" value="Add link"/>
-							</form:form>
-						</div>
-                   	
-                       	<div class="link-items-header" >Links by date</div>
-                       	<c:forEach items="${links}" var="link" varStatus="i">
-                       		<div class="link-item">
-                       			<div class="clicks">${link.clicks}</div>
-                       			<div class="link-data">
-                       				<div>
-										<div class="link-item-title">
-										<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
-										</div>                   				
-										<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
-										<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
-                       				</div>
-                       			</div>
-                       			<div style="clear: both;"></div>
-                       		</div>
-						</c:forEach>
-							     
-                      </div> 
-                	</div> 
-                    
-                    <div id="bodyRight">
-						<div class="link-items-header" >Top clicks</div>                        
-						<c:forEach items="${toplinks}" var="link" varStatus="i">
-                       		<div class="link-item">
-                       			<div class="clicks">${link.clicks}</div>
-                       			<div class="link-data" style="width: 200px;">
-                       				<div>
-										<div class="link-item-title">
-										<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
-										</div>                   				
-										<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
-										<span class="timestamp">${link.ldate }</span>										
-                       				</div>
-                       			</div>
-                       			<div style="clear: both;"></div>
-                       		</div>
-						</c:forEach>
- 
-                    </div> 
-                    <!--end of right column --> 
-                </div> 
-            </div> 
- 
-            <div id="footer-wrap"> 
-                <div class="footer"> 
-                	<div class="pages"> 
-	                    <h4>Pages</h4> 
-                        <ul> 
-                        	<li><a href="index.html">Linkownia</a></li> 
-                            <li><a href="http://marioosh.net">Home</a></li> 
-                            <li><a href="http://marioosh.net/blog/">Blog</a></li> 
-                        </ul> 
-                    </div> 
-                    <!--end of pages div--> 
-                    
-                    
-                    <div class="socialbookmarking"> 
-                        <p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
-                    </div> 
-                    <!--end of additional info--> 
- 
-                </div> 
-            </div><!--end of footer wrapper--> 
+       	<div id="bodycontentblank">
+           	<div id="bodycontent"> 
+              	  <div id="bodyleftcontent"> 
+                  	<div id="leftPan"> 
+                  	
+					<!-- login form -->
+					<div class="panel" id="login" style="display: none;">
+						<form id="jf" name="f" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
+							<div style="float: left">
+								<div class="smalllabel">login</div>
+								<div><input type="text" id="username" name="j_username" value="" size="5"/></div>
+							</div>
+							<div style="float: left">
+								<div class="smalllabel">&#160;password</div>
+								<div>&#160;<input type="password" name="j_password" value="" size="6" /></div>
+							</div>
+							<div style="float: left">
+								<div>&#160;</div>
+								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="#" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --></div>
+							</div>
+							<div style="clear: both;"></div>
+						</form>
+					</div>
+					
+					<!-- new link form -->			
+					<div class="panel" id="new" style="${someErrors ? '' : 'display: none;'}">
+						<!-- <form method="post" action="add.html"> -->
+						<form:form commandName="link" action="add.html" id="newform">
+							<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
+							<input type="text" id="address" name="address" style="width: 404px;"/><br/>
+							<label>Name</label><br/>
+							<input type="text" name="name" style="width: 404px;"/><br/>
+							<label>Description</label><br/>
+							<textarea name="description" style="width: 404px;"></textarea><br/>
+							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>
+							<!-- <input type="submit" value="Add link"/> -->
+						</form:form>
+					</div>
+                  	
+                  		<!-- links -->
+                      	<div class="link-items-header" >Links by date</div>
+                      	<c:forEach items="${links}" var="link" varStatus="i">
+                      		<div class="link-item">
+                      			<div class="clicks">${link.clicks}</div>
+                      			<div class="link-data">
+                      				<div>
+									<div class="link-item-title">
+									<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
+									</div>                   				
+									<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
+									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
+                      				</div>
+                      			</div>
+                      			<div style="clear: both;"></div>
+                      		</div>
+					</c:forEach>
+						     
+                     </div> 
+               	</div> 
+                   
+                   <div id="bodyRight">
+                   
+                   	<!-- top links -->
+					<div class="link-items-header" >Top clicks</div>                        
+					<c:forEach items="${toplinks}" var="link" varStatus="i">
+                      		<div class="link-item">
+                      			<div class="clicks">${link.clicks}</div>
+                      			<div class="link-data" style="width: 200px;">
+                      				<div>
+									<div class="link-item-title">
+									<a href="${link.address}" target="_blank">${link.name != '' ? link.name : link.address}</a>
+									</div>                   				
+									<a href="/search?q=site:${link.hostName}" class="link-item-source">${link.hostName}</a>
+									<span class="timestamp">${link.ldate }</span>										
+                      				</div>
+                      			</div>
+                      			<div style="clear: both;"></div>
+                      		</div>
+					</c:forEach>
+
+                   </div> 
+                   <!--end of right column --> 
+               </div> 
+           </div> 
+
+           <div id="footer-wrap"> 
+               <div class="footer"> 
+               	<div class="pages"> 
+                    <h4>Pages</h4> 
+                       <ul> 
+                       	<li><a href="index.html">Linkownia</a></li> 
+                           <li><a href="http://marioosh.net">Home</a></li> 
+                           <li><a href="http://marioosh.net/blog/">Blog</a></li> 
+                       </ul> 
+                   </div> 
+                   
+                   <div class="copyright"> 
+                       <p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
+                   </div> 
+
+               </div> 
+           </div> 
     </div> 
     
 </body>
