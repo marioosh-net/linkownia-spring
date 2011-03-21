@@ -69,7 +69,7 @@
                    	
                        	<h2>Links by date</h2> 
                            	                            	 
-                          	<c:forEach items="${links}" var="link" varStatus="i">
+                       	<c:forEach items="${links}" var="link" varStatus="i">
                           	<div class="story-item">
 							<div class="story-item-gutters group">
 								<div class="story-item-diggbtn">
