@@ -70,6 +70,7 @@ public class LinksController {
 	@RequestMapping(value = "/index.html")
 	public String welcomeHandler(Model model, @CookieValue(value="JSESSIONID", required=false) String cookie) {
 		log.debug("JSESSIONID: "+ cookie);
+		
 		BrowseParams b = new BrowseParams();
 		b.setRange(new Range(0,20));		
 		model.addAttribute("links", linkDAO.findAll(b));
@@ -82,7 +83,9 @@ public class LinksController {
 	@RequestMapping(value="/search.html")
 	public String searchByForm(@RequestParam(value="q") String search, Model model) {
 		model.addAttribute("links", linkDAO.findAll(search));
+		int count = linkDAO.countAll(search);
 		model.addAttribute("count", linkDAO.countAll(search));
+		model.addAttribute("pages", pages(count));
 		return "links";		
 	}
 	
@@ -137,7 +140,7 @@ public class LinksController {
 	
 	private int[][] pages(int count) {
 		int perPage = 20;
-		int pages = count / perPage + 1;
+		int pages = count / perPage + (count % perPage == 0 ? 0 : 1);
 		int[][] p = new int[pages][3];
 		for(int i = 0; i < p.length; i++) {
 			p[i][0] = i + 1; 
