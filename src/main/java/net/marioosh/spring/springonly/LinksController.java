@@ -81,8 +81,8 @@ public class LinksController {
 		Link link = linkDAO.get(id);
 		log.debug(link.getAddress());
 		linkDAO.click(id);
-		return "redirect:"+link.getAddress();
-
+		// return "redirect:"+link.getAddress();
+		return "links";
 	}
 	
 	@RequestMapping(value="/search.html", method = RequestMethod.POST)
