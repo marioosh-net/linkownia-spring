@@ -59,7 +59,7 @@ public class LinksController {
 		log.debug("PAGE  : "+p);		
 		BrowseParams b = new BrowseParams();
 		b.setSearch(search);
-		b.setRange(new Range(p-1,20));
+		b.setRange(new Range((p-1)*20,20));
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
 		int[][] pages = pages(count, 20);

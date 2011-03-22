@@ -23,7 +23,8 @@
 			jQuery('.count_'+id).html(data);
 			toplinks();
 		});
-		window.open(url , "open", "height=400,width=600");
+		/*window.open(url , "open", "height=400,width=600");*/
+		window.open(url);
 	}
 	function toplinks() {
 		jQuery('#toplinks').load('toplinks.html');
