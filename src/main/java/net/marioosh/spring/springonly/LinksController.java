@@ -62,7 +62,9 @@ public class LinksController {
 		b.setRange(new Range(p-1,20));
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
-		model.addAttribute("pages", pages(count, 20));
+		int[][] pages = pages(count, 20);
+		model.addAttribute("pages", pages);
+		model.addAttribute("pagesCount", pages.length);
 		model.addAttribute("page", p);
 		model.addAttribute("q", search);
 		return linkDAO.findAll(b);

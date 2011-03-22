@@ -102,7 +102,18 @@
 					</div>
                   	
                		<!-- links -->
-                   	<div class="link-items-header" >Links by date <span class="main-count">(${count})</span><!-- <span style="float: right; font-size: 12px;">Open links in new window&#160;<input type="checkbox"/></span> --></div>
+                   	<div class="link-items-header" >Links by date <span class="main-count">(${count})</span>
+                   		<span id="topnavi">
+                   		<c:if test="${count > 1}" >
+                   			<c:if test="${page != 1}" >
+                   				<a href="#">Prev</a>
+                   			</c:if>
+                   			<c:if test="${page < pagesCount}">
+                   				<a href="#">Next</a>
+                   			</c:if>
+                   		</c:if>
+                   		</span>
+                   		<!-- <span style="float: right; font-size: 12px;">Open links in new window&#160;<input type="checkbox"/></span> --></div>
                       	<c:forEach items="${links}" var="link" varStatus="i">
                       		<div class="link-item">
                       			<div class="clicks count_${link.id}">${link.clicks}</div>
