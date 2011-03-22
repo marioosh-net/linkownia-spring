@@ -46,7 +46,7 @@
 			<div id="header"> 
 				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
 				<div id="search"> 
-					<form method="get" action="index.html">
+					<form method="get" action="search.html">
 						<input id="qtext" type="text" name="q" value="${q}"/>
 						<input type="button" class="button" onclick="submit()" />
 					</form>
@@ -114,13 +114,13 @@
                    		<span id="topnavi">
                    		<c:if test="${count > 1}" >
                    			<c:if test="${page != 1}" >
-                   				<a href="?p=${page -1}">&#171; Newer</a>
+                   				<a href="index.html?q=${q}&amp;p=${page -1}">&#171; Newer</a>
                    			</c:if>
                    			<c:if test="${page == 1}" >
                    				<span class="inactive">&#171; Newer</span>
                    			</c:if>
                    			<c:if test="${page < pagesCount}">
-                   				<a href="?p=${page +1}">Older &#187;</a>
+                   				<a href="index.html?q=${q}&amp;p=${page +1}">Older &#187;</a>
                    			</c:if>
                    			<c:if test="${page >= pagesCount}">
                    				<span class="inactive">Older &#187;</span>
@@ -148,7 +148,7 @@
                      	<c:forEach items="${pages}" var="p" varStatus="i">
                      		<c:if test="${i.index == 0}">Pages:&#160;</c:if>
                      		<span>
-                     			<c:if test="${p[0] != page}"><a href="index.html?p=${p[0]}">${p[0]}</a></c:if>
+                     			<c:if test="${p[0] != page}"><a href="index.html?q=${q}&amp;p=${p[0]}">${p[0]}</a></c:if>
                      			<c:if test="${p[0] == page}">${p[0]}</c:if>
                      			&#160;
                      		</span>

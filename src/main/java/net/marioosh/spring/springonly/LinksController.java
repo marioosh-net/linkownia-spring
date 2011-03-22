@@ -76,11 +76,6 @@ public class LinksController {
 		model.addAttribute("page", p);
 		model.addAttribute("q", search);
 		
-		if(!search.isEmpty()) {
-			// zainicjowano wyszukiwanie
-			searchDAO.trigger(search);
-		}
-		
 		return linkDAO.findAll(b);
 	}
 	
@@ -93,6 +88,15 @@ public class LinksController {
 		return linkDAO.findAll(b);
 	}
 	*/
+	
+	@RequestMapping(value = "/search.html")
+	public String search(@RequestParam(value="q", required=false, defaultValue="") String search) {
+		if(!search.isEmpty()) {
+			// zainicjowano wyszukiwanie - zauktualizuje searches
+			searchDAO.trigger(search);
+		}
+		return "links";
+	}
 
 	@RequestMapping(value = "/index.html")
 	public String welcomeHandler(@CookieValue(value="JSESSIONID", required=false) String cookie) {
