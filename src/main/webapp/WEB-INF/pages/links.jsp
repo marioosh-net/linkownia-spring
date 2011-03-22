@@ -105,11 +105,11 @@
                    	<div class="link-items-header" >Links by date <span class="main-count">(${count})</span>
                    		<span id="topnavi">
                    		<c:if test="${count > 1}" >
-                   			<c:if test="${page != 1}" >
-                   				<a href="?p=${page -1}">Prev</a>
-                   			</c:if>
                    			<c:if test="${page < pagesCount}">
-                   				<a href="?p=${page +1}">Next</a>
+                   				<a href="?p=${page +1}">&#171; Older</a>
+                   			</c:if>
+                   			<c:if test="${page != 1}" >
+                   				<a href="?p=${page -1}">Newer &#187;</a>
                    			</c:if>
                    		</c:if>
                    		</span>
