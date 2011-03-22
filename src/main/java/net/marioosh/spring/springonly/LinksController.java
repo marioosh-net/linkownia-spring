@@ -148,13 +148,16 @@ public class LinksController {
 	}
 
 	@RequestMapping(value = "/open.html")
-	public void open(@RequestParam(value="id") Integer id, HttpServletResponse response) {
+	public void open(@RequestParam(value="id", defaultValue="-1") Integer id, HttpServletResponse response) {
 		Link link = linkDAO.get(id);
-		int i = link.getClicks();
-		log.debug(link.getAddress());
-		linkDAO.click(id);
-		// return "redirect:"+link.getAddress();
-		// return "links";
+		int i = -1;
+		if(link != null) {
+			i = link.getClicks();
+			log.debug(link.getAddress());
+			linkDAO.click(id);
+			// return "redirect:"+link.getAddress();
+			// return "links";
+		}
 		try {
 			response.getWriter().print(++i);
 		} catch (IOException e) {

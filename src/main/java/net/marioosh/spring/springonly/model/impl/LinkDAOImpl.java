@@ -46,8 +46,12 @@ public class LinkDAOImpl implements LinkDAO {
 	 */
 	public Link get(Integer id) {
 		String sql = "select * from tlink where id = ?";
-		Link link = (Link)jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<Link>(Link.class));
-		return link;
+		try {
+			Link link = (Link)jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<Link>(Link.class));
+			return link;
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			return null;
+		}
 	}	
 	
 	public List<Link> findAll(String search) {
