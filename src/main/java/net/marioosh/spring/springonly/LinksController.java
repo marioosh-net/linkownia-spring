@@ -1,6 +1,8 @@
 package net.marioosh.spring.springonly;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -56,13 +58,14 @@ public class LinksController {
     */
     
 	/**
+	 * @throws UnsupportedEncodingException 
 	 * @ModelAttribute - ustawia wartosc w modelu
 	 * 
 	 * metoda adnotowana przez @ModelAttribute 
 	 * wywoływana jest PRZED metoda handlera (adnotowaną przez @RequestMapping) 
 	 */
 	@ModelAttribute("links")
-	public List<Link> populateLinks(Model model, @RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p) {
+	public List<Link> populateLinks(Model model, @RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p) throws UnsupportedEncodingException {
 		log.debug("SEARCH: "+search);
 		log.debug("PAGE  : "+p);		
 		BrowseParams b = new BrowseParams();
@@ -75,6 +78,7 @@ public class LinksController {
 		model.addAttribute("pagesCount", pages.length);
 		model.addAttribute("page", p);
 		model.addAttribute("q", search);
+		model.addAttribute("qencoded", URLEncoder.encode(search, "UTF-8"));
 		
 		return linkDAO.findAll(b);
 	}
