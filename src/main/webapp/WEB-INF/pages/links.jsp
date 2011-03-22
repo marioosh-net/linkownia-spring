@@ -29,8 +29,12 @@
 	function toplinks() {
 		jQuery('#toplinks').load('toplinks.html');
 	}
+	function searches() {
+		jQuery('#searches').load('searches.html');
+	}	
 	jQuery(document).ready(function(){
 		toplinks();
+		searches();
 	});
 	</script>
 </head>
@@ -104,9 +108,9 @@
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
-                  	
+					
                		<!-- links -->
-                   	<div class="link-items-header" >Links by date <span class="main-count">(${count})</span>
+                   	<div class="block-header" >Links by date <span class="main-count">(${count})</span>
                    		<span id="topnavi">
                    		<c:if test="${count > 1}" >
                    			<c:if test="${page != 1}" >
@@ -155,8 +159,12 @@
                    
                    <div id="bodyRight">
                    
+					<!-- searches -->
+					<div class="block-header" >Top searches</div>
+					<div id="searches"></div>
+                   
                    	<!-- top links -->
-					<div class="link-items-header" >Top clicks</div>
+					<div class="block-header" >Top clicks</div>
 					<span id="toplinks">
 						<div style="padding-left: 10px; padding-top: 10px;"><img src="images/ajax.gif"/>&#160;Loading...</div>
 					</span>                        

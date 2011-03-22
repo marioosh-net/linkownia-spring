@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
+import net.marioosh.spring.springonly.model.dao.SearchDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
+import net.marioosh.spring.springonly.model.entities.Search;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
+import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +35,9 @@ public class LinksController {
 
 	@Autowired
 	private LinkDAO linkDAO;
+	
+	@Autowired
+	private SearchDAO searchDAO;
 	
 	@Autowired
 	private Validator validator;
@@ -67,6 +73,12 @@ public class LinksController {
 		model.addAttribute("pagesCount", pages.length);
 		model.addAttribute("page", p);
 		model.addAttribute("q", search);
+		
+		if(!search.isEmpty()) {
+			// zainicjowano wyszukiwanie
+			searchDAO.trigger(search);
+		}
+		
 		return linkDAO.findAll(b);
 	}
 	
@@ -167,18 +179,15 @@ public class LinksController {
 	}
 	
 	/**
-	 * ha
 	 * @param ex
 	 * @param response
 	 * @throws IOException
 	 */
-	/*
 	@ExceptionHandler(Exception.class)
 	public void handleException(Exception ex, HttpServletResponse response) throws IOException {
 		// return ClassUtils.getShortName(ex.getClass());
 		response.getWriter().print("Error: "+ex.getMessage());
 	}
-	*/
 	
 	private int[][] pages(int count, int perPage) {
 		int pages = count / perPage + (count % perPage == 0 ? 0 : 1);

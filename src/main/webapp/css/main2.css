@@ -191,6 +191,28 @@ a:focus {
 	text-decoration: underline;
 }
 
+#searches {
+	margin: 5px;
+	margin-bottom: 20px;
+}
+
+#searches a.search-item {
+	border-bottom: 1px solid #AEC3E7;
+	color: #2854BB;
+	font-size: 12px;
+	word-wrap: break-word;
+	border-bottom: 1px solid #CEDBF1;
+	color: #5F88CE;	
+}
+#searches a.search-item:hover {
+	color: #000000;
+	border-bottom: 1px solid #000000;
+}
+
+#searches .search-counter {
+	color: #999;
+}
+
 .errors {
 	color: red;
 }
@@ -517,7 +539,7 @@ div.copyright p.rights a {
 	margin-right: 5px;
 }
 
-.link-items-header {
+.block-header {
 	border-bottom: 1px solid #80A1C1;
 	margin-bottom: 0;
 	padding-bottom: 7px;
