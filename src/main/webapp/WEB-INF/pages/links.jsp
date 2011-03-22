@@ -105,12 +105,12 @@
                    	<div class="link-items-header" >Links by date <span class="main-count">(${count})</span>
                    		<span id="topnavi">
                    		<c:if test="${count > 1}" >
-                   			<c:if test="${page < pagesCount}">
-                   				<a href="?p=${page +1}">&#171; Older</a>
-                   			</c:if>
                    			<c:if test="${page != 1}" >
-                   				<a href="?p=${page -1}">Newer &#187;</a>
+                   				<a href="?p=${page -1}">&#171; Newer</a>
                    			</c:if>
+                   			<c:if test="${page < pagesCount}">
+                   				<a href="?p=${page +1}">Older &#187;</a>
+                   			</c:if>                   			
                    		</c:if>
                    		</span>
                    		<!-- <span style="float: right; font-size: 12px;">Open links in new window&#160;<input type="checkbox"/></span> --></div>
