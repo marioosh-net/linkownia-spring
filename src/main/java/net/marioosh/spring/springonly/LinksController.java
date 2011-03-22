@@ -3,6 +3,7 @@ package net.marioosh.spring.springonly;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import net.marioosh.spring.springonly.model.entities.Search;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
+import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -175,6 +177,28 @@ public class LinksController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value = "/refresh.html")
+	public void refresh(HttpServletResponse response) throws IOException {
+		for(Link l: linkDAO.findAll(new BrowseParams())) {
+			response.getWriter().print("<div>"+l.getAddress()+" ");
+			// l.setClicks(l.getClicks() + 1);
+
+			Map<String, String> m = WebUtils.pageInfo(l.getAddress());
+			if(m.get("title") != null) {
+				l.setName(m.get("title"));
+			}
+			if(m.get("description") != null) {
+				l.setDescription(m.get("description"));
+			}
+
+			if(linkDAO.update(l) > 0) {
+				response.getWriter().print("UPDATED</div>");
+			} else {
+				response.getWriter().print("<b>NOT UPDATED</b></div>");
+			}
 		}
 	}
 	

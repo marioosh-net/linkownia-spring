@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
+import org.springframework.asm.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -124,6 +126,14 @@ public class LinkDAOImpl implements LinkDAO {
 	public int countAll(String search) {
 		String sql = "select count(*) from tlink " + (search != null ? "where address like '%"+search+"%' or name like '%"+search+"%'" : "");
 		return jdbcTemplate.queryForInt(sql);
+	}
+
+	public int update(Link link) {
+		Object[] params = {link.getAddress(), link.getName(), link.getDescription(), link.getClicks(), link.getId()};
+		int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.SMALLINT};
+		int rows = jdbcTemplate.update("update tlink set address = ?, name = ?, description = ?, clicks = ? where id = ?", params, types);
+		log.debug("Updated "+rows +" rows.");
+		return rows;
 	}
 	
 }
