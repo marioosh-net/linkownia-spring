@@ -64,6 +64,7 @@ public class LinksController {
 		model.addAttribute("count", count);
 		model.addAttribute("pages", pages(count, 20));
 		model.addAttribute("page", p);
+		model.addAttribute("q", search);
 		return linkDAO.findAll(b);
 	}
 	

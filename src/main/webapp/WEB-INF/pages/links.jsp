@@ -39,7 +39,7 @@
 				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
 				<div id="search"> 
 					<form method="get" action="index.html">
-						<input id="qtext" type="text" name="q"/>
+						<input id="qtext" type="text" name="q" value="${q}"/>
 						<input type="button" class="button" onclick="submit()" />
 					</form>
  				</div>
