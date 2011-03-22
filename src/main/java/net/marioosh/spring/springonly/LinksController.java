@@ -53,14 +53,19 @@ public class LinksController {
 	 * metoda adnotowana przez @ModelAttribute 
 	 * wywoływana jest PRZED metoda handlera (adnotowaną przez @RequestMapping) 
 	 */
-	/*
 	@ModelAttribute("links")
-	public List<Link> populateLinks() {
+	public List<Link> populateLinks(Model model, @RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p) {
+		log.debug("SEARCH: "+search);
+		log.debug("PAGE  : "+p);		
 		BrowseParams b = new BrowseParams();
-		b.setRange(new Range(0,20));
+		b.setSearch(search);
+		b.setRange(new Range(p-1,20));
+		int count = linkDAO.countAll(b);
+		model.addAttribute("count", count);
+		model.addAttribute("pages", pages(count, 20));
+		model.addAttribute("page", p);
 		return linkDAO.findAll(b);
 	}
-	*/
 	
 	@ModelAttribute("toplinks")
 	public List<Link> populateTopLinks() {
@@ -71,31 +76,13 @@ public class LinksController {
 	}
 
 	@RequestMapping(value = "/index.html")
-	public String welcomeHandler(HttpSession session, Model model, @RequestParam(value="p", required=false, defaultValue="1") int p, @CookieValue(value="JSESSIONID", required=false) String cookie) {
+	public String welcomeHandler(@CookieValue(value="JSESSIONID", required=false) String cookie) {
 		log.debug("JSESSIONID: "+ cookie);
-		log.debug("PAGE: "+p);
-		log.error("q: "+session.getAttribute("q"));
-		
-		BrowseParams b = new BrowseParams();
-		b.setSearch((String) session.getAttribute("q"));
-		b.setRange(new Range(p-1,20));		
-		model.addAttribute("links", linkDAO.findAll(b));
-		int count = linkDAO.countAll(b);
-		model.addAttribute("count", count);
-		model.addAttribute("pages", pages(count));
-		model.addAttribute("page", p);
 		return "links";
 	}
 	
 	@RequestMapping(value="/search.html")
-	public String searchByForm(HttpSession session, @RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model) {
-		model.addAttribute("q", search);
-		model.addAttribute("links", linkDAO.findAll(search));
-		int count = linkDAO.countAll(search);
-		model.addAttribute("count", linkDAO.countAll(search));
-		model.addAttribute("pages", pages(count));
-		model.addAttribute("page", p);
-		session.setAttribute("q", search);
+	public String searchByForm() {
 		return "links";		
 	}
 	
@@ -104,7 +91,7 @@ public class LinksController {
 		model.addAttribute("links", linkDAO.findAll(search));
 		int count = linkDAO.countAll(search);
 		model.addAttribute("count", linkDAO.countAll(search));
-		model.addAttribute("pages", pages(count));
+		model.addAttribute("pages", pages(count, 20));
 		model.addAttribute("page", p);
 		return "list";		
 	}
@@ -170,8 +157,7 @@ public class LinksController {
 		response.getWriter().print("Error: "+ex.getMessage());
 	}
 	
-	private int[][] pages(int count) {
-		int perPage = 20;
+	private int[][] pages(int count, int perPage) {
 		int pages = count / perPage + (count % perPage == 0 ? 0 : 1);
 		int[][] p = new int[pages][3];
 		for(int i = 0; i < p.length; i++) {

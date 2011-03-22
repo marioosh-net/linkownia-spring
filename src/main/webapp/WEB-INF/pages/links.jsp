@@ -38,7 +38,7 @@
 			<div id="header"> 
 				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
 				<div id="search"> 
-					<form method="get" action="search.html">
+					<form method="get" action="index.html">
 						<input id="qtext" type="text" name="q"/>
 						<input type="button" class="button" onclick="submit()" />
 					</form>
@@ -96,7 +96,7 @@
 							<input type="text" name="name" style="width: 404px;"/><br/>
 							<label>Description</label><br/>
 							<textarea name="description" style="width: 404px;"></textarea><br/>
-							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>
+							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
@@ -111,7 +111,7 @@
 									<div class="link-item-title">
 									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
-									<a href="search.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
+									<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
                       				</div>
                       			</div>
@@ -144,7 +144,7 @@
 									<div class="link-item-title">
 									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
-									<a href="search.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
+									<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<span class="timestamp">${link.ldate }</span>										
                       				</div>
                       			</div>
