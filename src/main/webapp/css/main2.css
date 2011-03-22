@@ -528,6 +528,7 @@ div.copyright p.rights a {
 	color: #2854BB;
 	font-weight: bold;
 	font-size: 15px;
+	word-wrap: break-word;
 }
 
 .link-item-title a:hover {
