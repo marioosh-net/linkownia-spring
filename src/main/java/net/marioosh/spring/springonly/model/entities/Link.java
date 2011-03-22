@@ -11,7 +11,7 @@ public class Link {
 	@NotEmpty(message="Address may not be empty")
 	private String address;
 
-	private String name;
+	private String name = "";
 	
 	private String description;
 	
@@ -21,8 +21,9 @@ public class Link {
 	
 	private int clicks;
 
-	public Link() {}
-
+	public Link() {
+	}
+	
 	public Link(Integer id, String address, String name) {
 		super();
 		this.id = id;
@@ -49,7 +50,7 @@ public class Link {
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		this.address = address.startsWith("http://") || address.startsWith("https://") ? address : "http://"+address;
 	}
 
 	public String getName() {

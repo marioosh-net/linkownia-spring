@@ -70,6 +70,7 @@ public class LinksController {
 		return linkDAO.findAll(b);
 	}
 	
+	/*
 	@ModelAttribute("toplinks")
 	public List<Link> populateTopLinks() {
 		BrowseParams b = new BrowseParams();
@@ -77,16 +78,12 @@ public class LinksController {
 		b.setSort("clicks desc");
 		return linkDAO.findAll(b);
 	}
+	*/
 
 	@RequestMapping(value = "/index.html")
 	public String welcomeHandler(@CookieValue(value="JSESSIONID", required=false) String cookie) {
 		log.debug("JSESSIONID: "+ cookie);
 		return "links";
-	}
-	
-	@RequestMapping(value="/search.html")
-	public String searchByForm() {
-		return "links";		
 	}
 	
 	@RequestMapping(value="/list.html")
@@ -97,6 +94,15 @@ public class LinksController {
 		model.addAttribute("pages", pages(count, 20));
 		model.addAttribute("page", p);
 		return "list";		
+	}
+	
+	@RequestMapping(value="/toplinks.html")
+	public String list(Model model) {
+		BrowseParams b = new BrowseParams();
+		b.setRange(new Range(0,10));
+		b.setSort("clicks desc");
+		model.addAttribute("toplinks", linkDAO.findAll(b));
+		return "toplinks";		
 	}
 	
 	/*
@@ -114,7 +120,7 @@ public class LinksController {
 	public String processSubmit(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
-			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
+			// link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			linkDAO.add(link);
 			return "redirect:/index.html";
 		} else {
@@ -122,6 +128,15 @@ public class LinksController {
 			model.addAttribute("someErrors", true);
 			return "links";
 		}
+	}
+	
+	@RequestMapping(value="/quickadd.html")
+	public String quickAdd(@RequestParam(value="url") String address) {
+		Link link = new Link();
+		link.setLdate(new Date());
+		link.setAddress(address);
+		linkDAO.add(link);
+		return "redirect:/index.html";
 	}
 	
 	// @RequestMapping("/delete/{id}")
@@ -154,11 +169,13 @@ public class LinksController {
 	 * @param response
 	 * @throws IOException
 	 */
+	/*
 	@ExceptionHandler(Exception.class)
 	public void handleException(Exception ex, HttpServletResponse response) throws IOException {
 		// return ClassUtils.getShortName(ex.getClass());
 		response.getWriter().print("Error: "+ex.getMessage());
 	}
+	*/
 	
 	private int[][] pages(int count, int perPage) {
 		int pages = count / perPage + (count % perPage == 0 ? 0 : 1);

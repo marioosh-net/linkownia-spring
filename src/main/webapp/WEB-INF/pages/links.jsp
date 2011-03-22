@@ -21,12 +21,15 @@
 	function openLink(id, url) {
 		jQuery.get('open.html?id='+id, function(data) {
 			jQuery('.count_'+id).html(data);
+			toplinks();
 		});
-		window.open(url);
+		window.open(url , "open", "height=400,width=600");
+	}
+	function toplinks() {
+		jQuery('#toplinks').load('toplinks.html');
 	}
 	jQuery(document).ready(function(){
-		/*jQuery('#list').load('list.html');*/
-		/* nope */
+		toplinks();
 	});
 	</script>
 </head>
@@ -115,7 +118,7 @@
                    				<a href="?p=${page +1}">Older &#187;</a>
                    			</c:if>
                    			<c:if test="${page >= pagesCount}">
-                   				<span class="inactive">Older &#187;</span> 
+                   				<span class="inactive">Older &#187;</span>
                    			</c:if>                   			
                    		</c:if>
                    		</span>
@@ -152,22 +155,11 @@
                    <div id="bodyRight">
                    
                    	<!-- top links -->
-					<div class="link-items-header" >Top clicks</div>                        
-					<c:forEach items="${toplinks}" var="link" varStatus="i">
-                      		<div class="link-item">
-                      			<div class="clicks count_${link.id}">${link.clicks}</div>
-                      			<div class="link-data" style="width: 200px;">
-                      				<div>
-									<div class="link-item-title">
-									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
-									</div>                   				
-									<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
-									<span class="timestamp">${link.ldate }</span>										
-                      				</div>
-                      			</div>
-                      			<div style="clear: both;"></div>
-                      		</div>
-					</c:forEach>
+					<div class="link-items-header" >Top clicks</div>
+					<span id="toplinks">
+						<div style="padding-left: 10px; padding-top: 10px;"><img src="images/ajax.gif"/>&#160;Loading...</div>
+					</span>                        
+
 
                    </div> 
                    <!--end of right column --> 
