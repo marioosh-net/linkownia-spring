@@ -5,5 +5,6 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <c:forEach items="${searches}" var="search" varStatus="i">
-	<a href="index.html?q=${search.phrase}" class="search-item">${search.phrase}</a>&#160;<span class="search-counter">(${search.counter})</span>
+	<div class="search-item"><a href="index.html?q=${search.phrase}">${search.phrase}</a>&#160;<span class="search-counter">(${search.counter})</span></div>
 </c:forEach>
+<div style="clear: both;"></div>

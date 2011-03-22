@@ -196,7 +196,12 @@ a:focus {
 	margin-bottom: 20px;
 }
 
-#searches a.search-item {
+div.search-item {
+	float: left;
+	padding: 3px;
+}
+
+div.search-item a {
 	border-bottom: 1px solid #AEC3E7;
 	color: #2854BB;
 	font-size: 12px;
@@ -204,7 +209,7 @@ a:focus {
 	border-bottom: 1px solid #CEDBF1;
 	color: #5F88CE;	
 }
-#searches a.search-item:hover {
+div.search-item a:hover {
 	color: #000000;
 	border-bottom: 1px solid #000000;
 }
