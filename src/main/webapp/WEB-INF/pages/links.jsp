@@ -108,8 +108,14 @@
                    			<c:if test="${page != 1}" >
                    				<a href="?p=${page -1}">&#171; Newer</a>
                    			</c:if>
+                   			<c:if test="${page == 1}" >
+                   				<span class="inactive">&#171; Newer</span>
+                   			</c:if>
                    			<c:if test="${page < pagesCount}">
                    				<a href="?p=${page +1}">Older &#187;</a>
+                   			</c:if>
+                   			<c:if test="${page >= pagesCount}">
+                   				<span class="inactive">Older &#187;</span> 
                    			</c:if>                   			
                    		</c:if>
                    		</span>

@@ -115,6 +115,11 @@ a:focus {
 	float: right;
 }
 
+#topnavi .inactive {
+	font-size: 12px;
+	border-bottom: 1px solid #999;
+	color: #999;
+}
 #topnavi a {
 	font-size: 12px;
 	border-bottom: 1px solid #CEDBF1;
