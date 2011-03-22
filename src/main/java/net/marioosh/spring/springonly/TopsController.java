@@ -34,15 +34,12 @@ public class TopsController {
 	private Logger log = Logger.getLogger(TopsController.class);
 
 	@Autowired
-	private LinkDAO linkDAO;
-	
-	@Autowired
 	private SearchDAO searchDAO;
 	
 	@ModelAttribute("searches")
 	public List<Search> searches() {
 		SearchBrowseParams b = new SearchBrowseParams();
-		b.setRange(new Range(0,10));
+		b.setRange(new Range(0,30));
 		b.setSort("counter desc");
 		return searchDAO.findAll(b);
 	}
@@ -61,7 +58,7 @@ public class TopsController {
 	public String welcomeHandler() {
 		return "searches";
 	}
-	
+
 	/**
 	 * @param ex
 	 * @param response
