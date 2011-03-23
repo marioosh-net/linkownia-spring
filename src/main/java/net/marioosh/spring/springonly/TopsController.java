@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TopsController {
@@ -36,6 +37,10 @@ public class TopsController {
 	@Autowired
 	private SearchDAO searchDAO;
 	
+	@Autowired
+	private LinkDAO linkDAO;
+	
+	/*
 	@ModelAttribute("searches")
 	public List<Search> searches() {
 		SearchBrowseParams b = new SearchBrowseParams();
@@ -43,6 +48,7 @@ public class TopsController {
 		b.setSort("counter desc");
 		return searchDAO.findAll(b);
 	}
+	*/
 	
 	/*
 	@ModelAttribute("toplinks")
@@ -55,10 +61,21 @@ public class TopsController {
 	*/
 
 	@RequestMapping(value = "/searches.html")
-	public String welcomeHandler() {
-		return "searches";
+	public ModelAndView searches() {
+		SearchBrowseParams b = new SearchBrowseParams();
+		b.setRange(new Range(0,30));
+		b.setSort("counter desc");
+		return new ModelAndView("searches", "searches", searchDAO.findAll(b));
 	}
 
+	@RequestMapping(value="/toplinks.html")
+	public ModelAndView toplinks() {
+		BrowseParams b = new BrowseParams();
+		b.setRange(new Range(0,10));
+		b.setSort("clicks desc");
+		return new ModelAndView("toplinks", "toplinks", linkDAO.findAll(b));
+	}
+	
 	/**
 	 * @param ex
 	 * @param response

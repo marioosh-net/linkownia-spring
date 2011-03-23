@@ -195,7 +195,6 @@
 						<div style="padding-left: 10px; padding-top: 10px;"><img src="images/ajax.gif"/>&#160;Loading...</div>
 					</span>                        
 
-
                    </div> 
                    <!--end of right column --> 
                </div> 

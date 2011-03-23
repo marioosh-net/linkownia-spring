@@ -83,16 +83,6 @@ public class LinksController {
 		return linkDAO.findAll(b);
 	}
 	
-	/*
-	@ModelAttribute("toplinks")
-	public List<Link> populateTopLinks() {
-		BrowseParams b = new BrowseParams();
-		b.setRange(new Range(0,10));
-		b.setSort("clicks desc");
-		return linkDAO.findAll(b);
-	}
-	*/
-	
 	@RequestMapping(value = "/search.html")
 	public String search(@RequestParam(value="q", required=false, defaultValue="") String search) {
 		if(!search.isEmpty()) {
@@ -116,15 +106,6 @@ public class LinksController {
 		model.addAttribute("pages", pages(count, 20));
 		model.addAttribute("page", p);
 		return "list";		
-	}
-	
-	@RequestMapping(value="/toplinks.html")
-	public String list(Model model) {
-		BrowseParams b = new BrowseParams();
-		b.setRange(new Range(0,10));
-		b.setSort("clicks desc");
-		model.addAttribute("toplinks", linkDAO.findAll(b));
-		return "toplinks";		
 	}
 	
 	/*
