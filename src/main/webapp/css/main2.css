@@ -33,6 +33,16 @@ a:focus {
 	outline: 0px;
 }
 
+#debug {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	color: #000;
+	background-color: #fff;
+	font-size: 11px;
+	padding: 2px; 
+}
+
 #wraper {
 	float: left;
 	margin: 0px;

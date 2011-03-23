@@ -25,7 +25,7 @@
 					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
 				</span>
 				<span class="func-item">	
-					<a class="reload" href="#" onclick="edit(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+					<a class="reload" href="#" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
 				</span>                      					
 			</div>			
 		</div>

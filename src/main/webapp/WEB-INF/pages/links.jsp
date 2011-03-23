@@ -20,9 +20,9 @@
 	}
 	function openLink(id, url) {
 		jQuery.get('open.html?id='+id, function(data) {
-			jQuery('.count_'+id).html(data);
+			jQuery('div.count_'+id).html(data);
 			toplinks();
-		});
+		}, 'text');
 		/*window.open(url , "open", "height=400,width=600");*/
 		window.open(url);
 	}
@@ -31,6 +31,12 @@
 			alert(data);
 		});
 	}
+	function reload(id) {
+		/*jQuery('#debug').load('reload.html', {'id': id});*/
+		jQuery.post('reload.html', {'id': id}, function(data) {
+			jQuery('#debug').text(data);
+		}, 'text');
+	}	
 	function toplinks() {
 		jQuery('#toplinks').load('toplinks.html');
 	}
@@ -46,6 +52,8 @@
 
 <body id="TotalBodyId" onload="jQuery('#qtext').focus();"> 
  
+ 	<div id="debug"></div>
+ 	
 	<div id="wraper"> 
     	<div id="headerblank"> 
 			<div id="header"> 
@@ -152,7 +160,7 @@
 	                      					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
                       					</span>
 	                      				<span class="func-item">	
-	                      					<a class="reload" href="#" onclick="edit(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+	                      					<a class="reload" href="#" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
                       					</span>                      					
                       				</div>                      				
                       			</div>
