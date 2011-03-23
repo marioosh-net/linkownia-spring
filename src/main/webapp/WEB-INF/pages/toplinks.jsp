@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <c:forEach items="${toplinks}" var="link" varStatus="i">
-	<div class="link-item">
+	<div class="link-item link-item_${link.id}">
 		<div class="clicks count_${link.id}">
 			${link.clicks}
 		</div>
@@ -19,7 +19,7 @@
 			</div>
 			<div class="admin-funcs">
 				<span class="func-item">
-					<a class="del" href="delete.html?id=${link.id}"><img src="images/del.png"/><span class="button-text">delete</span></a>
+					<a class="del" href="#" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
 				</span>
 				<span class="func-item">	
 					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>

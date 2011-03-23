@@ -18,6 +18,14 @@
 		});
 		jQuery('#'+id).toggle('fast', fun);
 	}
+	function deleteLink(id) {
+		jQuery.get('delete.html?id='+id, function(data){
+			if(data == '0') {
+				jQuery('div.link-item_'+id).remove();				
+			}
+			jQuery('#debug').html(data);
+		}, 'text');
+	}
 	function openLink(id, url) {
 		jQuery.get('open.html?id='+id, function(data) {
 			jQuery('div.count_'+id).html(data);
@@ -142,7 +150,7 @@
                    		</span>
                    		<!-- <span style="float: right; font-size: 12px;">Open links in new window&#160;<input type="checkbox"/></span> --></div>
                       	<c:forEach items="${links}" var="link" varStatus="i">
-                      		<div class="link-item">
+                      		<div class="link-item link-item_${link.id}">
                       			<div class="clicks count_${link.id}">${link.clicks}</div>
                       			<div class="link-data">
                       				<div>
@@ -154,7 +162,7 @@
                       				</div>
                       				<div class="admin-funcs">
                       					<span class="func-item">
-	                      					<a class="del" href="delete.html?id=${link.id}"><img src="images/del.png"/><span class="button-text">delete</span></a>
+	                      					<a class="del" href="javascript:;" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
 	                      				</span>
 	                      				<span class="func-item">	
 	                      					<a class="edit" href="javascript:;" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>

@@ -144,10 +144,22 @@ public class LinksController {
 	
 	// @RequestMapping("/delete/{id}")
 	// public String delete(@PathVariable Integer id) {
+	/*
 	@RequestMapping("/delete.html")
 	public String delete(@RequestParam(value="id", required=false, defaultValue="-1") Integer id) {
 		linkDAO.delete(id);
 		return "redirect:/index.html"; 
+	}
+	*/
+	
+	@RequestMapping("/delete.html")
+	public void delete(@RequestParam(value="id", defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
+		try {
+			linkDAO.delete(id);
+			response.getWriter().write("0");	// OK
+		} catch (Exception ex) {
+			response.getWriter().write("-1");	// Error
+		}
 	}
 	
 	@RequestMapping("/edit.html")
