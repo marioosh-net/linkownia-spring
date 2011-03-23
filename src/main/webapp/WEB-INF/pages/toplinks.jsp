@@ -12,20 +12,20 @@
 		<div class="link-data" style="width: 200px;">
 			<div>
 				<div class="link-item-title">
-					<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
+					<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 				</div>
 				<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 				<span class="timestamp">${link.ldate }</span>
 			</div>
 			<div class="admin-funcs">
 				<span class="func-item">
-					<a class="del" href="#" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
+					<a class="del" href="javascript:;" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
 				</span>
 				<span class="func-item">	
-					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
+					<a class="edit" href="javascript:;" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
 				</span>
 				<span class="func-item">	
-					<a class="reload" href="#" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+					<a class="reload" href="javascript:;" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
 				</span>                      					
 			</div>			
 		</div>

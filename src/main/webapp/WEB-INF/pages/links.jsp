@@ -22,6 +22,7 @@
 		jQuery.get('delete.html?id='+id, function(data){
 			if(data == '0') {
 				jQuery('div.link-item_'+id).remove();				
+				toplinks();
 			}
 			jQuery('#debug').html(data);
 		}, 'text');
