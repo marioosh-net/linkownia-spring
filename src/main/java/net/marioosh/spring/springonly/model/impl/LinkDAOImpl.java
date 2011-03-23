@@ -82,12 +82,18 @@ public class LinkDAOImpl implements LinkDAO {
 	public void add(Link link) {
 		if(link.getName().isEmpty()) {
 			Map<String, String> m = WebUtils.pageInfo(link.getAddress());
-			if(m.get("title") != null) {
+            if(link.getDescription() == null) {
+                link.setDescription("");
+            }
+			if(m.get("title") != null && (link.getName() == null || link.getName().isEmpty())) {
 				link.setName(m.get("title"));
 			}
-			if(m.get("description") != null) {
+			if(m.get("description") != null && (link.getDescription() == null || link.getDescription().isEmpty())) {
 				link.setDescription(m.get("description"));
 			}
+            if(link.getName() == null || link.getName().isEmpty()) {
+                link.setName(link.getAddress());
+            }
 		}
 		jdbcTemplate.update("insert into tlink (address, name, description, ldate, clicks) values(?, ?, ?, ?, 0)", link.getAddress(), link.getName(), link.getDescription(), link.getLdate());
 	}
