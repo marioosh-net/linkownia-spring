@@ -168,24 +168,27 @@ public class LinksController {
 		linkDAO.delete(id);
 		return "redirect:/index.html"; 
 	}
+	
+	@RequestMapping("/edit.html")
+	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
+		response.getWriter().print(id);
+	}
+	
+	@RequestMapping("/reload.html")
+	public void reload(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
+		response.getWriter().print(id);
+	}
 
 	@RequestMapping(value = "/open.html")
-	public void open(@RequestParam(value="id", defaultValue="-1") Integer id, HttpServletResponse response) {
+	public void open(@RequestParam(value="id", defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
 		Link link = linkDAO.get(id);
 		int i = -1;
 		if(link != null) {
 			i = link.getClicks();
 			log.debug(link.getAddress());
 			linkDAO.click(id);
-			// return "redirect:"+link.getAddress();
-			// return "links";
 		}
-		try {
-			response.getWriter().print(++i);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		response.getWriter().print(++i);
 	}
 	
 	@RequestMapping(value = "/refresh.html")

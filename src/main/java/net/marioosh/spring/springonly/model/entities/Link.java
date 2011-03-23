@@ -46,7 +46,7 @@ public class Link {
 	}
 
 	public String getAddress() {
-		return address;
+		return address.startsWith("http://") || address.startsWith("https://") ? address : "http://"+address;
 	}
 
 	public void setAddress(String address) {

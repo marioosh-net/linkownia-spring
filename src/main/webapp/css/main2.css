@@ -617,6 +617,31 @@ div.copyright p.rights a {
 	color: #999;
 }
 
+.admin-funcs {
+	margin-top: 3px;
+	margin-bottom: 5px;
+}
+
+/** admin link buttons **/
+.admin-funcs {
+	font-size: 11px;
+}
+.admin-funcs .button-text {
+	color: #5F88CE;
+	margin-left: 3px;
+}
+.func-item {
+	margin-right: 5px;
+}
+a.reload .button-text:hover, a.reload:hover, a.edit .button-text:hover, a.edit:hover {
+	color: #80a1c1;
+	border-bottom: 1px solid #80a1c1;
+}
+a.del .button-text:hover, a.del:hover {
+	color: #cf9494;
+	border-bottom: 1px solid #cf9494;	
+}
+
 .link-item {
 	padding: 10px 0px;
 	/*border-bottom: 1px solid #CCDCEF;*/

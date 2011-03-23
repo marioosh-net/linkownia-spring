@@ -26,6 +26,11 @@
 		/*window.open(url , "open", "height=400,width=600");*/
 		window.open(url);
 	}
+	function edit(id) {
+		jQuery.post('edit.html', {'id': id}, function(data) {
+			alert(data);
+		});
+	}
 	function toplinks() {
 		jQuery('#toplinks').load('toplinks.html');
 	}
@@ -46,7 +51,7 @@
 			<div id="header"> 
 				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
 				<div id="search"> 
-					<form method="get" action="search.html">
+					<form method="post" action="search.html">
 						<input id="qtext" type="text" name="q" value="${q}"/>
 						<input type="button" class="button" onclick="submit()" />
 					</form>
@@ -93,11 +98,11 @@
 							<div style="clear: both;"></div>
 						</form>
 					</div>
-					
+						
 					<!-- new link form -->			
 					<div class="panel" id="new" style="${someErrors ? '' : 'display: none;'}">
 						<!-- <form method="post" action="add.html"> -->
-						<form:form commandName="link" action="add.html" id="newform">
+						<form:form commandName="link" method="post" action="add.html" id="newform">
 							<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
 							<input type="text" id="address" name="address" style="width: 404px;"/><br/>
 							<label>Name</label><br/>
@@ -139,6 +144,17 @@
 									<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
                       				</div>
+                      				<div class="admin-funcs">
+                      					<span class="func-item">
+	                      					<a class="del" href="delete.html?id=${link.id}"><img src="images/del.png"/><span class="button-text">delete</span></a>
+	                      				</span>
+	                      				<span class="func-item">	
+	                      					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
+                      					</span>
+	                      				<span class="func-item">	
+	                      					<a class="reload" href="#" onclick="edit(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+                      					</span>                      					
+                      				</div>                      				
                       			</div>
                       			<div style="clear: both;"></div>
                       		</div>
