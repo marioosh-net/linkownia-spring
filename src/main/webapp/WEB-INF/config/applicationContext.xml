@@ -75,6 +75,7 @@
 	<security:http auto-config="true" use-expressions="true">
 		<security:form-login authentication-failure-url="/index.html" />
 		<security:logout logout-success-url="/index.html" logout-url="/logout.html" />
+		<security:remember-me key="rmelinkownia" />
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>

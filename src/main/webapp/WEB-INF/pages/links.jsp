@@ -132,6 +132,7 @@
 								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="javascript:;" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/></div>
 							</div>
 							<div style="clear: both;"></div>
+							<div><input type='checkbox' name='_spring_security_remember_me'/>&#160;Remember me</div>
 						</form>
 					</div>
 						
