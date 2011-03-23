@@ -70,14 +70,14 @@
         <div id="menu-full">
        		<div id="menu">
        			<div class="menu-item first-item">
-					<a href="#" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
+					<a href="javascript:;" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 				</div>
 				<div class="menu-item">
-					<a href="#" onclick="alert('not active'); return false; hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+					<a href="javascript:;" onclick="alert('not active'); return false; hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
 				</div>
 				<!--
 				<div class="menu-item">
-					<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
+					<a href="javascript:;" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
 				</div>
 				-->        		
        		</div> 
@@ -101,7 +101,7 @@
 							</div>
 							<div style="float: left">
 								<div>&#160;</div>
-								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="#" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/></div>
+								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="javascript:;" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/></div>
 							</div>
 							<div style="clear: both;"></div>
 						</form>
@@ -117,7 +117,7 @@
 							<input type="text" name="name" style="width: 404px;"/><br/>
 							<label>Description</label><br/>
 							<textarea name="description" style="width: 404px;"></textarea><br/>
-							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
+							<a href="javascript:;" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="javascript:;" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
@@ -147,7 +147,7 @@
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
-									<a href="#" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
+									<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
 									<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
@@ -157,10 +157,10 @@
 	                      					<a class="del" href="delete.html?id=${link.id}"><img src="images/del.png"/><span class="button-text">delete</span></a>
 	                      				</span>
 	                      				<span class="func-item">	
-	                      					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
+	                      					<a class="edit" href="javascript:;" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
                       					</span>
 	                      				<span class="func-item">	
-	                      					<a class="reload" href="#" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+	                      					<a class="reload" href="javascript:;" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
                       					</span>                      					
                       				</div>                      				
                       			</div>
