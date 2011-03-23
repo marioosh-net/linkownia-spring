@@ -98,7 +98,8 @@
 				</div>
 				</security:authorize>
 				<security:authorize access="hasRole('ROLE_ADMIN')">
-				<div class="menu-item">
+				<div style="float: right;" class="menu-item">
+					<span class="username"><security:authentication property="principal.username" /></span>
 					<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
 				</div>
 				</security:authorize>

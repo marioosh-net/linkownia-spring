@@ -95,6 +95,11 @@ a:focus {
 	margin-bottom: 35px;
 }
 
+.username {
+	color: #99FF00;
+	padding-right: 3px;
+}
+
 .main-count {
 	/*float: right;*/ 
 	color: #999;
