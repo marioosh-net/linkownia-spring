@@ -92,9 +92,16 @@
        			<div class="menu-item first-item">
 					<a href="javascript:;" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 				</div>
+				<security:authorize access="!hasRole('ROLE_ADMIN')">
 				<div class="menu-item">
-					<a href="javascript:;" onclick="alert('not active'); return false; hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+					<a href="javascript:;" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
 				</div>
+				</security:authorize>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+				<div class="menu-item">
+					<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
+				</div>
+				</security:authorize>
 				<!--
 				<div class="menu-item">
 					<a href="javascript:;" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
@@ -172,6 +179,7 @@
 									<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— <span class="descr">${link.description}</span><span class="timestamp">${link.ldate }</span></a>										
                       				</div>
+                      				<security:authorize access="hasRole('ROLE_ADMIN')">
                       				<div class="admin-funcs">
                       					<span class="func-item">
 	                      					<a class="del" href="javascript:;" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
@@ -183,6 +191,7 @@
 	                      					<a class="refresh" href="javascript:;" onclick="refresh(${link.id})"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
                       					</span>                      					
                       				</div>                      				
+                      				</security:authorize>
                       			</div>
                       			<div style="clear: both;"></div>
                       		</div>

@@ -17,6 +17,7 @@
 				<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 				<span class="timestamp">${link.ldate }</span>
 			</div>
+			<security:authorize access="hasRole('ROLE_ADMIN')">
 			<div class="admin-funcs">
 				<span class="func-item">
 					<a class="del" href="javascript:;" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
@@ -28,6 +29,7 @@
 					<a class="refresh" href="javascript:;" onclick="refresh(${link.id})"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
 				</span>                      					
 			</div>			
+			</security:authorize>
 		</div>
 		<div style="clear: both;">
 		</div>
