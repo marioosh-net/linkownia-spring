@@ -192,6 +192,7 @@ public class LinksController {
 		if(m.get("description") != null) {
 			link.setDescription(m.get("description"));
 		}
+		link.setDateMod(new Date());
 		linkDAO.update(link);
 		JSONObject json = new JSONObject(link);
 		

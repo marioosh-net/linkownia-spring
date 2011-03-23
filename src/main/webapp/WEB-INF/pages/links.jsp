@@ -46,7 +46,9 @@
 			jQuery('#debug-content').html('NAME:'+data['name']+'<br/>DESC:'+data['description']);
 			var item = jQuery('.link-item_'+id);
 			jQuery(item).find('.descr').html(data['description']);
-			jQuery(item).find('.name').html(data['name']);
+			if(jQuery.trim(data['name']) != '') {
+				jQuery(item).find('.name').html(data['name']);
+			}
 		}, 'json');
 	}	
 	function toplinks() {
