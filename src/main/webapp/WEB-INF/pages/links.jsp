@@ -34,7 +34,7 @@
 	function reload(id) {
 		/*jQuery('#debug').load('reload.html', {'id': id});*/
 		jQuery.post('reload.html', {'id': id}, function(data) {
-			jQuery('#debug').text(data);
+			jQuery('#debug').html(data);
 		}, 'text');
 	}	
 	function toplinks() {
@@ -185,7 +185,9 @@
                    
 					<!-- searches -->
 					<div class="block-header" >Top searches</div>
-					<div id="searches"></div>
+					<div id="searches">
+						<div style="padding-left: 10px; padding-top: 10px;"><img src="images/ajax.gif"/>&#160;Loading...</div>
+					</div>
                    
                    	<!-- top links -->
 					<div class="block-header" >Top clicks</div>
