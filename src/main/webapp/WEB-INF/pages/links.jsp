@@ -40,11 +40,14 @@
 			alert(data);
 		});
 	}
-	function reload(id) {
-		/*jQuery('#debug-content').load('reload.html', {'id': id});*/
-		jQuery.post('reload.html', {'id': id}, function(data) {
-			jQuery('#debug-content').html(data);
-		}, 'text');
+	/* odswiez linka, pociagnij name, description */
+	function refresh(id) {
+		jQuery.post('refresh.html', {'id': id}, function(data) {
+			jQuery('#debug-content').html('NAME:'+data['name']+'<br/>DESC:'+data['description']);
+			var item = jQuery('.link-item_'+id);
+			jQuery(item).find('.descr').html(data['description']);
+			jQuery(item).find('.name').html(data['name']);
+		}, 'json');
 	}	
 	function toplinks() {
 		jQuery('#toplinks').load('toplinks.html');
@@ -162,10 +165,10 @@
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
-									<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
+									<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');" class="name">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
 									<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
-									<a href="${link.address}" class="link-item-teaser">— ${link.description}<span class="timestamp">${link.ldate }</span></a>										
+									<a href="${link.address}" class="link-item-teaser">— <span class="descr">${link.description}</span><span class="timestamp">${link.ldate }</span></a>										
                       				</div>
                       				<div class="admin-funcs">
                       					<span class="func-item">
@@ -175,7 +178,7 @@
 	                      					<a class="edit" href="javascript:;" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
                       					</span>
 	                      				<span class="func-item">	
-	                      					<a class="reload" href="javascript:;" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+	                      					<a class="refresh" href="javascript:;" onclick="refresh(${link.id})"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
                       					</span>                      					
                       				</div>                      				
                       			</div>

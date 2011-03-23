@@ -643,7 +643,7 @@ div.copyright p.rights a {
 .func-item {
 	margin-right: 5px;
 }
-a.reload .button-text:hover, a.reload:hover, a.edit .button-text:hover, a.edit:hover {
+a.refresh .button-text:hover, a.refresh:hover, a.edit .button-text:hover, a.edit:hover {
 	color: #80a1c1;
 	border-bottom: 1px solid #80a1c1;
 }

@@ -1,6 +1,7 @@
 package net.marioosh.spring.springonly;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
@@ -18,6 +19,8 @@ import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
 import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +29,11 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -152,24 +157,48 @@ public class LinksController {
 	}
 	*/
 	
+	/**
+	 * @ResponseBody - Spring converts the returned object to a response body by using an HttpMessageConverter.
+	 * to co zwraca metoda jest wysylane jako odpowiedz serwera
+	 */
+	@ResponseBody
 	@RequestMapping("/delete.html")
-	public void delete(@RequestParam(value="id", defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
+	public String delete(@RequestParam(value="id", defaultValue="-1") Integer id) {
 		try {
 			linkDAO.delete(id);
-			response.getWriter().write("0");	// OK
+			return "0";
 		} catch (Exception ex) {
-			response.getWriter().write("-1");	// Error
+			return "-1";
 		}
 	}
-	
+	/**
+	 * @RequestBody - parametr metody bedzie zawieral request body
+	 */
 	@RequestMapping("/edit.html")
-	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
+	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException {
 		response.getWriter().print(id);
+		// response.getWriter().print(body);
+		// log.debug("Body: "+body);
+		
 	}
 	
-	@RequestMapping("/reload.html")
-	public void reload(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
-		response.getWriter().print(id);
+	@RequestMapping("/refresh.html")
+	public void refresh(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException, JSONException {
+		Link link = linkDAO.get(id);
+		Map<String,String> m = WebUtils.pageInfo(link.getAddress());
+		if(m.get("title") != null) {
+			link.setName(m.get("title"));
+		}
+		if(m.get("description") != null) {
+			link.setDescription(m.get("description"));
+		}
+		linkDAO.update(link);
+		JSONObject json = new JSONObject(link);
+		
+		/*response.setContentType("text/x-json;charset=UTF-8");*/
+		json.write(new OutputStreamWriter(System.out));
+		json.write(response.getWriter());
+
 	}
 
 	@RequestMapping(value = "/open.html")
@@ -184,8 +213,8 @@ public class LinksController {
 		response.getWriter().print(++i);
 	}
 	
-	@RequestMapping(value = "/refresh.html")
-	public void refresh(HttpServletResponse response) throws IOException {
+	@RequestMapping(value = "/refreshall.html")
+	public void refreshAll(HttpServletResponse response) throws IOException {
 		for(Link l: linkDAO.findAll(new BrowseParams())) {
 			response.getWriter().print("<div>"+l.getAddress()+" ");
 			// l.setClicks(l.getClicks() + 1);

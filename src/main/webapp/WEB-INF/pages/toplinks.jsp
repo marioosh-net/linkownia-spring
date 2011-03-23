@@ -12,7 +12,7 @@
 		<div class="link-data" style="width: 200px;">
 			<div>
 				<div class="link-item-title">
-					<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');">${link.name != '' ? link.name : link.address}</a>
+					<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');" class="name">${link.name != '' ? link.name : link.address}</a>
 				</div>
 				<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 				<span class="timestamp">${link.ldate }</span>
@@ -25,7 +25,7 @@
 					<a class="edit" href="javascript:;" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
 				</span>
 				<span class="func-item">	
-					<a class="reload" href="javascript:;" onclick="reload(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+					<a class="refresh" href="javascript:;" onclick="refresh(${link.id})"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
 				</span>                      					
 			</div>			
 		</div>
