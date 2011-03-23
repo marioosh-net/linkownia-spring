@@ -24,7 +24,7 @@
 				jQuery('div.link-item_'+id).remove();				
 				toplinks();
 			}
-			jQuery('#debug').html(data);
+			jQuery('#debug-content').html(data);
 		}, 'text');
 	}
 	function openLink(id, url) {
@@ -41,9 +41,9 @@
 		});
 	}
 	function reload(id) {
-		/*jQuery('#debug').load('reload.html', {'id': id});*/
+		/*jQuery('#debug-content').load('reload.html', {'id': id});*/
 		jQuery.post('reload.html', {'id': id}, function(data) {
-			jQuery('#debug').html(data);
+			jQuery('#debug-content').html(data);
 		}, 'text');
 	}	
 	function toplinks() {
@@ -61,7 +61,13 @@
 
 <body id="TotalBodyId" onload="jQuery('#qtext').focus();"> 
  
- 	<div id="debug"></div>
+ 	<c:if test="${header['host'] == 'localhost:8081'}">
+	 	<div id="debug">
+	 		<div style="font-weight: bold; display: none;">DEBUG:</div>
+	 		<div id="debug-content">
+	 		</div>
+	 	</div>
+ 	</c:if>
  	
 	<div id="wraper"> 
     	<div id="headerblank"> 
