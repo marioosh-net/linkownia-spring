@@ -17,6 +17,17 @@
 				<a href="index.html?q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 				<span class="timestamp">${link.ldate }</span>
 			</div>
+			<div class="admin-funcs">
+				<span class="func-item">
+					<a class="del" href="delete.html?id=${link.id}"><img src="images/del.png"/><span class="button-text">delete</span></a>
+				</span>
+				<span class="func-item">	
+					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
+				</span>
+				<span class="func-item">	
+					<a class="reload" href="#" onclick="edit(${link.id})"><img src="images/reload.png"/><span class="button-text">reload</span></a>
+				</span>                      					
+			</div>			
 		</div>
 		<div style="clear: both;">
 		</div>
