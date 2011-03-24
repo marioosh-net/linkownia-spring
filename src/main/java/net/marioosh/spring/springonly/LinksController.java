@@ -245,6 +245,7 @@ public class LinksController {
 	public void handleException(Exception ex, HttpServletResponse response) throws IOException {
 		// return ClassUtils.getShortName(ex.getClass());
 		response.getWriter().print("Error: "+ex.getMessage());
+		log.error(ex.getMessage(), ex);
 	}
 	
 	private int[][] pages(int count, int perPage) {
