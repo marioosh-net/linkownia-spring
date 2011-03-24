@@ -29,11 +29,12 @@
 	<!-- APPENDERY END -->
 
 	<!-- LOGGERY -->
-	<!--
 	<logger name="org.springframework">
+		<level value="debug" />
+	</logger>
+	<logger name="org.springframework.beans.factory.support">
 		<level value="error" />
 	</logger>
-	-->
 	<!-- LOGGERY END -->
 
 	<!-- ROOT LOGGER -->
