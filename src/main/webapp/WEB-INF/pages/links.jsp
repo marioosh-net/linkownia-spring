@@ -66,8 +66,11 @@
 
 <body id="TotalBodyId" onload="jQuery('#qtext').focus();"> 
  
- 	<c:if test="${header['host'] == 'localhost:8081'}">
+ 	<c:if test="${header['host'] == 'localhost:8081' or header['host'] == 'localhost:8080'}">
 	 	<div id="debug">
+	 		<c:forEach items="${param}" var="par">
+	 			<div>${par }</div>
+	 		</c:forEach>
 	 		<div style="font-weight: bold; display: none;">DEBUG:</div>
 	 		<div id="debug-content">
 	 		</div>
@@ -117,7 +120,7 @@
                   	<div id="leftPan"> 
                   	
 					<!-- login form -->
-					<div class="panel" id="login" style="display: none;">
+					<div class="panel" id="login" style="${param['loginfail'] == 1 ? ' ' : 'display: none;'}">
 						<form id="jf" name="f" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
 							<div style="float: left">
 								<div class="smalllabel">login</div>
