@@ -35,6 +35,15 @@
 	<logger name="org.springframework.beans.factory.support">
 		<level value="error" />
 	</logger>
+	<logger name="org.springframework.jdbc.core.BeanPropertyRowMapper">
+		<level name="error" />
+	</logger>
+	<logger name="org.springframework.aop">
+		<level name="error" />
+	</logger>
+	<logger name="org.springframework.aop.framework.Cglib2AopProxy">
+		<level name="error" />
+	</logger>
 	<!-- LOGGERY END -->
 
 	<!-- ROOT LOGGER -->
