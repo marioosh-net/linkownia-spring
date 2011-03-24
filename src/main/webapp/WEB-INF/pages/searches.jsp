@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <c:forEach items="${searches}" var="search" varStatus="i">
-	<div class="search-item">
+	<div class="search-item search-item_${search.id}">
 		<a href="index.html?q=${search.phrase}">${search.phrase}</a>&#160;<span class="search-counter">(${search.counter})</span>
 		<security:authorize access="hasRole('ROLE_ADMIN')">
 			<span class="func-item">

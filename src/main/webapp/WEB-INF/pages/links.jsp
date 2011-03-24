@@ -27,6 +27,15 @@
 			jQuery('#debug-content').html(data);
 		}, 'text');
 	}
+	function deleteSearch(id) {
+		jQuery.get('delete-search.html?id='+id, function(data){
+			if(data == '0') {
+				jQuery('div.search-item_'+id).remove();				
+				searches();
+			}
+			jQuery('#debug-content').html(data);
+		}, 'text');
+	}	
 	function openLink(id, url) {
 		jQuery.get('open.html?id='+id, function(data) {
 			jQuery('div.count_'+id).html(data);

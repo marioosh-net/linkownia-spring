@@ -15,6 +15,7 @@ import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -74,6 +76,18 @@ public class TopsController {
 		b.setRange(new Range(0,10));
 		b.setSort("clicks desc");
 		return new ModelAndView("toplinks", "toplinks", linkDAO.findAll(b));
+	}
+
+	@ResponseBody
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("/delete-search.html")
+	public String delete(@RequestParam(value="id", defaultValue="-1") Integer id) {
+		try {
+			searchDAO.delete(id);
+			return "0";
+		} catch (Exception ex) {
+			return "-1";
+		}
 	}
 	
 	/**

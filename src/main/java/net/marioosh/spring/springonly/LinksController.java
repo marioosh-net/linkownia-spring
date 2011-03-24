@@ -196,6 +196,7 @@ public class LinksController {
 			return "-1";
 		}
 	}
+	
 	/**
 	 * @RequestBody - parametr metody bedzie zawieral request body
 	 */
