@@ -55,7 +55,9 @@ public class LinkDAOImpl implements LinkDAO {
 	}
 	
 	public void add(Link link) {
-		if(link.getName().isEmpty()) {
+
+		// jesli name lub descriptione jest empty to pociagnij z stronki
+		if((link.getName() == null || link.getName().isEmpty()) || (link.getDescription() == null || link.getDescription().isEmpty())) {
 			
 			Map<String, String> m = WebUtils.pageInfo(link.getAddress());
 			if(m.get("title") != null && (link.getName() == null || link.getName().isEmpty())) {
@@ -64,10 +66,13 @@ public class LinkDAOImpl implements LinkDAO {
 			if(m.get("description") != null && (link.getDescription() == null || link.getDescription().isEmpty())) {
 				link.setDescription(m.get("description"));
 			}
-            if(link.getName() == null || link.getName().isEmpty()) {
-                link.setName(link.getAddress());
-            }
 		}
+		
+		// jesli name pozostaje empty, to uzyj adresu
+        if(link.getName() == null || link.getName().isEmpty()) {
+            link.setName(link.getAddress());
+        }
+		
 		jdbcTemplate.update("insert into tlink (address, name, description, ldate, date_mod, clicks) values(?, ?, ?, ?, ?, 0)", link.getAddress(), link.getName(), link.getDescription(), new Date(), link.getLdate());
 	}
 
@@ -75,6 +80,12 @@ public class LinkDAOImpl implements LinkDAO {
 		Link l = get(link.getAddress());
 		if(l != null) {
 			// update
+			if(link.getDescription() != null && !link.getDescription().isEmpty()) {
+				l.setDescription(link.getDescription());
+			}
+			if(link.getName() != null && !link.getName().isEmpty()) {
+				l.setName(link.getName());
+			}			
 			l.setDateMod(new Date());
 			update(l);
 		} else {
