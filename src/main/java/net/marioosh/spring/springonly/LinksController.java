@@ -165,10 +165,7 @@ public class LinksController {
 	@RequestMapping("/delete.html")
 	public String delete(@RequestParam(value="id", defaultValue="-1") Integer id) {
 		try {
-			/**
-			 * for testing
-			 */
-			// linkDAO.delete(id);
+			linkDAO.delete(id);
 			return "0";
 		} catch (Exception ex) {
 			return "-1";
