@@ -15,7 +15,7 @@
 					<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');" class="name">${link.name != '' ? link.name : link.address}</a>
 				</div>
 				<a href="index.html?site=1&amp;q=${link.hostName}" class="link-item-source">${link.hostName}</a>
-				<span class="timestamp">${link.dateMod}</span>
+				<span class="timestamp">${link.dateModFormatted}</span>
 			</div>
 			<security:authorize access="hasRole('ROLE_ADMIN')">
 			<div class="admin-funcs">

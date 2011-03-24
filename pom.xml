@@ -233,7 +233,14 @@
 		    <groupId>org.json</groupId>
 		    <artifactId>json</artifactId>
 		    <version>20090211</version>
-		</dependency>		
+		</dependency>
+		
+		<!-- hours ago -->
+		<dependency>
+			<groupId>com.ocpsoft</groupId>
+			<artifactId>ocpsoft-pretty-time</artifactId>
+			<version>1.0.6</version>
+		</dependency>				
 
 	</dependencies>
 

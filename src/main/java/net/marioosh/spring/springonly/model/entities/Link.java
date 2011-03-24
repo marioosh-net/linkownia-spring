@@ -2,8 +2,11 @@ package net.marioosh.spring.springonly.model.entities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import org.hibernate.validator.constraints.NotEmpty;
+import com.ocpsoft.pretty.time.PrettyTime;
 
 public class Link {
 	private Integer id;
@@ -76,6 +79,10 @@ public class Link {
 		return ldate;
 	}
 	
+	public String getLdateFormatted() {
+		return new SimpleDateFormat("dd.MM.yyyy").format(ldate);
+	}
+	
 	public void setLdate(Date ldate) {
 		this.ldate = ldate;
 	}
@@ -90,6 +97,19 @@ public class Link {
 	
 	public Date getDateMod() {
 		return dateMod;
+	}
+	
+	public String getDateModFormatted() {
+		// return new SimpleDateFormat("dd.MM.yyyy").format(dateMod);
+		PrettyTime p = new PrettyTime();
+		return p.format(dateMod);
+		
+		/*
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	    Date past = dateMod;
+	    Date now = new Date();
+	    return TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime()) + " days ago";
+	    */
 	}
 	
 	public void setDateMod(Date dateMod) {
