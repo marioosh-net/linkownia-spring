@@ -77,14 +77,16 @@ public class LinksController {
 			@RequestParam(value="q", required=false, defaultValue="") String search, 
 			@RequestParam(value="p", required=false, defaultValue="-1") int p, 
 			@RequestParam(value="site", defaultValue="0", required=false) int site) throws UnsupportedEncodingException {
-		
+		 
 		log.debug("SEARCH: "+search);
 		log.debug("PAGE  : "+p);
 		WebUtils.logRequestInfo(request);
 
-		if(!search.isEmpty() && p == -1 && site == 0) {
-			// zainicjowano wyszukiwanie - zauktualizuje searches
-			searchDAO.trigger(search);
+		if(request.getMethod().equals("POST")) {
+			if(!search.isEmpty() && p == -1 && site == 0) {
+				// zainicjowano wyszukiwanie - zauktualizuje searches
+				searchDAO.trigger(search);
+			}
 		}
 		if(p == -1) {
 			p = 1;
