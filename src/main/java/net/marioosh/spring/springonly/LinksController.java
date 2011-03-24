@@ -80,15 +80,8 @@ public class LinksController {
 		
 		log.debug("SEARCH: "+search);
 		log.debug("PAGE  : "+p);
+		WebUtils.logRequestInfo(request);
 
-		log.info("---- HEADERS ----");
-		Enumeration<String> e = request.getHeaderNames();
-		while(e.hasMoreElements()) {
-			String headerName = e.nextElement();
-			log.info(headerName + " : " + request.getHeader(headerName));
-		}
-		log.info("---- HEADERS END ----");
-		
 		if(!search.isEmpty() && p == -1 && site == 0) {
 			// zainicjowano wyszukiwanie - zauktualizuje searches
 			searchDAO.trigger(search);

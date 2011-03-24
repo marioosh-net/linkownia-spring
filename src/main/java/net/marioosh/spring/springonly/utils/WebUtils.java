@@ -2,9 +2,11 @@ package net.marioosh.spring.springonly.utils;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.HTMLElementName;
@@ -12,7 +14,7 @@ import net.htmlparser.jericho.Source;
 
 public class WebUtils {
 	
-	private Logger log = Logger.getLogger(getClass());
+	private static Logger log = Logger.getLogger(WebUtils.class);
 	
 	public static Map<String, String> pageInfo(String u) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -44,5 +46,16 @@ public class WebUtils {
 			return map;
 		}
 		return map;
+	}
+	
+	public static void logRequestInfo(HttpServletRequest request) {
+		log.info("HOST / IP: "+request.getRemoteHost() + " / " + request.getRemoteAddr());		
+		log.info("---- HEADERS ----");
+		Enumeration<String> e = request.getHeaderNames();
+		while(e.hasMoreElements()) {
+			String headerName = e.nextElement();
+			log.info(headerName + " : " + request.getHeader(headerName));
+		}
+		log.info("---- HEADERS END ----");
 	}
 }
