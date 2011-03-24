@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -71,13 +72,14 @@ public class LinksController {
 	 * wywoływana jest PRZED metoda handlera (adnotowaną przez @RequestMapping) 
 	 */
 	@ModelAttribute("links")
-	public List<Link> populateLinks(Model model, 
+	public List<Link> populateLinks(Model model, HttpServletRequest request, 
 			@RequestParam(value="q", required=false, defaultValue="") String search, 
 			@RequestParam(value="p", required=false, defaultValue="-1") int p, 
 			@RequestParam(value="site", defaultValue="0", required=false) int site) throws UnsupportedEncodingException {
 		
 		log.debug("SEARCH: "+search);
 		log.debug("PAGE  : "+p);
+		log.info("REQUEST HOST: "+request.getHeader("host"));
 		
 		if(!search.isEmpty() && p == -1 && site == 0) {
 			// zainicjowano wyszukiwanie - zauktualizuje searches
