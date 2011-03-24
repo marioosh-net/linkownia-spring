@@ -76,6 +76,7 @@ public class LinksController {
 		BrowseParams b = new BrowseParams();
 		b.setSearch(search);
 		b.setRange(new Range((p-1)*20,20));
+		b.setSort("ldate desc");
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
 		int[][] pages = pages(count, 20);
@@ -108,6 +109,7 @@ public class LinksController {
 		BrowseParams b = new BrowseParams();
 		b.setSearch(search);
 		b.setRange(new Range(0,20));
+		b.setSort("ldate desc");
 		model.addAttribute("links", linkDAO.findAll(b));
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
