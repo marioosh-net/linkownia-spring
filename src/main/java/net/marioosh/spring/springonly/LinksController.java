@@ -70,9 +70,18 @@ public class LinksController {
 	 * wywoływana jest PRZED metoda handlera (adnotowaną przez @RequestMapping) 
 	 */
 	@ModelAttribute("links")
-	public List<Link> populateLinks(Model model, @RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p) throws UnsupportedEncodingException {
+	public List<Link> populateLinks(Model model, @RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="-1") int p) throws UnsupportedEncodingException {
 		log.debug("SEARCH: "+search);
-		log.debug("PAGE  : "+p);		
+		log.debug("PAGE  : "+p);
+		
+		if(!search.isEmpty() && p == -1) {
+			// zainicjowano wyszukiwanie - zauktualizuje searches
+			searchDAO.trigger(search);
+		}
+		if(p == -1) {
+			p = 1;
+		}
+		
 		BrowseParams b = new BrowseParams();
 		b.setSearch(search);
 		b.setRange(new Range((p-1)*20,20));
@@ -86,15 +95,19 @@ public class LinksController {
 		model.addAttribute("q", search);
 		model.addAttribute("qencoded", URLEncoder.encode(search, "UTF-8"));
 		
+		log.debug("P:"+p);
+		
 		return linkDAO.findAll(b);
 	}
 	
 	@RequestMapping(value = "/search.html")
 	public String search(@RequestParam(value="q", required=false, defaultValue="") String search) {
+		/*
 		if(!search.isEmpty()) {
 			// zainicjowano wyszukiwanie - zauktualizuje searches
 			searchDAO.trigger(search);
 		}
+		*/
 		return "links";
 	}
 
