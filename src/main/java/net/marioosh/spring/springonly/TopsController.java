@@ -83,8 +83,8 @@ public class TopsController {
 	 */
 	@ExceptionHandler(Exception.class)
 	public void handleException(Exception ex, HttpServletResponse response) throws IOException {
-		// return ClassUtils.getShortName(ex.getClass());
 		response.getWriter().print("Error: "+ex.getMessage());
+		log.error(ex.getMessage(), ex);
 	}
 	
 }

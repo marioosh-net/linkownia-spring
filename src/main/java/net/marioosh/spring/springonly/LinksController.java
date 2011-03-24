@@ -128,7 +128,7 @@ public class LinksController {
 	public String processSubmit(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
-			// link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
+			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			linkDAO.add(link);
 			return "redirect:/index.html";
 		} else {
@@ -243,7 +243,6 @@ public class LinksController {
 	 */
 	@ExceptionHandler(Exception.class)
 	public void handleException(Exception ex, HttpServletResponse response) throws IOException {
-		// return ClassUtils.getShortName(ex.getClass());
 		response.getWriter().print("Error: "+ex.getMessage());
 		log.error(ex.getMessage(), ex);
 	}
