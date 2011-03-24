@@ -79,8 +79,9 @@
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>
+			<security:password-encoder hash="md5"/>
 			<security:user-service>
-				<security:user name="admin" password="admin**" authorities="ROLE_ADMIN" />
+				<security:user name="admin" password="01e529ff116bfb1dca9914fe9c45ea8f" authorities="ROLE_ADMIN" />
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
