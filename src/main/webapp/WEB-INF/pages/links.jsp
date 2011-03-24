@@ -145,7 +145,9 @@
 							</div>
 							<div style="float: left">
 								<div>&#160;</div>
-								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="javascript:;" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/></div>
+								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="javascript:;" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+									<c:if test="${!empty param.loginfail}"><span class="errors">&#160;Login error!</span></c:if>
+								</div>
 							</div>
 							<div style="clear: both;"></div>
 							<div><input type='checkbox' name='_spring_security_remember_me'/>&#160;Remember me</div>
