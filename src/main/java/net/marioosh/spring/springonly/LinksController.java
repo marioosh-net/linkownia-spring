@@ -5,6 +5,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +80,14 @@ public class LinksController {
 		
 		log.debug("SEARCH: "+search);
 		log.debug("PAGE  : "+p);
-		log.info("REQUEST HOST: "+request.getHeader("host"));
+
+		log.info("---- HEADERS ----");
+		Enumeration<String> e = request.getHeaderNames();
+		while(e.hasMoreElements()) {
+			String headerName = e.nextElement();
+			log.info(headerName + " : " + request.getHeader(headerName));
+		}
+		log.info("---- HEADERS END ----");
 		
 		if(!search.isEmpty() && p == -1 && site == 0) {
 			// zainicjowano wyszukiwanie - zauktualizuje searches
