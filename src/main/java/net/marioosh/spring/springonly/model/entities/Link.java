@@ -19,6 +19,8 @@ public class Link {
 	
 	private Date dateMod;
 	
+	private Boolean pub;
+	
 	private int clicks;
 
 	public Link() {
@@ -101,4 +103,13 @@ public class Link {
 			return "";
 		}
 	}
+	
+	public Boolean getPub() {
+		return pub;
+	}
+	
+	public void setPub(Boolean pub) {
+		this.pub = pub;
+	}
+	
 }

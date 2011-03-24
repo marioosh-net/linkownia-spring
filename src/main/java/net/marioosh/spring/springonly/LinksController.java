@@ -105,9 +105,12 @@ public class LinksController {
 	
 	@RequestMapping(value="/list.html")
 	public String list(@RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model) {
-		model.addAttribute("links", linkDAO.findAll(search));
-		int count = linkDAO.countAll(search);
-		model.addAttribute("count", linkDAO.countAll(search));
+		BrowseParams b = new BrowseParams();
+		b.setSearch(search);
+		b.setRange(new Range(0,20));
+		model.addAttribute("links", linkDAO.findAll(b));
+		int count = linkDAO.countAll(b);
+		model.addAttribute("count", count);
 		model.addAttribute("pages", pages(count, 20));
 		model.addAttribute("page", p);
 		return "list";		
