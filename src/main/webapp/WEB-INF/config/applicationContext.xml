@@ -81,7 +81,8 @@
 		<security:authentication-provider>
 			<security:password-encoder hash="md5"/>
 			<security:user-service>
-				<security:user name="admin" password="01e529ff116bfb1dca9914fe9c45ea8f" authorities="ROLE_ADMIN" />
+				<security:user name="admin" 	password="200ceb26807d6bf99fd6f4f0d1ca54d4" authorities="ROLE_ADMIN" />
+				<security:user name="marioosh" 	password="be13ce201255d46567b2ee2eec4535a4" authorities="ROLE_USER" />
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>

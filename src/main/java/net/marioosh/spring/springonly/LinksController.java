@@ -150,6 +150,7 @@ public class LinksController {
 	}
 	*/
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
 	public String processSubmit(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
 		if(!result.hasErrors()) {
@@ -164,6 +165,7 @@ public class LinksController {
 		}
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/quickadd.html")
 	public String quickAdd(@RequestParam(value="url") String address) {
 		Link link = new Link();

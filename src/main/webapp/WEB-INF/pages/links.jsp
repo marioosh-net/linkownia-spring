@@ -101,15 +101,19 @@
         
         <div id="menu-full">
        		<div id="menu">
+       			<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
        			<div class="menu-item first-item">
 					<a href="javascript:;" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 				</div>
-				<security:authorize access="!hasRole('ROLE_ADMIN')">
+				</security:authorize>
+				
+				<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
 				<div class="menu-item">
 					<a href="javascript:;" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
 				</div>
 				</security:authorize>
-				<security:authorize access="hasRole('ROLE_ADMIN')">
+				
+				<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
 				<div style="float: right;" class="menu-item">
 					<span class="username"><security:authentication property="principal.username" /></span>
 					<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
@@ -148,7 +152,8 @@
 						</form>
 					</div>
 						
-					<!-- new link form -->			
+					<!-- new link form -->
+					<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">			
 					<div class="panel" id="new" style="${someErrors ? '' : 'display: none;'}">
 						<!-- <form method="post" action="add.html"> -->
 						<form:form commandName="link" method="post" action="add.html" id="newform">
@@ -162,6 +167,7 @@
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
+					</security:authorize>
 					
                		<!-- links -->
                    	<div class="block-header" >Links by date <span class="main-count">(${count})</span>
