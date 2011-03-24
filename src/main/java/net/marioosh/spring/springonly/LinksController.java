@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -182,6 +183,10 @@ public class LinksController {
 	 * to co zwraca metoda jest wysylane jako odpowiedz serwera
 	 */
 	@ResponseBody
+	/**
+	 * wykorzystanie Spring Security. Metoda wykona sie jesli jest zalogowany admin
+	 */
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete.html")
 	public String delete(@RequestParam(value="id", defaultValue="-1") Integer id) {
 		try {
@@ -195,6 +200,7 @@ public class LinksController {
 	 * @RequestBody - parametr metody bedzie zawieral request body
 	 */
 	@RequestMapping("/edit.html")
+	@Secured("ROLE_ADMIN")
 	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException {
 		response.getWriter().print(id);
 		// response.getWriter().print(body);
@@ -202,6 +208,7 @@ public class LinksController {
 		
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/refresh.html")
 	public void refresh(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException, JSONException {
 		Link link = linkDAO.get(id);

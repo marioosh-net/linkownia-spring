@@ -85,6 +85,9 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 	
+	<!-- teraz dziala adnotacja @Secured -->
+	<security:global-method-security secured-annotations="enabled" />
+	
 	<!-- simple controller -->
 	<mvc:view-controller path="/test.html" view-name="test"/>
 	<mvc:view-controller path="/test2.html" view-name="test2"/>
