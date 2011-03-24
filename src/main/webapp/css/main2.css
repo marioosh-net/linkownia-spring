@@ -98,6 +98,7 @@ a:focus {
 .username {
 	color: #99FF00;
 	padding-right: 3px;
+	font-weight: bold;
 }
 
 .main-count {
