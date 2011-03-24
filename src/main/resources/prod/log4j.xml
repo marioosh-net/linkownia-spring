@@ -44,7 +44,7 @@
 
 	<!-- LOGGERY -->
 	<logger name="org.springframework">
-		<level value="info" />
+		<level value="error" />
 	</logger>
 	<logger name="net.marioosh.spring.springonly.utils.WebUtils">
 		<level value="info" />
