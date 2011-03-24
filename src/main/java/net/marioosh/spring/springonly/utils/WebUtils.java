@@ -40,6 +40,8 @@ public class WebUtils {
 
 		} catch (IOException e) {
 			return map;
+		} catch (Exception e) {
+			return map;
 		}
 		return map;
 	}

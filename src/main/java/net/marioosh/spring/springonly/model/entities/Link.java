@@ -13,7 +13,7 @@ public class Link {
 
 	private String name = "";
 	
-	private String description;
+	private String description = "";
 	
 	private Date ldate;
 	
