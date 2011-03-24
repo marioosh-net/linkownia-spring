@@ -90,7 +90,7 @@ public class LinksController {
 		BrowseParams b = new BrowseParams();
 		b.setSearch(search);
 		b.setRange(new Range((p-1)*20,20));
-		b.setSort("ldate desc");
+		b.setSort("date_mod desc");
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
 		int[][] pages = pages(count, 20);
@@ -125,7 +125,7 @@ public class LinksController {
 		BrowseParams b = new BrowseParams();
 		b.setSearch(search);
 		b.setRange(new Range(0,20));
-		b.setSort("ldate desc");
+		b.setSort("date_mod desc");
 		model.addAttribute("links", linkDAO.findAll(b));
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
@@ -150,7 +150,7 @@ public class LinksController {
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
-			linkDAO.add(link);
+			linkDAO.addOrUpdate(link);
 			return "redirect:/index.html";
 		} else {
 			model.addAttribute("errors", result.getAllErrors());
@@ -164,7 +164,7 @@ public class LinksController {
 		Link link = new Link();
 		link.setLdate(new Date());
 		link.setAddress(address);
-		linkDAO.add(link);
+		linkDAO.addOrUpdate(link);
 		return "redirect:/index.html";
 	}
 	

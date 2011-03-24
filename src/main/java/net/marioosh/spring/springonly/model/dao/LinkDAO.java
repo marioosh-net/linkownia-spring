@@ -8,7 +8,9 @@ public interface LinkDAO {
 	public List<Link> findAll(BrowseParams browseParams);
 	public int countAll(BrowseParams browseParams);
 	public Link get(Integer id);
+	public Link get(String address);
 	public void add(Link link);
+	public void addOrUpdate(Link link);
 	public void delete(Integer id);
 	public int update(Link link);
 	

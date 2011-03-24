@@ -1,6 +1,7 @@
 package net.marioosh.spring.springonly.model.impl;
 
 import java.sql.Types;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -42,6 +43,16 @@ public class LinkDAOImpl implements LinkDAO {
 			return null;
 		}
 	}	
+
+	public Link get(String address) {
+		String sql = "select * from tlink where address = ?";
+		try {
+			Link link = (Link)jdbcTemplate.queryForObject(sql, new String[] { address }, new BeanPropertyRowMapper<Link>(Link.class));
+			return link;
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 	
 	public void add(Link link) {
 		if(link.getName().isEmpty()) {
@@ -57,9 +68,20 @@ public class LinkDAOImpl implements LinkDAO {
                 link.setName(link.getAddress());
             }
 		}
-		jdbcTemplate.update("insert into tlink (address, name, description, ldate, clicks) values(?, ?, ?, ?, 0)", link.getAddress(), link.getName(), link.getDescription(), link.getLdate());
+		jdbcTemplate.update("insert into tlink (address, name, description, ldate, date_mod, clicks) values(?, ?, ?, ?, ?, 0)", link.getAddress(), link.getName(), link.getDescription(), new Date(), link.getLdate());
 	}
 
+	public void addOrUpdate(Link link) {
+		Link l = get(link.getAddress());
+		if(l != null) {
+			// update
+			l.setDateMod(new Date());
+			update(l);
+		} else {
+			add(link);
+		}
+	}
+	
 	public void delete(Integer id) {
 		jdbcTemplate.update("delete from tlink where id = "+id);
 	}
@@ -103,11 +125,11 @@ public class LinkDAOImpl implements LinkDAO {
 	}
 	
 	public int update(Link link) {
-		Object[] params = {link.getAddress(), link.getName(), link.getDescription(), link.getClicks(), link.getId()};
-		int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.SMALLINT};
-		int rows = jdbcTemplate.update("update tlink set address = ?, name = ?, description = ?, clicks = ? where id = ?", params, types);
+		Object[] params = {link.getAddress(), link.getName(), link.getDescription(), link.getClicks(), link.getLdate(), link.getDateMod(), link.getId()};
+		int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.TIMESTAMP, Types.TIMESTAMP, Types.SMALLINT};
+		int rows = jdbcTemplate.update("update tlink set address = ?, name = ?, description = ?, clicks = ?, ldate = ?, date_mod = ? where id = ?", params, types);
 		log.debug("Updated "+rows +" rows.");
 		return rows;
 	}
-	
+
 }
