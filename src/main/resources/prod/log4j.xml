@@ -47,7 +47,7 @@
 		<level value="info" />
 	</logger>
 	<logger name="net.marioosh.spring.springonly.utils.WebUtils">
-		<level value="error" />
+		<level value="debug" />
 		<appender-ref ref="accesslog" />
 	</logger>	
 	<!-- LOGGERY END -->
