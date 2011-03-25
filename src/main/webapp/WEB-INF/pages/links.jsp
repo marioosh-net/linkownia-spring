@@ -19,7 +19,9 @@
 		jQuery('#'+id).toggle('fast', fun);
 	}
 	function deleteLink(id) {
+		jQuery('.ajax_'+id).show();
 		jQuery.get('delete.html?id='+id, function(data){
+			jQuery('.ajax_'+id).hide();
 			if(data == '0') {
 				jQuery('div.link-item_'+id).remove();				
 				toplinks();
@@ -51,7 +53,9 @@
 	}
 	/* odswiez linka, pociagnij name, description */
 	function refresh(id) {
+		jQuery('.ajax_'+id).show();
 		jQuery.post('refresh.html', {'id': id}, function(data) {
+			jQuery('.ajax_'+id).hide();
 			jQuery('#debug-content').html('NAME:'+data['name']+'<br/>DESC:'+data['description']);
 			var item = jQuery('.link-item_'+id);
 			jQuery(item).find('.descr').html(data['description']);
@@ -192,7 +196,7 @@
                    		<!-- <span style="float: right; font-size: 12px;">Open links in new window&#160;<input type="checkbox"/></span> --></div>
                       	<c:forEach items="${links}" var="link" varStatus="i">
                       		<div class="link-item link-item_${link.id}">
-                      			<div class="clicks count_${link.id}">${link.clicks}</div>
+                      			<div class="clicks count_${link.id}">${link.clicks}<div><img class="ajax_${link.id}" style="display:none;" src="images/ajax.gif"/></div></div>
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
