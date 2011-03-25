@@ -34,17 +34,18 @@ a:focus {
 }
 
 #debug {
+	z-index: 1000;
 	position: fixed;
 	top: 15px;
 	left: 5px;
 	color: #000;
 	background-color: #f0f0f0;
 	font-size: 11px;
+	border: 1px solid #000;
 }
 #debug a.debugbutton {
 	background-color: #000;
 	color: #fff;
-	padding: 3px;
 }
 #debug-container {
 	padding: 2px;
