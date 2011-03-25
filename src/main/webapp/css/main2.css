@@ -40,15 +40,14 @@ a:focus {
 	color: #000;
 	background-color: #f0f0f0;
 	font-size: 11px;
-	padding: 2px; 
 }
 #debug a.debugbutton {
-	position: fixed;
-	top: 5px;
-	left: 5px;
 	background-color: #000;
 	color: #fff;
 	padding: 3px;
+}
+#debug-container {
+	padding: 2px;
 }
 
 #wraper {
