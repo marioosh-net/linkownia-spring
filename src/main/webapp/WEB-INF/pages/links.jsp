@@ -7,9 +7,13 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="Linkownia - przechowalnia linków" />
+	<meta name="author" content="marioosh.net">
+	<meta name="Keywords" lang="pl" content="morele, linkownia, baza linków, odnośniki, adresy, www, marioosh">
+	<meta name="Keywords" lang="en" content="apricots, linkownia, links database, references, addresses, www, marioosh">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/main.js"></script>
+	<title>Linkownia - przechowalnia linków</title>
 </head>
 
 <body id="TotalBodyId" onload="jQuery('#qtext').focus();"> 
