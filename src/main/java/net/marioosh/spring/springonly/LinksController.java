@@ -170,7 +170,7 @@ public class LinksController {
 	@RequestMapping(value="/save.html", method = RequestMethod.POST)
 	public String processSave(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
 		if(!result.hasErrors()) {
-			link.setLdate(new Date());
+			link.setDateMod(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			linkDAO.addOrUpdate(link);
 			return "redirect:/index.html";
