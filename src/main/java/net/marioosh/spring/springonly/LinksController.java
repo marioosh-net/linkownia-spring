@@ -1,5 +1,6 @@
 package net.marioosh.spring.springonly;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -166,6 +167,21 @@ public class LinksController {
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@RequestMapping(value="/save.html", method = RequestMethod.POST)
+	public String processSave(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
+		if(!result.hasErrors()) {
+			link.setLdate(new Date());
+			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
+			linkDAO.addOrUpdate(link);
+			return "redirect:/index.html";
+		} else {
+			model.addAttribute("errors", result.getAllErrors());
+			model.addAttribute("someSaveErrors", true);
+			return "links";
+		}
+	}
+	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/quickadd.html")
 	public String quickAdd(@RequestParam(value="url") String address) {
 		Link link = new Link();
@@ -205,15 +221,17 @@ public class LinksController {
 	}
 	
 	/**
+	 * @throws JSONException 
 	 * @RequestBody - parametr metody bedzie zawieral request body
 	 */
 	@RequestMapping("/edit.html")
 	@Secured("ROLE_ADMIN")
-	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException {
-		response.getWriter().print(id);
-		// response.getWriter().print(body);
-		// log.debug("Body: "+body);
-		
+	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException, JSONException {
+		Link link = linkDAO.get(id);
+		JSONObject json = new JSONObject(link);
+		/*response.setContentType("text/x-json;charset=UTF-8");*/
+		json.write(new BufferedWriter(new OutputStreamWriter(System.out)));
+		json.write(response.getWriter());
 	}
 	
 	@Secured("ROLE_ADMIN")

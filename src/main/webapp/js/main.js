@@ -1,4 +1,5 @@
 function hidepanels(id, fun) {
+	jQuery('#newform')[0].reset();/* clear form */
 	jQuery('.panel').each(function(index) {
 		if(jQuery(this).attr('id') != id) {
 			jQuery(this).hide('fast');
@@ -35,9 +36,25 @@ function openLink(id, url) {
 	window.open(url);
 }
 function edit(id) {
+	jQuery('#editform')[0].reset();/* clear form */
+			
 	jQuery.post('edit.html', {'id': id}, function(data) {
-		alert(data);
-	});
+		jQuery('#id').val(data['id']);
+		jQuery('#name').val(data['name']);
+		jQuery('#address2').val(data['address']);
+		jQuery('#description').val(data['description']);
+		/*hidepanels('edit', function() {jQuery('#address2').focus();});*/
+		
+		if(jQuery('#edit').css('display') != 'none') {
+			jQuery('.panel').each(function(index) {
+				jQuery(this).hide('fast', function(){
+					jQuery('#edit').show('fast');
+				});
+			});
+		} else {
+			hidepanels('edit', function() {jQuery('#address2').focus();});
+		}
+	}, 'json');
 }
 /* odswiez linka, pociagnij name, description */
 function refresh(id) {

@@ -102,16 +102,29 @@
 					<div class="panel" id="new" style="${someErrors ? '' : 'display: none;'}">
 						<!-- <form method="post" action="add.html"> -->
 						<form:form commandName="link" method="post" action="add.html" id="newform">
-							<label>Address</label>&#160;<form:errors path="address" cssClass="errors" /><br/>
-							<input type="text" id="address" name="address" style="width: 404px;"/><br/>
+							<label>Address</label>&#160;<form:errors cssStyle="${someErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
+							<input type="text" id="address" name="address" style="width: 404px;" value="${param['address']}"/><br/>
 							<label>Name</label><br/>
-							<input type="text" name="name" style="width: 404px;"/><br/>
+							<input type="text" name="name" style="width: 404px;" value="${param['name']}"/><br/>
 							<label>Description</label><br/>
-							<textarea name="description" style="width: 404px;"></textarea><br/>
+							<textarea name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
 							<a href="javascript:;" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="javascript:;" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
+					<div class="panel" id="edit" style="${someSaveErrors ? '' : 'display: none;'}">
+						<form:form commandName="link" method="post" action="save.html" id="editform">
+							<input type="hidden" id="id" name="id"/>
+							<label>Address</label>&#160;<form:errors cssStyle="${someSaveErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
+							<input type="text" id="address2" name="address" style="width: 404px;" value="${param['address']}"/><br/>
+							<label>Name</label><br/>
+							<input type="text" id="name" name="name" style="width: 404px;" value="${param['name']}"/><br/>
+							<label>Description</label><br/>
+							<textarea id="description" name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
+							<a href="javascript:;" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="javascript:;" onclick="jQuery('#edit').hide('fast');">Cancel</a>
+							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+						</form:form>
+					</div>					
 					</security:authorize>
 					
                		<!-- links -->

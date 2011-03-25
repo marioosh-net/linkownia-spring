@@ -158,6 +158,7 @@ a:focus {
 	height: 23px;
 }
 
+/*
 #login a, #new a {
 	color: #2854BB;
 	text-decoration: none;
@@ -165,8 +166,19 @@ a:focus {
 	font-weight: bold;
 	font-size: 15px;
 }
-
 #login a:hover, #new a:hover {
+	color: #000;
+	border-bottom: 1px solid #000;
+}
+*/
+.panel a {
+	color: #2854BB;
+	text-decoration: none;
+	border-bottom: 1px solid #419bcb;
+	font-weight: bold;
+	font-size: 15px;
+}
+.panel a:hover {
 	color: #000;
 	border-bottom: 1px solid #000;
 }
