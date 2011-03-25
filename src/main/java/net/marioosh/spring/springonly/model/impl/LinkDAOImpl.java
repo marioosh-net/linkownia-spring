@@ -49,9 +49,7 @@ public class LinkDAOImpl implements LinkDAO {
 		try {
 			List<Link> links = jdbcTemplate.query(sql, new String[] { address }, new BeanPropertyRowMapper<Link>(Link.class));
 			if(links.size() > 0) {
-				if(links.size() > 1) {
-					return links.get(0);				
-				}
+				return links.get(0);				
 			}
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
 			return null;
