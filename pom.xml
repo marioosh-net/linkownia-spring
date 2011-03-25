@@ -46,7 +46,7 @@
 				</configuration>
 			</plugin>
 			
-			<!-- jetty 7 -->
+			<!-- jetty 7
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
@@ -60,7 +60,8 @@
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 				</configuration>
 			</plugin>	
-			<!-- jetty 6
+			-->
+			<!-- jetty 6 -->
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
@@ -74,7 +75,7 @@
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 				</configuration>
 			</plugin>
-			-->			
+
 		</plugins>
 	</build>
 
