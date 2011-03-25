@@ -1,5 +1,7 @@
 function hidepanels(id, fun) {
-	jQuery('#newform')[0].reset();/* clear form */
+	jQuery('#newform')[0].reset();
+	jQuery('#editform')[0].reset();
+	
 	jQuery('.panel').each(function(index) {
 		if(jQuery(this).attr('id') != id) {
 			jQuery(this).hide('fast');
@@ -43,6 +45,7 @@ function edit(id) {
 		jQuery('#name').val(data['name']);
 		jQuery('#address2').val(data['address']);
 		jQuery('#description').val(data['description']);
+		jQuery('#debug-content').html('NAME:'+data['name']+'<br/>DESC:'+data['description']);
 		/*hidepanels('edit', function() {jQuery('#address2').focus();});*/
 		
 		if(jQuery('#edit').css('display') != 'none') {

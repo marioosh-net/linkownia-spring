@@ -20,11 +20,14 @@
  
  	<c:if test="${header['host'] == 'localhost:8081' or header['host'] == 'localhost:8080'}">
 	 	<div id="debug">
-	 		<c:forEach items="${param}" var="par">
-	 			<div>${par }</div>
-	 		</c:forEach>
-	 		<div style="font-weight: bold; display: none;">DEBUG:</div>
-	 		<div id="debug-content">
+	 		<a class="debugbutton" href="#" onclick="jQuery('#debug-container').toggle();">DEBUG</a>
+	 		<div id="debug-container">
+		 		<c:forEach items="${param}" var="par">
+		 			<div>${par }</div>
+		 		</c:forEach>
+		 		<div style="font-weight: bold; display: none;">DEBUG:</div>
+		 		<div id="debug-content">
+		 		</div>
 	 		</div>
 	 	</div>
  	</c:if>

@@ -47,11 +47,16 @@ public class LinkDAOImpl implements LinkDAO {
 	public Link get(String address) {
 		String sql = "select * from tlink where address = ?";
 		try {
-			Link link = (Link)jdbcTemplate.queryForObject(sql, new String[] { address }, new BeanPropertyRowMapper<Link>(Link.class));
-			return link;
+			List<Link> links = jdbcTemplate.query(sql, new String[] { address }, new BeanPropertyRowMapper<Link>(Link.class));
+			if(links.size() > 0) {
+				if(links.size() > 1) {
+					return links.get(0);				
+				}
+			}
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
 			return null;
 		}
+		return null;
 	}
 	
 	public void add(Link link) {
