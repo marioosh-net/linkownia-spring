@@ -1,6 +1,6 @@
 function hidepanels(id, fun) {
-	jQuery('#newform')[0].reset();
-	jQuery('#editform')[0].reset();
+	/*jQuery('#newform')[0].reset();
+	jQuery('#editform')[0].reset();*/
 	
 	jQuery('.panel').each(function(index) {
 		if(jQuery(this).attr('id') != id) {
