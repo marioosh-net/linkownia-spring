@@ -44,21 +44,21 @@
 		<property name="password" value="springonly" />
 	</bean>
 	-->
-	<!-- linkownia_small / localhost -->
+	<!-- linkownia_small / localhost 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/linkownia_small?useUnicode=true" />
 		<property name="username" value="linkownia" />
 		<property name="password" value="linkownia" />		
 	</bean>
-	<!-- postgresql / localhost
+	-->
+	<!-- postgresql / localhost -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/linkownia?charSet=UTF-8" />
 		<property name="username" value="linkownia" />
 		<property name="password" value="linkownia" />
 	</bean>
-	-->
 
 	<!-- JSR-303 Validator / Bean Validator -->
 	<!-- A JSR-303 provider, such as Hibernate Validator, is expected to be present in the classpath and will be detected automatically -->
