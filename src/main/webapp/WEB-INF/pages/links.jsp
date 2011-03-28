@@ -16,7 +16,7 @@
 	<title>Linkownia - przechowalnia linków</title>
 </head>
 
-<body id="TotalBodyId" onload="jQuery('#qtext').focus();"> 
+<body id="body" onload="jQuery('#qtext').focus();"> 
  
  	<c:if test="${header['host'] == 'localhost:8081' or header['host'] == 'localhost:8080'}">
 	 	<div id="debug">
