@@ -25,6 +25,11 @@
 	<!-- bedziemy korzystac z adnotacji @Component, @Controller, @Repository, @Service ... -->
 	<context:component-scan base-package="net.marioosh.spring.springonly" />
 
+	<!-- Activates various annotations to be detected in bean classes: Spring's @Required and @Autowired, as well 
+ 	as JSR 250's @PostConstruct, @PreDestroy and @Resource (if available), JAX-WS's @WebServiceRef (if available), EJB3's @EJB (if available), 
+ 	and JPA's @PersistenceContext and @PersistenceUnit (if available).  -->
+	<context:annotation-config />
+
 	<!-- view resolver -->
 	<!-- dziala: np. simpleView -> /WEB-INF/pages/simpleView.jsp -->
 	<!-- jesli nie zdefiniujemy zadnego domyslny -> simply forwards to a URL matching the name of the view specified -->
@@ -66,11 +71,6 @@
 	<!-- -->
 	<!-- wykryj automatycznie JSR-303 Provider'a np. hibernate validator'a i utworz validatora o nazwie "validator" -->
 	<mvc:annotation-driven />
-
-	<!-- Activates various annotations to be detected in bean classes: Spring's @Required and @Autowired, as well 
- 	as JSR 250's @PostConstruct, @PreDestroy and @Resource (if available), JAX-WS's @WebServiceRef (if available), EJB3's @EJB (if available), 
- 	and JPA's @PersistenceContext and @PersistenceUnit (if available).  -->
-	<context:annotation-config />
 
 	<!-- message source -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
