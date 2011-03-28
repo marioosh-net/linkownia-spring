@@ -110,7 +110,7 @@ public class LinkDAOImpl implements LinkDAO {
 		if(browseParams.getRange() != null) {
 			 limit = "limit " + browseParams.getRange().getMax() + " offset " + browseParams.getRange().getStart(); 
 		}
-		String s = browseParams.getSearch() != null ? "and (address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%')" : "";
+		String s = browseParams.getSearch() != null ? "and (upper(address) like upper('%"+browseParams.getSearch()+"%') or upper(name) like upper('%"+browseParams.getSearch()+"%'))" : "";
 		
 		if(browseParams.getPub() != null) {
 			s += "and pub = " + browseParams.getPub(); 
@@ -123,7 +123,7 @@ public class LinkDAOImpl implements LinkDAO {
 	}
 
 	public int countAll(BrowseParams browseParams) {
-		String s = browseParams.getSearch() != null ? "and (address like '%"+browseParams.getSearch()+"%' or name like '%"+browseParams.getSearch()+"%')" : "";
+		String s = browseParams.getSearch() != null ? "and (upper(address) like upper('%"+browseParams.getSearch()+"%') or upper(name) like upper('%"+browseParams.getSearch()+"%'))" : "";
 		
 		if(browseParams.getPub() != null) {
 			s += "and pub = " + browseParams.getPub(); 
