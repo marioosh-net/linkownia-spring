@@ -36,13 +36,13 @@
 		<level value="error" />
 	</logger>
 	<logger name="org.springframework.jdbc.core.BeanPropertyRowMapper">
-		<level name="error" />
+		<level value="error" />
 	</logger>
 	<logger name="org.springframework.aop">
-		<level name="error" />
+		<level value="error" />
 	</logger>
 	<logger name="org.springframework.aop.framework.Cglib2AopProxy">
-		<level name="error" />
+		<level value="error" />
 	</logger>
 	<!-- LOGGERY END -->
 
