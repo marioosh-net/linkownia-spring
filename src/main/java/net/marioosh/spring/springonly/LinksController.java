@@ -172,7 +172,7 @@ public class LinksController {
 		if(!result.hasErrors()) {
 			link.setDateMod(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
-			linkDAO.addOrUpdate(link);
+			linkDAO.update(link);// addOrUpdate(link);
 			return "redirect:/index.html";
 		} else {
 			model.addAttribute("errors", result.getAllErrors());
