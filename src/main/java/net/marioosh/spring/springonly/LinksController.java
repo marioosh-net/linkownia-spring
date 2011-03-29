@@ -166,7 +166,7 @@ public class LinksController {
 		}
 	}
 	
-	@Secured({"ROLE_ADMIN", "ROLE_USER"}) 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/save.html", method = RequestMethod.POST)
 	public String processSave(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
 		if(!result.hasErrors()) {
