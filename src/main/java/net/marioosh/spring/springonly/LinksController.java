@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,8 +99,10 @@ public class LinksController {
 		b.setSearch(search);
 		b.setRange(new Range((p-1)*20,20));
 		b.setSort("date_mod desc");
-		if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains("ROLE_XXX")) {
-			b.setPub(false);
+		for(GrantedAuthority a: SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+			if(a.getAuthority().equals("ROLE_XXX")) {
+				b.setPub(false);
+			}
 		}
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
