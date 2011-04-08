@@ -302,12 +302,13 @@ a:focus {
 	margin-bottom: 20px;
 }
 
-div.search-item {
-	float: left;
-	padding: 3px;
+span.search-item, div.search-item {
+	/*float: left;
+	padding: 3px;*/
+	padding-right: 2px;
 }
 
-div.search-item a {
+span.search-item a, div.search-item a {
 	border-bottom: 1px solid #AEC3E7;
 	color: #2854BB;
 	font-size: 12px;
@@ -315,7 +316,7 @@ div.search-item a {
 	border-bottom: 1px solid #CEDBF1;
 	color: #5F88CE;	
 }
-div.search-item a:hover {
+span.search-item a:hover, div.search-item a:hover {
 	color: #000000;
 	border-bottom: 1px solid #000000;
 }

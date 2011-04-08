@@ -5,13 +5,13 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <c:forEach items="${searches}" var="search" varStatus="i">
-	<div class="search-item search-item_${search.id}">
+	<span class="search-item search-item_${search.id}">
 		<a href="index.html?q=${search.phrase}">${search.phrase}</a>&#160;<span class="search-counter">(${search.counter})</span>
 		<security:authorize access="hasRole('ROLE_ADMIN')">
 			<span class="func-item">
 				<a class="del" href="javascript:;" onclick="deleteSearch(${search.id})"><img src="images/del.png"/></a>
 			</span>
 		</security:authorize>
-	</div>
+	</span>
 </c:forEach>
 <div style="clear: both;"></div>
