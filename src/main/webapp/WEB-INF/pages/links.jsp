@@ -58,13 +58,13 @@
 					<div class="left">
 		       			<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
 		       			<div class="menu-item first-item">
-							<a href="javascript:;" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
+							<a href="#" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 						</div>
 						</security:authorize>
 						
 						<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
 						<div class="menu-item">
-							<a href="javascript:;" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+							<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
 						</div>
 						</security:authorize>
 						<div class="clear"></div>
@@ -79,7 +79,7 @@
 						</security:authorize>
 						<!--
 						<div class="menu-item">
-							<a href="javascript:;" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
+							<a href="#" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
 						</div>
 						-->        		
 					</div>
@@ -96,7 +96,7 @@
                   	
 					<!-- login form -->
 					<div class="panel" id="login" style="${param['loginfail'] == 1 ? ' ' : 'display: none;'}">
-						<form id="jf" name="f" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
+						<form id="jf" name="jf" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
 							<div style="float: left">
 								<div class="smalllabel">login</div>
 								<div><input type="text" id="username" name="j_username" value="" size="5"/></div>
@@ -127,7 +127,7 @@
 							<input type="text" name="name" style="width: 404px;" value="${param['name']}"/><br/>
 							<label>Description</label><br/>
 							<textarea name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
-							<a href="javascript:;" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="javascript:;" onclick="jQuery('#new').hide('fast');">Cancel</a>
+							<a href="javascript:;" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
@@ -140,7 +140,7 @@
 							<input type="text" id="name" name="name" style="width: 404px;" value="${param['name']}"/><br/>
 							<label>Description</label><br/>
 							<textarea id="description" name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
-							<a href="javascript:;" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="javascript:;" onclick="jQuery('#edit').hide('fast');">Cancel</a>
+							<a href="javascript:;" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>					
@@ -171,7 +171,7 @@
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
-									<a href="javascript:;" onclick="openLink(${link.id},'${link.address}');" class="name">${link.name != '' ? link.name : link.address}</a>
+									<a href="#" onclick="openLink(${link.id},'${link.address}');" class="name">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
 									<a href="index.html?site=1&amp;q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<a href="${link.address}" class="link-item-teaser">— <span class="descr">${link.description}</span><span class="timestamp">${link.dateModFormatted}</span></a>										
@@ -179,13 +179,13 @@
                       				<security:authorize access="hasRole('ROLE_ADMIN')">
                       				<div class="admin-funcs">
                       					<span class="func-item">
-	                      					<a class="del" href="javascript:;" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
+	                      					<a class="del" href="#" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
 	                      				</span>
 	                      				<span class="func-item">	
-	                      					<a class="edit" href="javascript:;" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
+	                      					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
                       					</span>
 	                      				<span class="func-item">	
-	                      					<a class="refresh" href="javascript:;" onclick="refresh(${link.id})"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
+	                      					<a class="refresh" href="#" onclick="refresh(${link.id})"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
                       					</span>                      					
                       				</div>                      				
                       				</security:authorize>
