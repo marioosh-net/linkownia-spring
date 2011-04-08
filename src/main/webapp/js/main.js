@@ -81,4 +81,10 @@ function searches() {
 jQuery(document).ready(function(){
 	toplinks();
 	searches();
+	
+	$("input.enter").keydown(function(event) {
+		if(event.keyCode == 13) {
+			$(this).closest('form').submit();
+		}
+	});
 });

@@ -99,11 +99,11 @@
 						<form id="jf" name="jf" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
 							<div style="float: left">
 								<div class="smalllabel">login</div>
-								<div><input type="text" id="username" name="j_username" value="" size="5"/></div>
+								<div><input type="text" id="username" name="j_username" value="" size="5" class="enter" /></div>
 							</div>
 							<div style="float: left">
 								<div class="smalllabel">&#160;password</div>
-								<div>&#160;<input type="password" name="j_password" value="" size="6" /></div>
+								<div>&#160;<input type="password" name="j_password" value="" size="6" class="enter" /></div>
 							</div>
 							<div style="float: left">
 								<div>&#160;</div>
@@ -122,9 +122,9 @@
 						<!-- <form method="post" action="add.html"> -->
 						<form:form commandName="link" method="post" action="add.html" id="newform">
 							<label>Address</label>&#160;<form:errors cssStyle="${someErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
-							<input type="text" id="address" name="address" style="width: 404px;" value="${param['address']}"/><br/>
+							<input type="text" id="address" name="address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
-							<input type="text" name="name" style="width: 404px;" value="${param['name']}"/><br/>
+							<input type="text" name="name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
 							<label>Description</label><br/>
 							<textarea name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
 							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
@@ -135,9 +135,9 @@
 						<form:form commandName="link" method="post" action="save.html" id="editform">
 							<input type="hidden" id="id" name="id"/>
 							<label>Address</label>&#160;<form:errors cssStyle="${someSaveErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
-							<input type="text" id="address2" name="address" style="width: 404px;" value="${param['address']}"/><br/>
+							<input type="text" id="address2" name="address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
-							<input type="text" id="name" name="name" style="width: 404px;" value="${param['name']}"/><br/>
+							<input type="text" id="name" name="name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
 							<label>Description</label><br/>
 							<textarea id="description" name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
 							<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
