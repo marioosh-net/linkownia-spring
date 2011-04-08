@@ -17,7 +17,7 @@
 </head>
 
 <body id="body" onload="jQuery('#qtext').focus();"> 
- 
+
  	<c:if test="${header['host'] == 'localhost:8081' or header['host'] == 'localhost:8080'}">
 	 	<div id="debug">
 	 		<a class="debugbutton" href="#" onclick="jQuery('#debug-container').toggle();">DEBUG</a>
@@ -31,51 +31,67 @@
 	 		</div>
 	 	</div>
  	</c:if>
- 	
-	<div id="wraper"> 
-    	<div id="headerblank"> 
-			<div id="header"> 
-				<h1><a href="index.html"><img src="images/logo.png" alt="" /></a></h1>
-				<div id="search"> 
+
+	<div id="wrapper">
+		<div id="header">
+			<div class="fixedwidth">
+				<div class="left leftfixed">
+				<a href="index.html"><img src="images/logo.png" alt="" /></a>
+				</div>
+				
+				<div class="left rightfixed">
+					<div id="search">
 					<form method="post" action="search.html">
 						<input id="qtext" type="text" name="q" value="${param['site'] != 1 ? q : ''}"/>
 						<input type="button" class="button" onclick="submit()" />
 					</form>
+					</div>
  				</div>
+ 				
+ 				<div class="clear"></div>
+			</div>		
+		</div>
+	
+		<div id="main">
+			<div id="menu">
+				<div class="fixedwidth">
+					<div class="left">
+		       			<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+		       			<div class="menu-item first-item">
+							<a href="javascript:;" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
+						</div>
+						</security:authorize>
+						
+						<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+						<div class="menu-item">
+							<a href="javascript:;" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+						</div>
+						</security:authorize>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="right">
+						<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+						<div class="menu-item">
+							<span class="username"><security:authentication property="principal.username" /></span>
+							<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
+						</div>
+						</security:authorize>
+						<!--
+						<div class="menu-item">
+							<a href="javascript:;" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
+						</div>
+						-->        		
+					</div>
+					
+					<div class="clear"></div>
+				</div>
 			</div>
-        </div>
-        
-        <div id="menu-full">
-       		<div id="menu">
-       			<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
-       			<div class="menu-item first-item">
-					<a href="javascript:;" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
-				</div>
-				</security:authorize>
-				
-				<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
-				<div class="menu-item">
-					<a href="javascript:;" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
-				</div>
-				</security:authorize>
-				
-				<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
-				<div style="float: right;" class="menu-item">
-					<span class="username"><security:authentication property="principal.username" /></span>
-					<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
-				</div>
-				</security:authorize>
-				<!--
-				<div class="menu-item">
-					<a href="javascript:;" onclick="jQuery('#new').toggle('fast', function() {jQuery('#address').focus();});">New link</a>
-				</div>
-				-->        		
-       		</div> 
-        </div>
-         
-       	<div id="bodycontentblank">
-           	<div id="bodycontent"> 
-              	  <div id="bodyleftcontent"> 
+			
+			<div id="content">		
+				<div class="fixedwidth">
+ 
+              	  <div class="left leftfixed"> 
                   	<div id="leftPan"> 
                   	
 					<!-- login form -->
@@ -191,7 +207,7 @@
                       
                	</div> 
                    
-                   <div id="bodyRight">
+                   <div class="right rightfixed">
                    
 					<!-- searches -->
 					<div class="block-header" >Top searches</div>
@@ -207,27 +223,29 @@
 
                    </div> 
                    <!--end of right column --> 
-               </div> 
-           </div> 
+				
+					<div class="clear"></div>
 
-           <div id="footer-wrap"> 
-               <div class="footer"> 
-               	<div class="pages"> 
-                    <h4>Pages</h4> 
-                       <ul> 
-                       	<li><a href="index.html">Linkownia</a></li> 
-                           <li><a href="http://marioosh.net">Home</a></li> 
-                           <li><a href="http://marioosh.net/blog/">Blog</a></li> 
-                       </ul> 
-                   </div> 
-                   
-                   <div class="copyright"> 
-                       <p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
-                   </div> 
-
-               </div> 
-           </div> 
-    </div> 
+				</div>
+			</div>
+		</div>
+        <div id="push"></div>
+	</div>
+	
+	<div id="footer">
+		<div class="fixedwidth">
+			<div class="pages"> 
+				<ul> 
+					<li><a href="index.html">Linkownia</a></li> 
+					<li><a href="http://marioosh.net">Home</a></li> 
+					<li><a href="http://marioosh.net/blog/">Blog</a></li> 
+				</ul> 
+			</div> 
+			<div class="copyright"> 
+				<p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
+			</div> 
+		</div>
+	</div>
     
 </body>
 </html>

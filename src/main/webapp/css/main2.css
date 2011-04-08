@@ -1,6 +1,10 @@
 @charset "utf-8";
 
 /* CSS Document */
+* {
+	margin:0;
+	padding:0;
+}
 body {
 	margin: 0px;
 	padding: 0;
@@ -33,6 +37,176 @@ a:focus {
 	outline: 0px;
 }
 
+/** layout **/
+#body {
+	text-align: center;
+}
+#wrapper {
+	/*text-align: left;*/
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -15em;  
+}
+#main {
+	/*overflow:auto;*/
+	/*padding-bottom: 150px;*/
+}
+
+/* header */
+#header {
+	background-color: #000;
+	color: #fff;
+	padding-top: 20px;
+}
+#header a {
+	color: #fff;
+	font-size: 0.8em;
+}
+#header a:hover {
+	color: #fff;
+}
+#search {
+	float: right;
+	padding-top: 15px;
+}
+#search .button {
+	background: url(../images/Search-icon.png) no-repeat;
+	cursor: pointer;
+	border: none;
+	width: 23px;
+	height: 23px;
+}
+/* header END */
+
+/* menu */
+#menu {
+	background-color: #555;
+	width: 100%;
+	margin: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-top: 1px solid #8d8d8d;		
+}
+#menu .fixedwidth {
+
+}
+#menu .left a {
+	padding-right: 10px;
+}
+#menu a, #menu a:hover {
+	color: #000;
+	font-weight: normal;
+}
+#menu .menu-item {
+	border-right: 1px solid #999;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 100px;
+	float: left;
+	height: 20px;
+	/*text-align: center;*/
+}
+#menu .first-item {
+	border-left: 1px solid #999;
+}
+#menu .menu-item a {
+	color: #fff;
+	text-decoration: none;
+}
+#menu .menu-item a:hover {
+	text-decoration: underline;
+}
+/* menu END */
+
+/* content */
+#content {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+#content .panel {
+	/*border: 1px solid silver;*/
+	margin-bottom: 10px;
+}
+#content a {
+}
+/* content END */
+
+/* footer */
+#footer {
+	/*
+	position: relative;
+	margin-top: -150px; negative value of footer height 
+	height: 150px;
+	*/
+	clear:both;
+	background-color: #444;
+	color: #fff;
+	background: url(../images/footer_bg.gif)
+}
+#push, #footer {
+    height: 15em;
+}
+#footer a {
+	color: #fff;
+}
+#footer a:hover {
+	color: #fff;
+}
+#footer .fixedwidth {
+	padding: 5px;
+	font-size: 0.8em;
+}
+/* footer END */
+
+/** layout END **/
+
+/* other */
+.fixedwidth {
+	/*float: none;*/
+	width: 970px;
+	margin: 0 auto;
+	text-align: left;
+}
+.clear {
+	clear: both;
+	overflow: hidden;
+	height: 0px;
+	width: 0px;
+	margin: 0px;
+	padding: 0px;
+	line-height: 0px;
+	font-size: 0px;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.leftfixed {
+	margin-right: 15px; 
+	width: 647px;
+}
+
+.rightfixed {
+	width: 275px;
+}
+.panel {
+	margin-bottom: 35px;
+}
+.username {
+	color: #99FF00;
+	padding-right: 3px;
+	font-weight: bold;
+}
+.main-count {
+	/*float: right;*/ 
+	color: #999;
+}
+/* other END */
+
+/* debug */
 #debug {
 	z-index: 1000;
 	position: fixed;
@@ -51,77 +225,8 @@ a:focus {
 	padding: 2px;
 	display: none;
 }
+/* debug END */
 
-#wraper {
-	float: left;
-	margin: 0px;
-	width: 100%;
-}
-
-#headerblank {
-	float: left;
-	width: 100%;
-	margin: 0px;
-	/*padding:0 0 32px 0;*/
-	/*background:url(../images/header.png) repeat-x left top;*/
-	background-color: #000000;
-	padding-top: 20px;
-	/*border-bottom: 1px solid #464746;*/
-}
-
-#header {
-	float: none;
-	width: 952px;
-	margin: 0px auto;
-}
-
-#header h1 {
-	float: left;
-	width: 324px;
-	/*margin:18px 0 0 0;*/
-	margin: 0px;
-	padding: 0px;
-}
-
-#header h3 {
-	float: left;
-	width: 628px;
-	margin: 32px 0 0 0;
-	text-align: right;
-	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 13px;
-	font-weight: bold;
-	color: #fff;
-	padding: 0px;
-}
-
-#search {
-	float: right;
-	padding-top: 15px;
-}
-
-.panel {
-	margin-bottom: 35px;
-}
-
-.username {
-	color: #99FF00;
-	padding-right: 3px;
-	font-weight: bold;
-}
-
-.main-count {
-	/*float: right;*/ 
-	color: #999;
-}
-
-#search .button {
-	background: url(../images/Search-icon.png) no-repeat;
-	cursor: pointer;
-	border: none;
-	width: 23px;
-	height: 23px;
-}
 
 #navi {
 }
@@ -192,42 +297,6 @@ a:focus {
 	border-bottom: 1px solid #000;
 }
 
-#menu-full {
-	background-color: #555;
-	float: left;
-	width: 100%;
-	margin: 0px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	border-top: 1px solid #8d8d8d;	
-}
-
-#menu {
-	float: none;
-	margin: 0px auto;
-	width: 952px;
-}
-
-#menu .menu-item {
-	border-right: 1px solid #999;
-	padding-left: 5px;
-	padding-right: 5px;
-	width: 100px;
-	float: left;
-	height: 20px;
-	/*text-align: center;*/
-}
-#menu .first-item {
-	border-left: 1px solid #999;
-}
-#menu .menu-item a {
-	color: #fff;
-	text-decoration: none;
-}
-#menu .menu-item a:hover {
-	text-decoration: underline;
-}
-
 #searches {
 	margin: 5px;
 	margin-bottom: 20px;
@@ -258,60 +327,7 @@ div.search-item a:hover {
 .errors {
 	color: red;
 }
-	
-#bodycontentblank {
-	float: left;
-	/*background: #efe5d7;*/
-	width: 100%;
-	margin: 0px;
-	padding: 0px 0 29px 0;
-}
 
-#bodycontent {
-	float: none;
-	margin: 0px auto;
-	width: 952px;
-}
-
-#bodyleftcontent {
-	float: left;
-	margin: 20px 30px 0 0;
-	padding: 0px;
-	width: 647px;
-}
-
-/* ---- bodyRightContent ---- */
-#bodyRight {
-	width: 275px;
-	float: left;
-	margin: 20px 0 0 0;
-}
-
-#footer-wrap {
-	width: 100%;
-	height: 235px;
-	float: left;
-	background: url(../images/footer_bg.gif) repeat-x;
-}
-
-#footer-wrap div.footer {
-	float: none;
-	margin: 0px auto;
-	padding: 17px 0 0 0;
-	width: 952px;
-}
-
-div.footer h4 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: normal;
-	color: #fff;
-	background: #212222;
-	margin: 0;
-	padding: 8px 0 8px 6px;
-}
-
-/* -- style for inner div's starting from pages -- */
 div.footer div.pages {
 	width: 147px;
 	float: left;
@@ -322,7 +338,7 @@ div.footer div.pages {
 div.pages ul {
 	width: 147px;
 	float: left;
-	padding: 6px 0 0 0;
+	padding: 0px 0 0 0;
 	margin: 0;
 }
 
