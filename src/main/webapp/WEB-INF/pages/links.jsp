@@ -107,7 +107,7 @@
 							</div>
 							<div style="float: left">
 								<div>&#160;</div>
-								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="javascript:;" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="#" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 									<c:if test="${!empty param.loginfail}"><span class="errors">&#160;Login error!</span></c:if>
 								</div>
 							</div>
@@ -127,7 +127,7 @@
 							<input type="text" name="name" style="width: 404px;" value="${param['name']}"/><br/>
 							<label>Description</label><br/>
 							<textarea name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
-							<a href="javascript:;" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
+							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
@@ -140,7 +140,7 @@
 							<input type="text" id="name" name="name" style="width: 404px;" value="${param['name']}"/><br/>
 							<label>Description</label><br/>
 							<textarea id="description" name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
-							<a href="javascript:;" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
+							<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>					
