@@ -110,7 +110,22 @@ public class LinkDAOImpl implements LinkDAO {
 		if(browseParams.getRange() != null) {
 			 limit = "limit " + browseParams.getRange().getMax() + " offset " + browseParams.getRange().getStart(); 
 		}
-		String s = browseParams.getSearch() != null ? "and (upper(address) like upper('%"+browseParams.getSearch()+"%') or upper(name) like upper('%"+browseParams.getSearch()+"%'))" : "";
+		
+		String s = "";
+		if(browseParams.getSearch() != null) {
+			String q = browseParams.getSearch();
+			q = q.replaceAll("[ ]{2,}", " ");
+			s = "and ";
+			int i = 0;
+			for(String p: q.split(" ")) {
+				if(i == 0) {
+					s += "upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+				} else {
+					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+				}
+				i++;
+			}
+		}		
 		
 		if(browseParams.getPub() != null) {
 			s += "and pub = " + browseParams.getPub(); 
@@ -123,7 +138,22 @@ public class LinkDAOImpl implements LinkDAO {
 	}
 
 	public int countAll(BrowseParams browseParams) {
-		String s = browseParams.getSearch() != null ? "and (upper(address) like upper('%"+browseParams.getSearch()+"%') or upper(name) like upper('%"+browseParams.getSearch()+"%'))" : "";
+		String s = "";
+		if(browseParams.getSearch() != null) {
+			String q = browseParams.getSearch();
+			q = q.replaceAll("[ ]{2,}", " ");
+			s = "and ";
+			int i = 0;
+			for(String p: q.split(" ")) {
+				if(i == 0) {
+					s += "upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+				} else {
+					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+				}
+				i++;
+			}
+		}				
+		// String s = browseParams.getSearch() != null ? "and (upper(address) like upper('%"+browseParams.getSearch()+"%') or upper(name) like upper('%"+browseParams.getSearch()+"%'))" : "";
 		
 		if(browseParams.getPub() != null) {
 			s += "and pub = " + browseParams.getPub(); 
