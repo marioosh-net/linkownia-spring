@@ -80,7 +80,11 @@ public class Link {
 	}
 	
 	public String getLdateFormatted() {
-		return new SimpleDateFormat("dd.MM.yyyy").format(ldate);
+		if(ldate != null) {
+			return new SimpleDateFormat("dd.MM.yyyy").format(ldate);
+		} else {
+			return new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+		}
 	}
 	
 	public void setLdate(Date ldate) {
