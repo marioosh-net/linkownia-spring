@@ -64,7 +64,8 @@
 						
 						<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
 						<div class="menu-item">
-							<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>
+							<%--<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
+							<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>
 						</div>
 						</security:authorize>
 						<div class="clear"></div>
@@ -95,7 +96,7 @@
                   	<div id="leftPan"> 
                   	
 					<!-- login form -->
-					<div class="panel" id="login" style="${param['loginfail'] == 1 ? ' ' : 'display: none;'}">
+					<div class="panel" id="login" style="${not empty loginInProgress ? ' ' : 'display: none;'}">
 						<form id="jf" name="jf" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
 							<div style="float: left">
 								<div class="smalllabel">login</div>
