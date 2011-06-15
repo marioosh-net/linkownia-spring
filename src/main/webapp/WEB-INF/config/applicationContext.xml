@@ -95,7 +95,9 @@
 		<security:authentication-provider>
 			<security:password-encoder hash="md5"/>
 			<security:user-service>
-				<security:user name="admin" 	password="200ceb26807d6bf99fd6f4f0d1ca54d4" authorities="ROLE_ADMIN" />
+				<!-- pass: aki -->
+				<security:user name="admin" 	password="6fd394b2f8f7e2438ca7f0a87a6db994" authorities="ROLE_ADMIN" />
+				<!-- pass: marioosh -->
 				<security:user name="marioosh" 	password="be13ce201255d46567b2ee2eec4535a4" authorities="ROLE_USER" />
 				<security:user name="xxx" 	password="f561aaf6ef0bf14d4208bb46a4ccb3ad" authorities="ROLE_XXX" />
 			</security:user-service>
