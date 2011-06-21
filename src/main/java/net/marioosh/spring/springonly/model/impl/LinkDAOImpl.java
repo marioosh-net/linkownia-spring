@@ -79,7 +79,7 @@ public class LinkDAOImpl implements LinkDAO {
 		jdbcTemplate.update("insert into tlink (address, name, description, ldate, date_mod, clicks) values(?, ?, ?, ?, ?, 0)", link.getAddress(), link.getName(), link.getDescription(), new Date(), link.getLdate());
 	}
 
-	public void addOrUpdate(Link link) {
+	public Integer addOrUpdate(Link link) {
 		Link l = get(link.getAddress());
 		if(l != null) {
 			// update
@@ -91,9 +91,13 @@ public class LinkDAOImpl implements LinkDAO {
 			}			
 			l.setDateMod(new Date());
 			update(l);
+			return l.getId();
 		} else {
 			add(link);
+			return jdbcTemplate.queryForInt("select currval('tlink_id_seq')");
 		}
+		
+		
 	}
 	
 	public void delete(Integer id) {

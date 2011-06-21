@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.hibernate.validator.constraints.NotEmpty;
 import com.ocpsoft.pretty.time.PrettyTime;
@@ -25,6 +26,8 @@ public class Link {
 	private Boolean pub;
 	
 	private int clicks;
+	
+	private Set<Tag> tags;
 
 	public Link() {
 	}
@@ -52,7 +55,10 @@ public class Link {
 
 	public String getAddress() {
 		// return address;
-		return address.startsWith("http://") || address.startsWith("https://") ? address : "http://"+address;
+		if(address != null) {
+			return address.startsWith("http://") || address.startsWith("https://") ? address : "http://"+address;
+		}
+		return null;
 	}
 
 	public void setAddress(String address) {
@@ -135,5 +141,12 @@ public class Link {
 	public void setPub(Boolean pub) {
 		this.pub = pub;
 	}
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
 	
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
 }

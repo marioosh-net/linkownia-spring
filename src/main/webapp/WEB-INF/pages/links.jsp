@@ -123,24 +123,26 @@
 						<!-- <form method="post" action="add.html"> -->
 						<form:form commandName="link" method="post" action="add.html" id="newform">
 							<label>Address</label>&#160;<form:errors cssStyle="${someErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
-							<input type="text" id="address" name="address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
+							<input type="text" id="address" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
-							<input type="text" name="name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
+							<input type="text" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
 							<label>Description</label><br/>
-							<textarea name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
+							<textarea name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
+							<input type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter"/><br/>
 							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
 					<div class="panel" id="edit" style="${someSaveErrors ? '' : 'display: none;'}">
 						<form:form commandName="link" method="post" action="save.html" id="editform">
-							<input type="hidden" id="id" name="id"/>
+							<input type="hidden" id="id" name="link.id"/>
 							<label>Address</label>&#160;<form:errors cssStyle="${someSaveErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
-							<input type="text" id="address2" name="address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
+							<input type="text" id="address2" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
-							<input type="text" id="name" name="name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
+							<input type="text" id="name" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
 							<label>Description</label><br/>
-							<textarea id="description" name="description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
+							<textarea id="description" name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
+							<input type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter"/><br/>
 							<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
@@ -177,6 +179,15 @@
 									<a href="index.html?site=1&amp;q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<span class="link-item-teaser">— <span class="descr">${link.description}</span><span class="timestamp">${link.dateModFormatted}</span></span>										
                       				</div>
+                      				<%-- tags --%>
+	                      			<div class="tags">
+	                      				<c:forEach items="${link.tags}" var="tag">
+		                      				<span class="tag">	
+		                      					<a href="index.html?site=1&amp;qt=${tag.tag}"><span class="button-text">${tag.tag}</span></a>
+	                      					</span>                      				
+	                      				</c:forEach> 
+	                      			</div>
+	                      			
                       				<security:authorize access="hasRole('ROLE_ADMIN')">
                       				<div class="admin-funcs">
                       					<span class="func-item">

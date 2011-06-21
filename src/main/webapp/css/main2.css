@@ -676,6 +676,24 @@ div.copyright p.rights a {
 	margin-bottom: 5px;
 }
 
+/** tags **/
+.tags {
+	font-size: 11px;
+	float: right;
+}
+.tags a {
+	margin-left: 3px;
+	border-bottom: 1px solid #CEDBF1;
+	color: #5F88CE;
+}
+.tags a:hover {
+	margin-left: 3px;
+	border-bottom: 1px solid #000;
+	color: #000;
+}
+.tag {
+}
+
 /** admin link buttons **/
 .admin-funcs {
 	font-size: 11px;

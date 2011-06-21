@@ -5,21 +5,27 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.dao.SearchDAO;
+import net.marioosh.spring.springonly.model.dao.TagDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.entities.Search;
+import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
+import net.marioosh.spring.springonly.model.helpers.TagBrowseParams;
 import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
@@ -50,6 +56,9 @@ public class LinksController {
 
 	@Autowired
 	private LinkDAO linkDAO;
+	
+	@Autowired
+	private TagDAO tagDAO;
 	
 	@Autowired
 	private SearchDAO searchDAO;
@@ -113,7 +122,20 @@ public class LinksController {
 		model.addAttribute("q", search);
 		model.addAttribute("qencoded", URLEncoder.encode(search, "UTF-8"));
 		
-		return linkDAO.findAll(b);
+		List<Link> l = linkDAO.findAll(b);
+		
+		/** 
+		 * sciagnij tagi dla linkow
+		 */
+		for(Link l1: l) {
+			Set<Tag> tags = new HashSet<Tag>();
+			TagBrowseParams bp = new TagBrowseParams();
+			bp.setLinkId(l1.getId());
+			tags.addAll(tagDAO.findAll(bp));
+			l1.setTags(tags);
+		}
+		
+		return l;
 	}
 	
 	@RequestMapping(value = "/search.html")
@@ -166,11 +188,15 @@ public class LinksController {
 
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
-	public String processSubmit(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
+	public String processSubmit(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
+		Link link = linkForm.getLink();
+		String[] tags = linkForm.getTags().replaceAll("[\\s]{2,}", " ").split(" ");
+		log.debug("TAGS:" + tags);
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
-			linkDAO.addOrUpdate(link);
+			Integer linkId = linkDAO.addOrUpdate(link);
+			tagDAO.connect(tags, linkId);			
 			return "redirect:/index.html";
 		} else {
 			model.addAttribute("errors", result.getAllErrors());
@@ -181,11 +207,15 @@ public class LinksController {
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/save.html", method = RequestMethod.POST)
-	public String processSave(@Valid @ModelAttribute("link") Link link, BindingResult result, SessionStatus status, Model model) {
+	public String processSave(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
+		Link link = linkForm.getLink();
+		String[] tags = linkForm.getTags().replaceAll("[\\s]{2,}", " ").split(" ");
+		log.debug("TAGS:" + tags);
 		if(!result.hasErrors()) {
 			link.setDateMod(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			linkDAO.update(link);// addOrUpdate(link);
+			tagDAO.connect(tags, link.getId());
 			return "redirect:/index.html";
 		} else {
 			model.addAttribute("errors", result.getAllErrors());

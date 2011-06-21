@@ -10,7 +10,7 @@ public interface LinkDAO {
 	public Link get(Integer id);
 	public Link get(String address);
 	public void add(Link link);
-	public void addOrUpdate(Link link);
+	public Integer addOrUpdate(Link link);
 	public void delete(Integer id);
 	public int update(Link link);
 	
