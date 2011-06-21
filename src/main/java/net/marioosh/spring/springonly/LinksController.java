@@ -87,9 +87,12 @@ public class LinksController {
 	@ModelAttribute("links")
 	public List<Link> populateLinks(Model model, HttpServletRequest request, 
 			@RequestParam(value="q", required=false, defaultValue="") String search, 
+			@RequestParam(value="qt" +
+					"", required=false, defaultValue="") String tag,
 			@RequestParam(value="p", required=false, defaultValue="-1") int p, 
 			@RequestParam(value="site", defaultValue="0", required=false) int site) throws UnsupportedEncodingException {
-		 
+		
+		log.debug("TAG: "+tag);
 		log.debug("SEARCH: "+search);
 		log.debug("PAGE  : "+p);
 		WebUtils.logRequestInfo(request);
@@ -108,6 +111,15 @@ public class LinksController {
 		b.setSearch(search);
 		b.setRange(new Range((p-1)*20,20));
 		b.setSort("date_mod desc");
+		/*
+		if(tag != "") {
+			HashSet<Tag> tagi = new HashSet<Tag>();
+			Tag t = new Tag();
+			t.setTag(tag);
+			tagi.add(t);
+			b.setTags(tagi);
+		}
+		*/
 		for(GrantedAuthority a: SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
 			if(a.getAuthority().equals("ROLE_XXX")) {
 				b.setPub(false);
@@ -119,6 +131,7 @@ public class LinksController {
 		model.addAttribute("pages", pages);
 		model.addAttribute("pagesCount", pages.length);
 		model.addAttribute("page", p);
+		model.addAttribute("tq", tag);
 		model.addAttribute("q", search);
 		model.addAttribute("qencoded", URLEncoder.encode(search, "UTF-8"));
 		

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
+import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
 import net.marioosh.spring.springonly.utils.WebUtils;
@@ -16,6 +17,16 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * wybierz linki z tagiem 'allegro'
+ * select * from tlink where id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag = 'allegro');
+ * 
+ * wybierz linki z tagiem 'allegro' lub 'dupa','jas','wacek'
+ * select * from tlink where id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ('allegro','dupa','jas','wacek'));
+ * 
+ * @author marioosh
+ *
+ */
 @Repository("linkDAO")
 public class LinkDAOImpl implements LinkDAO {
 
@@ -132,10 +143,21 @@ public class LinkDAOImpl implements LinkDAO {
 		}		
 		
 		if(browseParams.getPub() != null) {
-			s += "and pub = " + browseParams.getPub(); 
+			s += "and pub = " + browseParams.getPub() + " "; 
 		}
-		String sql = "select * from tlink where 1 = 1 "+s+" order by "+sort + " " + limit;
 		
+		if(browseParams.getTags() != null && !browseParams.getTags().isEmpty()) {
+			String tags = "";
+			int i = 0;
+			for(Tag tag: browseParams.getTags()) {
+				tags += (i > 0 ? ", ": "") + tag.getTag();
+				i++;
+			}
+			s += "and id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ("+ tags +"))";
+		}
+		
+		String sql = "select * from tlink where 1 = 1 "+s+" order by "+sort + " " + limit;
+		log.debug("LINKS SQL: " + sql);
 		// return jdbcTemplate.query(sql, new LinkRowMapper());
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Link>(Link.class));
 		

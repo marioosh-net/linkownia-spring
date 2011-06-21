@@ -1,5 +1,8 @@
 package net.marioosh.spring.springonly.model.helpers;
 
+import java.util.Set;
+import net.marioosh.spring.springonly.model.entities.Tag;
+
 
 public class BrowseParams {
 	private String search;
@@ -8,6 +11,7 @@ public class BrowseParams {
 	private Boolean pub = true;
 	private String shortcut;
 	private Integer idGroup;
+	private Set<Tag> tags;
 	
 	public String getSearch() {
 		return search;
@@ -55,5 +59,13 @@ public class BrowseParams {
 	
 	public void setIdGroup(Integer idGroup) {
 		this.idGroup = idGroup;
+	}
+	
+	public Set<Tag> getTags() {
+		return tags;
+	}
+	
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
 	}
 }
