@@ -229,6 +229,12 @@
 						<div style="padding-left: 10px; padding-top: 10px;"><img src="images/ajax.gif"/>&#160;Loading...</div>
 					</div>
                    
+					<!-- tags -->
+					<div class="block-header" >Tags</div>
+					<div id="toptags">
+						<div style="padding-left: 10px; padding-top: 10px;"><img src="images/ajax.gif"/>&#160;Loading...</div>
+					</div>
+					                   
                    	<!-- top links -->
 					<div class="block-header" >Top clicks</div>
 					<span id="toplinks">

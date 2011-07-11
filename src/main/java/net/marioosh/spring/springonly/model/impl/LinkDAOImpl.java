@@ -130,30 +130,35 @@ public class LinkDAOImpl implements LinkDAO {
 		if(browseParams.getSearch() != null) {
 			String q = browseParams.getSearch();
 			q = q.replaceAll("[ ]{2,}", " ");
-			s = "and ";
+			s = " and ";
 			int i = 0;
-			for(String p: q.split(" ")) {
+			
+			String[] split = q.split(" ");
+			for(String p: split) {			
 				if(i == 0) {
-					s += "upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
 				} else {
 					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+				}
+				if(i == split.length - 1) {
+					s += ")";
 				}
 				i++;
 			}
 		}		
 		
 		if(browseParams.getPub() != null) {
-			s += "and pub = " + browseParams.getPub() + " "; 
+			s += " and pub = " + browseParams.getPub() + " "; 
 		}
 		
 		if(browseParams.getTags() != null && !browseParams.getTags().isEmpty()) {
 			String tags = "";
 			int i = 0;
 			for(Tag tag: browseParams.getTags()) {
-				tags += (i > 0 ? ", ": "") + tag.getTag();
+				tags += (i > 0 ? ", ": "") + "'"+tag.getTag()+"'";
 				i++;
 			}
-			s += "and id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ("+ tags +"))";
+			s += " and id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ("+ tags +")) ";
 		}
 		
 		String sql = "select * from tlink where 1 = 1 "+s+" order by "+sort + " " + limit;
@@ -168,13 +173,18 @@ public class LinkDAOImpl implements LinkDAO {
 		if(browseParams.getSearch() != null) {
 			String q = browseParams.getSearch();
 			q = q.replaceAll("[ ]{2,}", " ");
-			s = "and ";
+			s = " and ";
 			int i = 0;
-			for(String p: q.split(" ")) {
+			
+			String[] split = q.split(" ");
+			for(String p: split) {
 				if(i == 0) {
-					s += "upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
 				} else {
 					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+				}
+				if(i == split.length - 1) {
+					s += ")";
 				}
 				i++;
 			}
@@ -182,10 +192,21 @@ public class LinkDAOImpl implements LinkDAO {
 		// String s = browseParams.getSearch() != null ? "and (upper(address) like upper('%"+browseParams.getSearch()+"%') or upper(name) like upper('%"+browseParams.getSearch()+"%'))" : "";
 		
 		if(browseParams.getPub() != null) {
-			s += "and pub = " + browseParams.getPub(); 
+			s += " and pub = " + browseParams.getPub() + " "; 
+		}
+		
+		if(browseParams.getTags() != null && !browseParams.getTags().isEmpty()) {
+			String tags = "";
+			int i = 0;
+			for(Tag tag: browseParams.getTags()) {
+				tags += (i > 0 ? ", ": "") + "'"+tag.getTag()+"'";
+				i++;
+			}
+			s += " and id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ("+ tags +")) ";
 		}
 		
 		String sql = "select count(*) from tlink where 1 = 1 "+s;
+		log.debug("SQL: "+sql);
 		return jdbcTemplate.queryForInt(sql);
 	}
 

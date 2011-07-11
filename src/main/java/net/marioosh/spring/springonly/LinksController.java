@@ -111,15 +111,15 @@ public class LinksController {
 		b.setSearch(search);
 		b.setRange(new Range((p-1)*20,20));
 		b.setSort("date_mod desc");
-		/*
-		if(tag != "") {
+		
+		if(!tag.equals("")) {
 			HashSet<Tag> tagi = new HashSet<Tag>();
 			Tag t = new Tag();
 			t.setTag(tag);
 			tagi.add(t);
 			b.setTags(tagi);
 		}
-		*/
+		
 		for(GrantedAuthority a: SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
 			if(a.getAuthority().equals("ROLE_XXX")) {
 				b.setPub(false);
@@ -131,7 +131,7 @@ public class LinksController {
 		model.addAttribute("pages", pages);
 		model.addAttribute("pagesCount", pages.length);
 		model.addAttribute("page", p);
-		model.addAttribute("tq", tag);
+		model.addAttribute("qt", tag);
 		model.addAttribute("q", search);
 		model.addAttribute("qencoded", URLEncoder.encode(search, "UTF-8"));
 		

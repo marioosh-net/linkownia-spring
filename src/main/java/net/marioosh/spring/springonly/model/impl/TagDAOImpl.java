@@ -49,9 +49,26 @@ public class TagDAOImpl implements TagDAO {
 		if(browseParams.getRange() != null) {
 			 limit = "limit " + browseParams.getRange().getMax() + " offset " + browseParams.getRange().getStart(); 
 		}
-		String s = browseParams.getTag() != null ? " and t.tag = '"+browseParams.getTag()+"' and t.id = tl.tag_id " : "";
-		s += browseParams.getLinkId() != null ? " and tl.link_id = "+browseParams.getLinkId() + " and t.id = tl.tag_id ": "";
-		String sql = "select * from ttag t, tlinktag tl where 1 = 1 "+s+" order by "+sort + " " + limit;
+		String s = "";
+		boolean usedTlinktag = false;
+		if(browseParams.getTag() != null) {
+			s = " and t.tag = '"+browseParams.getTag()+"' and t.id = tl.tag_id ";
+			usedTlinktag = true;
+		}
+		// String s = browseParams.getTag() != null ? " and t.tag = '"+browseParams.getTag()+"' and t.id = tl.tag_id " : "";
+		
+		if(browseParams.getLinkId() != null) {
+			s += " and tl.link_id = "+browseParams.getLinkId() + " and t.id = tl.tag_id ";
+			usedTlinktag = true;
+		}
+		//s += browseParams.getLinkId() != null ? " and tl.link_id = "+browseParams.getLinkId() + " and t.id = tl.tag_id ": "";
+		
+		String sql = "";
+		if(usedTlinktag) {
+			sql = "select * from ttag t, tlinktag tl where 1 = 1 "+s+" order by "+sort + " " + limit;
+		} else {
+			sql = "select * from ttag t where 1 = 1 "+s+" order by "+sort + " " + limit;
+		}
 		
 		log.info(sql);
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Tag>(Tag.class));

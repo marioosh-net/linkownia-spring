@@ -78,9 +78,13 @@ function toplinks() {
 function searches() {
 	jQuery('#searches').load('searches.html');
 }	
+function toptags() {
+	jQuery('#toptags').load('toptags.html');
+}
 jQuery(document).ready(function(){
 	toplinks();
 	searches();
+	toptags();
 	
 	$("input.enter").keydown(function(event) {
 		if(event.keyCode == 13) {

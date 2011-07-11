@@ -297,7 +297,7 @@ a:focus {
 	border-bottom: 1px solid #000;
 }
 
-#searches {
+#searches, #toptags {
 	margin: 5px;
 	margin-bottom: 20px;
 }

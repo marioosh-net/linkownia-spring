@@ -8,11 +8,13 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.dao.SearchDAO;
+import net.marioosh.spring.springonly.model.dao.TagDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.entities.Search;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
+import net.marioosh.spring.springonly.model.helpers.TagBrowseParams;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -41,6 +43,9 @@ public class TopsController {
 	
 	@Autowired
 	private LinkDAO linkDAO;
+	
+	@Autowired
+	private TagDAO tagDAO;
 	
 	/*
 	@ModelAttribute("searches")
@@ -78,6 +83,14 @@ public class TopsController {
 		return new ModelAndView("toplinks", "toplinks", linkDAO.findAll(b));
 	}
 
+	@RequestMapping(value="/toptags.html")
+	public ModelAndView tags() {
+		TagBrowseParams b = new TagBrowseParams();
+		b.setRange(new Range(0,10));
+		b.setSort("tag");
+		return new ModelAndView("toptags", "toptags", tagDAO.findAll(b));
+	}
+	
 	@ResponseBody
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("/delete-search.html")
