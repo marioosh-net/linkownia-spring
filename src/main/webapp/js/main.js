@@ -23,8 +23,17 @@ function deleteLink(id) {
 function deleteSearch(id) {
 	jQuery.get('delete-search.html?id='+id, function(data){
 		if(data == '0') {
-			jQuery('div.search-item_'+id).remove();				
+			jQuery('span.search-item_'+id).remove();				
 			searches();
+		}
+		jQuery('#debug-content').html(data);
+	}, 'text');
+}
+function deleteTag(id) {
+	jQuery.get('delete-tag.html?id='+id, function(data){
+		if(data == '0') {
+			jQuery('span.tag-item_'+id).remove();				
+			toptags();
 		}
 		jQuery('#debug-content').html(data);
 	}, 'text');

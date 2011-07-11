@@ -199,7 +199,7 @@
 	                      					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
                       					</span>
 	                      				<span class="func-item">	
-	                      					<a class="refresh" href="#" onclick="refresh(${link.id})"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
+	                      					<a class="refresh" href="#" onclick="refresh(${link.id}); return false;"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
                       					</span>                      					
                       				</div>                      				
                       				</security:authorize>

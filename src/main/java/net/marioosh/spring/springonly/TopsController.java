@@ -103,6 +103,18 @@ public class TopsController {
 		}
 	}
 	
+	@ResponseBody
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("/delete-tag.html")
+	public String deleteTag(@RequestParam(value="id", defaultValue="-1") Integer id) {
+		try {
+			tagDAO.delete(id);
+			return "0";
+		} catch (Exception ex) {
+			return "-1";
+		}
+	}
+	
 	/**
 	 * @param ex
 	 * @param response
