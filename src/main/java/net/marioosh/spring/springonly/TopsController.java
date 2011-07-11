@@ -86,7 +86,7 @@ public class TopsController {
 	@RequestMapping(value="/toptags.html")
 	public ModelAndView tags() {
 		TagBrowseParams b = new TagBrowseParams();
-		b.setRange(new Range(0,10));
+		//b.setRange(new Range(0,10));
 		b.setSort("tag");
 		return new ModelAndView("toptags", "toptags", tagDAO.findAll(b));
 	}
