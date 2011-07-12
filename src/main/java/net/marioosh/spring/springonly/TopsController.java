@@ -11,6 +11,7 @@ import net.marioosh.spring.springonly.model.dao.SearchDAO;
 import net.marioosh.spring.springonly.model.dao.TagDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.entities.Search;
+import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
@@ -90,6 +91,20 @@ public class TopsController {
 		b.setSort("tag");
 		return new ModelAndView("toptags", "toptags", tagDAO.findAll(b));
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/alltags.html")
+	public String tagsString() {
+		TagBrowseParams b = new TagBrowseParams();
+		//b.setRange(new Range(0,10));
+		b.setSort("tag");
+		String s = "";
+		for(Tag t: tagDAO.findAll(b)) {
+			s += t.getTag() +" ";
+		}
+		return s;
+	}
+
 	
 	@ResponseBody
 	@Secured("ROLE_ADMIN")

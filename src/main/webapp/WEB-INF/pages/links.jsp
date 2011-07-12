@@ -10,8 +10,10 @@
 	<meta name="author" content="marioosh.net">
 	<meta name="Keywords" lang="pl" content="morele, linkownia, baza linków, odnośniki, adresy, www, marioosh">
 	<meta name="Keywords" lang="en" content="apricots, linkownia, links database, references, addresses, www, marioosh">
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.14.custom.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
+	<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />	
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/main.js"></script>
 	<title>Linkownia - przechowalnia linków</title>
 </head>
@@ -122,14 +124,14 @@
 					<div class="panel" id="new" style="${someErrors ? '' : 'display: none;'}">
 						<!-- <form method="post" action="add.html"> -->
 						<form:form commandName="link" method="post" action="add.html" id="newform">
-							<label>Address</label>&#160;<form:errors cssStyle="${someErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
+							<label>Address</label>&#160;<form:errors cssStyle="${someErrors ? '' : 'display: none;'}" path="link.address" cssClass="errors" /><br/>
 							<input type="text" id="address" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
 							<input type="text" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
 							<label>Description</label><br/>
 							<textarea name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
 							<label>Tags</label><br/>
-							<input type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter"/><br/>
+							<input id="tags_input" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter"/><br/>
 							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
@@ -137,7 +139,7 @@
 					<div class="panel" id="edit" style="${someSaveErrors ? '' : 'display: none;'}">
 						<form:form commandName="link" method="post" action="save.html" id="editform">
 							<input type="hidden" id="id" name="link.id"/>
-							<label>Address</label>&#160;<form:errors cssStyle="${someSaveErrors ? '' : 'display: none;'}" path="address" cssClass="errors" /><br/>
+							<label>Address</label>&#160;<form:errors cssStyle="${someSaveErrors ? '' : 'display: none;'}" path="link.address" cssClass="errors" /><br/>
 							<input type="text" id="address2" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
 							<input type="text" id="name" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>

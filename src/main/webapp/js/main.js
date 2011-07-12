@@ -100,4 +100,13 @@ jQuery(document).ready(function(){
 			$(this).closest('form').submit();
 		}
 	});
+	
+	jQuery.ajax({
+		url: 'alltags.html',
+		success: function(data) {
+			/*alert(data);*/
+			jQuery('#tags_input').autocomplete(data);
+		}
+	});
+	
 });
