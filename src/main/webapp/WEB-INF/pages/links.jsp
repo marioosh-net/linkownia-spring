@@ -131,7 +131,7 @@
 							<label>Description</label><br/>
 							<textarea name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
 							<label>Tags</label><br/>
-							<input id="tags_input" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter"/><br/>
+							<input id="tags_input" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="tags_input"/><br/>
 							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
@@ -146,7 +146,7 @@
 							<label>Description</label><br/>
 							<textarea id="description" name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
 							<label>Tags</label><br/>
-							<input type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter"/><br/>
+							<input id="tags_edit" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter tags_input"/><br/>
 							<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>

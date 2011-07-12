@@ -55,6 +55,7 @@ function edit(id) {
 		jQuery('#address2').val(data['address']);
 		jQuery('#description').val(data['description']);
 		jQuery('#debug-content').html('NAME:'+data['name']+'<br/>DESC:'+data['description']);
+		/*jQuery('#tags_edit').val(data['tags']);*/
 		/*hidepanels('edit', function() {jQuery('#address2').focus();});*/
 		
 		if(jQuery('#edit').css('display') != 'none') {
@@ -90,6 +91,12 @@ function searches() {
 function toptags() {
 	jQuery('#toptags').load('toptags.html');
 }
+function split( val ) {
+	return val.split( /,\s*/ );
+}
+function extractLast( term ) {
+	return split( term ).pop();
+}
 jQuery(document).ready(function(){
 	toplinks();
 	searches();
@@ -104,8 +111,34 @@ jQuery(document).ready(function(){
 	jQuery.ajax({
 		url: 'alltags.html',
 		success: function(data) {
-			jQuery('#tags_input').autocomplete({
-				source: data		
+			jQuery('.tags_input')
+			.bind( 'keydown', function( event ) {
+					if ( event.keyCode === 13 && $(this).data('autocomplete').menu.active) {
+						event.preventDefault();
+					}
+					if ( event.keyCode === $.ui.keyCode.TAB && $(this).data('autocomplete').menu.active ) {
+						event.preventDefault();
+					}
+			})			
+			.autocomplete({
+				source: function(request, response) {
+					response($.ui.autocomplete.filter(data, extractLast(request.term)));
+				},
+				focus: function() {
+					// prevent value inserted on focus
+					return false;
+				},
+				select: function( event, ui ) {
+					var terms = split( this.value );
+					// remove the current input
+					terms.pop();
+					// add the selected item
+					terms.push( ui.item.value );
+					// add placeholder to get the comma-and-space at the end
+					terms.push( "" );
+					this.value = terms.join( ", " );
+					return false;
+				}				
 			});
 		},
 		dataType: 'json'

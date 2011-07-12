@@ -203,7 +203,7 @@ public class LinksController {
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
 	public String processSubmit(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
 		Link link = linkForm.getLink();
-		String[] tags = linkForm.getTags().replaceAll("[\\s]{2,}", " ").split(" ");
+		String[] tags = linkForm.getTags().replaceAll("[\\s]{1,}", " ").split(",");
 		log.debug("TAGS:" + tags);
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
@@ -284,6 +284,13 @@ public class LinksController {
 	@Secured("ROLE_ADMIN")
 	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException, JSONException {
 		Link link = linkDAO.get(id);
+		
+		Set<Tag> tags = new HashSet<Tag>();
+		TagBrowseParams bp = new TagBrowseParams();
+		bp.setLinkId(link.getId());
+		tags.addAll(tagDAO.findAll(bp));
+		link.setTags(tags);
+		
 		JSONObject json = new JSONObject(link);
 		/*response.setContentType("text/x-json;charset=UTF-8");*/
 		json.write(new BufferedWriter(new OutputStreamWriter(System.out)));
