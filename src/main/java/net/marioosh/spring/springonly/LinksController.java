@@ -6,6 +6,8 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -203,7 +205,12 @@ public class LinksController {
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
 	public String processSubmit(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
 		Link link = linkForm.getLink();
-		String[] tags = linkForm.getTags().replaceAll("[\\s]{1,}", " ").split(",");
+		String[] tags = linkForm.getTags().replaceAll(" ", ",").replaceAll("[\\s]{1,}", " ").split(",");
+		Set<String> tags1 = new HashSet<String>();
+		for(String tag: tags) {
+			tags1.add(tag);
+		}
+		tags = tags1.toArray(tags);
 		log.debug("TAGS:" + tags);
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
