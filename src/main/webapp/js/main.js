@@ -104,9 +104,11 @@ jQuery(document).ready(function(){
 	jQuery.ajax({
 		url: 'alltags.html',
 		success: function(data) {
-			/*alert(data);*/
-			jQuery('#tags_input').autocomplete(data);
-		}
+			jQuery('#tags_input').autocomplete({
+				source: data		
+			});
+		},
+		dataType: 'json'
 	});
 	
 });

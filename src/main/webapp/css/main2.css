@@ -23,6 +23,9 @@ ul,li,ol {
 	margin: 0;
 	padding: 0;
 }
+ul {
+	text-align: left;
+}
 
 blockquote {
 	margin: 0;

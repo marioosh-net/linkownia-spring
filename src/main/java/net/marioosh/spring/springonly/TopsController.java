@@ -1,6 +1,8 @@
 package net.marioosh.spring.springonly;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,9 @@ import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
 import net.marioosh.spring.springonly.model.helpers.TagBrowseParams;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -92,17 +97,23 @@ public class TopsController {
 		return new ModelAndView("toptags", "toptags", tagDAO.findAll(b));
 	}
 	
-	@ResponseBody
 	@RequestMapping(value="/alltags.html")
-	public String tagsString() {
+	public void tagsString(HttpServletResponse response) throws JSONException, IOException {
 		TagBrowseParams b = new TagBrowseParams();
 		//b.setRange(new Range(0,10));
 		b.setSort("tag");
-		String s = "";
-		for(Tag t: tagDAO.findAll(b)) {
-			s += t.getTag() +" ";
+		
+		List<Tag> l = tagDAO.findAll(b);
+		String[] s = new String[l.size()];
+		int i = 0;
+		for(Tag t: l) {
+			s[i++] = t.getTag();
 		}
-		return s;
+		log.debug(s);
+		
+		JSONArray json = new JSONArray(s);
+		json.write(new BufferedWriter(new OutputStreamWriter(System.out)));
+		json.write(response.getWriter());
 	}
 
 	
