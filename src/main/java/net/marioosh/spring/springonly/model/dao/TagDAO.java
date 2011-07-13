@@ -1,6 +1,7 @@
 package net.marioosh.spring.springonly.model.dao;
 
 import java.util.List;
+import java.util.Set;
 import net.marioosh.spring.springonly.model.entities.Search;
 import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.helpers.TagBrowseParams;
@@ -24,7 +25,7 @@ public interface TagDAO {
 	 * @param tags
 	 * @param linkId
 	 */
-	public void connect(String[] tags, Integer linkId);
+	public void connect(Set<String> tags, Integer linkId);
 	
 	/**
 	 * odtaguj linka

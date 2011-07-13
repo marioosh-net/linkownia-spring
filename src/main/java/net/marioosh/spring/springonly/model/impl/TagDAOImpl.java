@@ -1,6 +1,7 @@
 package net.marioosh.spring.springonly.model.impl;
 
 import java.util.List;
+import java.util.Set;
 import javax.sql.DataSource;
 import net.marioosh.spring.springonly.model.dao.TagDAO;
 import net.marioosh.spring.springonly.model.entities.Tag;
@@ -85,7 +86,7 @@ public class TagDAOImpl implements TagDAO {
 		}
 	}
 
-	public void connect(String[] tags, Integer linkId) {
+	public void connect(Set<String> tags, Integer linkId) {
 		log.info("CONNECT: link "+ linkId + ", tags: "+tags);
 		for(String tag: tags) {
 			Integer id;

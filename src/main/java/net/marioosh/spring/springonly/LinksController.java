@@ -205,18 +205,18 @@ public class LinksController {
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
 	public String processSubmit(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
 		Link link = linkForm.getLink();
-		String[] tags = linkForm.getTags().replaceAll(" ", ",").replaceAll("[\\s]{1,}", " ").split(",");
+		String[] tags = linkForm.getTags().trim().replaceAll(" ", ",").replaceAll("[\\s]{2,}", " ").split(",");
 		Set<String> tags1 = new HashSet<String>();
 		for(String tag: tags) {
-			tags1.add(tag);
+			if(!tag.equals("") && !tag.equals(",")) {
+				tags1.add(tag);
+			}
 		}
-		tags = tags1.toArray(tags);
-		log.debug("TAGS:" + tags);
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			Integer linkId = linkDAO.addOrUpdate(link);
-			tagDAO.connect(tags, linkId);			
+			tagDAO.connect(tags1, linkId);			
 			return "redirect:/index.html";
 		} else {
 			model.addAttribute("errors", result.getAllErrors());
@@ -229,13 +229,20 @@ public class LinksController {
 	@RequestMapping(value="/save.html", method = RequestMethod.POST)
 	public String processSave(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
 		Link link = linkForm.getLink();
-		String[] tags = linkForm.getTags().replaceAll("[\\s]{2,}", " ").split(" ");
+		// String[] tags = linkForm.getTags().replaceAll("[\\s]{2,}", " ").split(" ");
+		String[] tags = linkForm.getTags().trim().replaceAll(" ", ",").replaceAll("[\\s]{2,}", " ").split(",");
 		log.debug("TAGS:" + tags);
+		Set<String> tags1 = new HashSet<String>();
+		for(String tag: tags) {
+			if(!tag.equals("") && !tag.equals(",")) {
+				tags1.add(tag);
+			}
+		}
 		if(!result.hasErrors()) {
 			link.setDateMod(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			linkDAO.update(link);// addOrUpdate(link);
-			tagDAO.connect(tags, link.getId());
+			tagDAO.connect(tags1, link.getId());
 			return "redirect:/index.html";
 		} else {
 			model.addAttribute("errors", result.getAllErrors());
