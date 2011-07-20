@@ -98,10 +98,14 @@ public class TopsController {
 	}
 	
 	@RequestMapping(value="/alltags.html")
-	public void tagsString(HttpServletResponse response) throws JSONException, IOException {
+	public void tagsString(@RequestParam(value="query", required=false, defaultValue="") String query,  HttpServletResponse response) throws JSONException, IOException {
 		TagBrowseParams b = new TagBrowseParams();
 		//b.setRange(new Range(0,10));
 		b.setSort("tag");
+		
+		if(!query.equals("")) {
+			b.setQuery(query);
+		}
 		
 		List<Tag> l = tagDAO.findAll(b);
 		String[] s = new String[l.size()];

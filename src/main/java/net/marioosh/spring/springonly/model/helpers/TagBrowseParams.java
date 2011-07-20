@@ -5,6 +5,7 @@ public class TagBrowseParams {
 	private String sort;
 	private Range range;
 	private Integer linkId;
+	private String query;
 
 	public String getTag() {
 		return tag;
@@ -38,4 +39,11 @@ public class TagBrowseParams {
 		this.linkId = linkId;
 	}
 
+	public String getQuery() {
+		return query;
+	}
+	
+	public void setQuery(String query) {
+		this.query = query;
+	}
 }

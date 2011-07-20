@@ -123,6 +123,11 @@ jQuery(document).ready(function(){
 			.autocomplete({
 				source: function(request, response) {
 					response($.ui.autocomplete.filter(data, extractLast(request.term)));
+					/*
+				      jQuery.getJSON('alltags.html?query='+request.term, function(data) {
+		                    response(data);
+		              });
+		            */
 				},
 				focus: function() {
 					// prevent value inserted on focus

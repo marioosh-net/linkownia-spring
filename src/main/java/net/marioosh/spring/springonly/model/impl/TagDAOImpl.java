@@ -64,6 +64,10 @@ public class TagDAOImpl implements TagDAO {
 		}
 		//s += browseParams.getLinkId() != null ? " and tl.link_id = "+browseParams.getLinkId() + " and t.id = tl.tag_id ": "";
 		
+		if(browseParams.getQuery() != null) {
+			s += " and t.tag like '"+browseParams.getQuery()+"%' ";
+		}
+		
 		String sql = "";
 		if(usedTlinktag) {
 			sql = "select * from ttag t, tlinktag tl where 1 = 1 "+s+" order by "+sort + " " + limit;
