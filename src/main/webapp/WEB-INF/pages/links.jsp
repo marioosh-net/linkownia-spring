@@ -20,6 +20,7 @@
 
 <body id="body" onload="jQuery('#qtext').focus();"> 
 
+    <%--
  	<c:if test="${header['host'] == 'localhost:8081' or header['host'] == 'localhost:8080'}">
 	 	<div id="debug">
 	 		<a class="debugbutton" href="#" onclick="jQuery('#debug-container').toggle();">DEBUG</a>
@@ -33,6 +34,7 @@
 	 		</div>
 	 	</div>
  	</c:if>
+    --%>
 
 	<div id="wrapper">
 		<div id="header">
