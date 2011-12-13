@@ -258,6 +258,7 @@
 	
 	<div id="footer">
 		<div class="fixedwidth">
+            <%--
 			<div class="pages"> 
 				<ul> 
 					<li><a href="index.html">Linkownia</a></li> 
@@ -265,9 +266,13 @@
 					<li><a href="http://marioosh.net/blog/">Blog</a></li> 
 				</ul> 
 			</div> 
+            --%>
+            Powered by <img src="<c:url value="/images/spring.png"/>"/> | <a href="http://marioosh.net">marioosh.net</a>
+            <%--
 			<div class="copyright"> 
 				<p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
-			</div> 
+			</div>
+            --%>
 		</div>
 	</div>
     

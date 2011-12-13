@@ -143,9 +143,10 @@ a:focus {
 	height: 150px;
 	*/
 	clear:both;
-	background-color: #444;
+	background-color: #000;
 	color: #fff;
-	background: url(../images/footer_bg.gif)
+	/*background: url(../images/footer_bg.gif)*/
+    font-size: 13px;
 }
 #push, #footer {
     height: 15em;
@@ -158,7 +159,7 @@ a:focus {
 }
 #footer .fixedwidth {
 	padding: 5px;
-	font-size: 0.8em;
+	/*font-size: 0.8em;*/
 }
 /* footer END */
 
