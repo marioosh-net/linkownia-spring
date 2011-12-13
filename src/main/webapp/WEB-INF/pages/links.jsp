@@ -267,7 +267,7 @@
 				</ul> 
 			</div> 
             --%>
-            Powered by <img src="<c:url value="/images/spring.png"/>"/> | <a href="http://marioosh.net">marioosh.net</a>
+            Powered by <a href="http://springsource.org"><img style="vertical-align: -7px;" src="<c:url value="/images/spring.png"/>"/></a> | <a href="http://marioosh.net">marioosh.net</a>
             <%--
 			<div class="copyright"> 
 				<p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
