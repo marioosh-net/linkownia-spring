@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,9 +22,11 @@ import javax.validation.Valid;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.dao.SearchDAO;
 import net.marioosh.spring.springonly.model.dao.TagDAO;
+import net.marioosh.spring.springonly.model.dao.UserDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.entities.Search;
 import net.marioosh.spring.springonly.model.entities.Tag;
+import net.marioosh.spring.springonly.model.entities.User;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
@@ -34,8 +37,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,7 +66,10 @@ public class LinksController {
 	
 	@Autowired
 	private TagDAO tagDAO;
-	
+
+	@Autowired
+	private UserDAO userDAO;
+
 	@Autowired
 	private SearchDAO searchDAO;
 	
@@ -78,7 +86,21 @@ public class LinksController {
         binder.setValidator(new LinkValidator());
     }
     */
-    
+
+	private User user;
+	
+	@ModelAttribute("user")
+	public void logged(Principal principal) {
+		log.info(principal);
+		if(principal != null) {
+			UserDetails userDetails = (UserDetails)((Authentication)principal).getPrincipal();
+			this.user = userDAO.get(userDetails.getUsername());
+		} else {
+			this.user = null;
+		}
+		log.info("----- USER: "+ user);
+	}
+	
 	/**
 	 * @throws UnsupportedEncodingException 
 	 * @ModelAttribute - ustawia wartosc w modelu
@@ -113,6 +135,9 @@ public class LinksController {
 		b.setSearch(search);
 		b.setRange(new Range((p-1)*20,20));
 		b.setSort("date_mod desc");
+		if(user != null) {
+			b.setUserId(user.getId());
+		}
 		
 		if(!tag.equals("")) {
 			HashSet<Tag> tagi = new HashSet<Tag>();
@@ -122,6 +147,7 @@ public class LinksController {
 			b.setTags(tagi);
 		}
 		
+		/*
 		b.setPub(true);
 		for(GrantedAuthority a: SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
 			if(a.getAuthority().equals("ROLE_XXX")) {
@@ -131,6 +157,7 @@ public class LinksController {
 				b.setPub(null);
 			}
 		}
+		*/
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);
 		int[][] pages = pages(count, 20);
@@ -181,11 +208,14 @@ public class LinksController {
 	}
 	
 	@RequestMapping(value="/list.html")
-	public String list(@RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model) {
+	public String list(@RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model, Principal principal) {		
 		BrowseParams b = new BrowseParams();
 		b.setSearch(search);
 		b.setRange(new Range(0,20));
 		b.setSort("date_mod desc");
+		if(user != null) {
+			b.setUserId(user.getId());
+		}
 		model.addAttribute("links", linkDAO.findAll(b));
 		int count = linkDAO.countAll(b);
 		model.addAttribute("count", count);

@@ -12,6 +12,7 @@ public class BrowseParams {
 	private String shortcut;
 	private Integer idGroup;
 	private Set<Tag> tags;
+	private Integer userId;
 	
 	public String getSearch() {
 		return search;
@@ -67,5 +68,13 @@ public class BrowseParams {
 	
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
+	}
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 }

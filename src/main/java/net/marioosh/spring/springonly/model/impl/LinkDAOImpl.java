@@ -155,6 +155,12 @@ public class LinkDAOImpl implements LinkDAO {
 			s += " and pub = " + browseParams.getPub() + " "; 
 		}
 		
+		if(browseParams.getUserId() != null) {
+			s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+		} else {
+			s += " and pub = true ";			
+		}
+		
 		if(browseParams.getTags() != null && !browseParams.getTags().isEmpty()) {
 			String tags = "";
 			int i = 0;
@@ -197,6 +203,12 @@ public class LinkDAOImpl implements LinkDAO {
 		
 		if(browseParams.getPub() != null) {
 			s += " and pub = " + browseParams.getPub() + " "; 
+		}
+		
+		if(browseParams.getUserId() != null) {
+			s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+		} else {
+			s += " and pub = true ";
 		}
 		
 		if(browseParams.getTags() != null && !browseParams.getTags().isEmpty()) {
