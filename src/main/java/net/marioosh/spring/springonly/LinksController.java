@@ -332,6 +332,20 @@ public class LinksController {
 
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@RequestMapping("/visibility.html")
+	@ResponseBody
+	public String visibility(@RequestParam(value="id", required=false, defaultValue="-1") Integer id) {
+		Link link = linkDAO.get(id);
+		link.setPub(!link.getPub().booleanValue());
+		linkDAO.update(link);
+		if(link.getPub().booleanValue()) {
+			return "1";
+		} else {
+			return "0";
+		}
+	}	
+	
 	@RequestMapping(value = "/open.html")
 	public void open(@RequestParam(value="id", defaultValue="-1") Integer id, HttpServletResponse response) throws IOException {
 		Link link = linkDAO.get(id);

@@ -194,17 +194,24 @@
 	                      				</c:forEach> 
 	                      			</div>
 	                      			
-                      				<security:authorize access="hasRole('ROLE_ADMIN')">
+	                      			<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
                       				<div class="admin-funcs">
-                      					<span class="func-item">
-	                      					<a class="del" href="#" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
-	                      				</span>
-	                      				<span class="func-item">	
-	                      					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
-                      					</span>
-	                      				<span class="func-item">	
-	                      					<a class="refresh" href="#" onclick="refresh(${link.id}); return false;"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
-                      					</span>                      					
+                      					<security:authorize access="hasRole('ROLE_ADMIN')">
+	                      					<span class="func-item">
+		                      					<a class="del" href="#" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
+		                      				</span>
+		                      				<span class="func-item">	
+		                      					<a class="edit" href="#" onclick="edit(${link.id})"><img src="images/ed.png"/><span class="button-text">edit</span></a>
+	                      					</span>
+		                      				<span class="func-item">	
+		                      					<a class="refresh" href="#" onclick="refresh(${link.id}); return false;"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
+	                      					</span>                      					
+                      					</security:authorize>
+                      					<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+	                      					<span class="func-item">
+	                      						<a class="visibility" href="#" onclick="visibility(${link.id}); return false;"><img src="images/icon_padlock.gif"/><span class="button-text">${link.pub ? 'make private' : 'make public'}</span></a>
+	                      					</span>
+                      					</security:authorize>
                       				</div>                      				
                       				</security:authorize>
                       			</div>

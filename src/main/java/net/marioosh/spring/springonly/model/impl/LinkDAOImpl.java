@@ -87,7 +87,7 @@ public class LinkDAOImpl implements LinkDAO {
             link.setName(link.getAddress());
         }
 		
-		jdbcTemplate.update("insert into tlink (address, name, description, ldate, date_mod, clicks) values(?, ?, ?, ?, ?, 0)", link.getAddress(), link.getName(), link.getDescription(), new Date(), link.getLdate());
+		jdbcTemplate.update("insert into tlink (address, name, description, ldate, date_mod, clicks) values(?, ?, ?, ?, ?, 0, ?)", link.getAddress(), link.getName(), link.getDescription(), new Date(), link.getLdate(), link.getPub());
 	}
 
 	public Integer addOrUpdate(Link link) {
@@ -218,7 +218,7 @@ public class LinkDAOImpl implements LinkDAO {
 	public int update(Link link) {
 		Object[] params = {link.getAddress(), link.getName(), link.getDescription(), link.getClicks(), link.getLdate(), link.getDateMod(), link.getId()};
 		int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.TIMESTAMP, Types.TIMESTAMP, Types.SMALLINT};
-		int rows = jdbcTemplate.update("update tlink set address = ?, name = ?, description = ?, clicks = ?, ldate = ?, date_mod = ? where id = ?", params, types);
+		int rows = jdbcTemplate.update("update tlink set address = ?, name = ?, description = ?, clicks = ?, ldate = ?, date_mod = ?, pub = "+link.getPub().booleanValue()+" where id = ?", params, types);
 		log.debug("Updated "+rows +" rows.");
 		return rows;
 	}

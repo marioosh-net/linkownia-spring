@@ -82,6 +82,19 @@ function refresh(id) {
 		}
 	}, 'json');
 }	
+function visibility(id) {
+	jQuery('.ajax_'+id).show();
+	jQuery.post('visibility.html', {'id': id}, function(data) {
+		jQuery('.ajax_'+id).hide();
+		var item = jQuery('.link-item_'+id);
+		var t = 'make public';
+		if(data == '1') {
+			t = 'make private';
+		}
+		jQuery(item).find('a.visibility .button-text').html(t);
+	});
+	
+}
 function toplinks() {
 	jQuery('#toplinks').load('toplinks.html');
 }
