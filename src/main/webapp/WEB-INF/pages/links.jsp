@@ -180,7 +180,7 @@
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
-									<a href="#" title="${link.address}" onclick="openLink(${link.id},'${link.address}');" class="name">${link.name != '' ? link.name : link.address}</a>
+									<a href="#" title="${link.address}" onclick="openLink(${link.id},'${link.address}');" class="name ${link.pub ? '' : 'private-link'}">${link.name != '' ? link.name : link.address}</a>
 									</div>                   				
 									<a href="index.html?site=1&amp;q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<span class="link-item-teaser">— <span class="descr">${link.description}</span><span class="timestamp">${link.dateModFormatted}</span></span>										

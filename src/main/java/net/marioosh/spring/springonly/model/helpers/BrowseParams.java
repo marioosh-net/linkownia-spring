@@ -8,7 +8,7 @@ public class BrowseParams {
 	private String search;
 	private String sort;
 	private Range range;
-	private Boolean pub = true;
+	private Boolean pub;
 	private String shortcut;
 	private Integer idGroup;
 	private Set<Tag> tags;

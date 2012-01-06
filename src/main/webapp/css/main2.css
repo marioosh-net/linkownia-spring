@@ -723,7 +723,9 @@ a.del .button-text:hover, a.del:hover {
 	/*border-bottom: 1px solid #CCDCEF;*/
 	border-bottom: dotted 1px #DDD;
 }
-
+.private-link {
+	color: red;
+}
 .group {
 	min-height: 1%;
 }

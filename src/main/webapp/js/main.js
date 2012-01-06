@@ -91,7 +91,11 @@ function visibility(id) {
 		if(data == '1') {
 			t = 'make private';
 		}
-		jQuery(item).find('a.visibility .button-text').html(t);
+		if(data == '1' || data == '0') {
+			jQuery(item).find('a.visibility .button-text').html(t);
+		} else {
+			alert(data);
+		}
 	});
 	
 }

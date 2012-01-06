@@ -122,9 +122,13 @@ public class LinksController {
 			b.setTags(tagi);
 		}
 		
+		b.setPub(true);
 		for(GrantedAuthority a: SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
 			if(a.getAuthority().equals("ROLE_XXX")) {
 				b.setPub(false);
+			}
+			if(a.getAuthority().equals("ROLE_ADMIN")) {
+				b.setPub(null);
 			}
 		}
 		int count = linkDAO.countAll(b);
