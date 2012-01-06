@@ -28,6 +28,8 @@ public class Link {
 	private int clicks;
 	
 	private Set<Tag> tags;
+	
+	private Integer userId;
 
 	public Link() {
 	}
@@ -148,5 +150,13 @@ public class Link {
 	
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
+	}
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 }
