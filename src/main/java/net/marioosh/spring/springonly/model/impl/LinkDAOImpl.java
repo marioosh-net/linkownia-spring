@@ -86,8 +86,12 @@ public class LinkDAOImpl implements LinkDAO {
         if(link.getName() == null || link.getName().isEmpty()) {
             link.setName(link.getAddress());
         }
+        
+        if(link.getPub() == null) {
+        	link.setPub(true);
+        }
 		
-		jdbcTemplate.update("insert into tlink (address, name, description, ldate, date_mod, clicks) values(?, ?, ?, ?, ?, 0, ?)", link.getAddress(), link.getName(), link.getDescription(), new Date(), link.getLdate(), link.getPub());
+		jdbcTemplate.update("insert into tlink (address, name, description, ldate, date_mod, clicks, pub) values(?, ?, ?, ?, ?, 0, ?)", link.getAddress(), link.getName(), link.getDescription(), new Date(), link.getLdate(), link.getPub());
 	}
 
 	public Integer addOrUpdate(Link link) {
