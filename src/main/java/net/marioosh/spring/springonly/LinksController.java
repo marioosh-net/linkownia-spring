@@ -38,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -316,7 +317,7 @@ public class LinksController {
 	/**
 	 * wykorzystanie Spring Security. Metoda wykona sie jesli jest zalogowany admin
 	 */
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@PreAuthorize("@linksController.isOwner(#id)")
 	@RequestMapping("/delete.html")
 	public String delete(@RequestParam(value="id", defaultValue="-1") Integer id) {
 		try {
@@ -331,8 +332,8 @@ public class LinksController {
 	 * @throws JSONException 
 	 * @RequestBody - parametr metody bedzie zawieral request body
 	 */
+	@PreAuthorize("@linksController.isOwner(#id)")
 	@RequestMapping("/edit.html")
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException, JSONException {
 		Link link = linkDAO.get(id);
 		
@@ -348,7 +349,7 @@ public class LinksController {
 		json.write(response.getWriter());
 	}
 	
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@PreAuthorize("@linksController.isOwner(#id)")
 	@RequestMapping("/refresh.html")
 	public void refresh(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException, JSONException {
 		Link link = linkDAO.get(id);
@@ -369,18 +370,21 @@ public class LinksController {
 
 	}
 
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/visibility.html")
+	@PreAuthorize("@linksController.isOwner(#id)")
 	@ResponseBody
-	public String visibility(@RequestParam(value="id", required=false, defaultValue="-1") Integer id) {
+	public String visibility(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, Principal principal) {
 		Link link = linkDAO.get(id);
-		link.setPub(!link.getPub().booleanValue());
-		linkDAO.update(link);
-		if(link.getPub().booleanValue()) {
-			return "1";
-		} else {
-			return "0";
+		if(link != null) {
+			link.setPub(!link.getPub().booleanValue());
+			linkDAO.update(link);
+			if(link.getPub().booleanValue()) {
+				return "1";
+			} else {
+				return "0";
+			}
 		}
+		return "0";
 	}	
 	
 	@RequestMapping(value = "/open.html")
@@ -449,6 +453,21 @@ public class LinksController {
 			p[i][2] = ((i+1) * perPage) - 1;
 		}
 		return p;
+	}
+
+	
+	public boolean isOwner(Integer linkId) {
+		log.info("PRE-AUTHORIZE: isOwner("+linkId+")");
+		if(user != null) {
+			if(user.getId() == linkDAO.get(linkId).getUserId()) {
+				return true;
+			}
+		} else {
+			if(linkDAO.get(linkId).getUserId() == null) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

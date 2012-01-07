@@ -14,9 +14,9 @@
      http://www.springframework.org/schema/aop 
      http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	 http://www.springframework.org/schema/mvc
-	 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	 http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
      http://www.springframework.org/schema/security
-     http://www.springframework.org/schema/security/spring-security-3.0.3.xsd	      
+     http://www.springframework.org/schema/security/spring-security-3.1.xsd	      
      http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
@@ -78,6 +78,7 @@
 	</bean>
 
 	<!-- Spring Security -->
+	<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" />
 	<security:http auto-config="true" use-expressions="true">
 		<security:form-login default-target-url="/index.html" authentication-failure-url="/login.html?loginfail=1" />
 		<security:logout logout-success-url="/index.html" logout-url="/logout.html" />
@@ -96,9 +97,6 @@
 			<security:password-encoder hash="md5"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
-	
-	<!-- teraz dziala adnotacja @Secured -->
-	<security:global-method-security secured-annotations="enabled" />
 	
 	<!-- simple controller -->
 	<mvc:view-controller path="/test.html" view-name="test"/>

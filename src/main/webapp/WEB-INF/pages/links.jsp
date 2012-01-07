@@ -200,7 +200,7 @@
 	                      				</c:forEach> 
 	                      			</div>
 	                      			
-                      				<c:set var="linkOwner" value="${user != null and user.id == link.userId}"/>
+                      				<c:set var="linkOwner" value="${(user == null and link.userId == null) or(user != null and user.id == link.userId)}"/>
 	                      			<c:set var="adminLogged" value="${false}"/>
 	                      			<security:authorize ifAnyGranted="ROLE_ADMIN">
 	                      				<c:set var="adminLogged" value="${true}"/>
