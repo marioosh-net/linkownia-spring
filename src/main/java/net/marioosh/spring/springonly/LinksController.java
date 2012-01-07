@@ -253,6 +253,7 @@ public class LinksController {
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
+			link.setUserId(user.getId());
 			Integer linkId = linkDAO.addOrUpdate(link);
 			tagDAO.connect(tags1, linkId);			
 			return "redirect:/index.html";
