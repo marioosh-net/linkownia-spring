@@ -78,11 +78,6 @@
 					<div class="right">
 						<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
 						<div class="menu-item">
-							<form action="settings.html" method="post">
-							<select name="mode" onchange="submit();/*mode(jQuery(this).val());*/"><option ${user.mode == 'ALL' ? 'selected="selected"' : ''} value="0">All</option><option ${user.mode == 'PUBLIC' ? 'selected="selected"' : ''} value="1">Public</option><option ${user.mode == 'MY_OWN' ? 'selected="selected"' : ''} value="2">My own</option> </select>
-							</form>
-						</div>
-						<div class="menu-item">
 							<span class="username"><security:authentication property="principal.username" /></span>
 							<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
 						</div>
@@ -161,7 +156,13 @@
 					</security:authorize>
 					
                		<!-- links -->
-                   	<div class="block-header" >Links by date <span class="main-count">(${count})</span>
+                   	<div class="block-header" >Links by date <span class="main-count">(${count})</span> 
+                   		<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+							<form action="settings.html" method="post" style="display: inline;">
+							<select name="mode" onchange="submit();/*mode(jQuery(this).val());*/"><option ${user.mode == 'ALL' ? 'selected="selected"' : ''} value="0">All</option><option ${user.mode == 'PUBLIC' ? 'selected="selected"' : ''} value="1">Public</option><option ${user.mode == 'MY_OWN' ? 'selected="selected"' : ''} value="2">My own</option> </select>
+							</form>
+                   		</security:authorize>
+                   		
                    		<span id="topnavi">
                    		<c:if test="${count > 1}" >
                    			<c:if test="${page != 1}" >
