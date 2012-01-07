@@ -78,6 +78,11 @@
 					<div class="right">
 						<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
 						<div class="menu-item">
+							<form action="settings.html" method="post">
+							<select name="mode" onchange="submit();/*mode(jQuery(this).val());*/"><option ${user.mode == 'ALL' ? 'selected="selected"' : ''} value="0">All</option><option ${user.mode == 'PUBLIC' ? 'selected="selected"' : ''} value="1">Public</option><option ${user.mode == 'MY_OWN' ? 'selected="selected"' : ''} value="2">My own</option> </select>
+							</form>
+						</div>
+						<div class="menu-item">
 							<span class="username"><security:authentication property="principal.username" /></span>
 							<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
 						</div>

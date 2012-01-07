@@ -2,27 +2,16 @@ package net.marioosh.spring.springonly.model.impl;
 
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import javax.sql.DataSource;
-import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.dao.UserDAO;
-import net.marioosh.spring.springonly.model.entities.Link;
-import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.entities.User;
-import net.marioosh.spring.springonly.model.helpers.BrowseParams;
-import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
 import net.marioosh.spring.springonly.model.helpers.UserBrowseParams;
 import net.marioosh.spring.springonly.model.helpers.UserRowMapper;
-import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -107,8 +96,11 @@ public class UserDAOImpl implements UserDAO, UserDetailsService {
 
 	@Override
 	public int update(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		Object[] params = {user.getLogin(), user.getMode().ordinal(), user.getPass(), user.getRole().ordinal(), user.getId()};
+		int[] types = {Types.VARCHAR, Types.SMALLINT, Types.VARCHAR, Types.SMALLINT, Types.SMALLINT};
+		int rows = jdbcTemplate.update("update tuser set login = ?, mode = ?, pass = ?, role = ? where id = ?", params, types);
+		log.debug("Updated "+rows +" rows.");
+		return rows;
 	}
 
 	@Override

@@ -27,6 +27,7 @@ import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.entities.Search;
 import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.entities.User;
+import net.marioosh.spring.springonly.model.entities.User.ListMode;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
@@ -90,7 +91,7 @@ public class LinksController {
 	private User user;
 	
 	@ModelAttribute("user")
-	public void logged(Principal principal) {
+	public User logged(Principal principal) {
 		log.info(principal);
 		if(principal != null) {
 			UserDetails userDetails = (UserDetails)((Authentication)principal).getPrincipal();
@@ -98,7 +99,8 @@ public class LinksController {
 		} else {
 			this.user = null;
 		}
-		log.info("----- USER: "+ user);
+		log.info("----- USER: "+ user);		
+		return this.user;
 	}
 	
 	/**
@@ -137,6 +139,7 @@ public class LinksController {
 		b.setSort("date_mod desc");
 		if(user != null) {
 			b.setUserId(user.getId());
+			b.setMode(user.getMode());
 		}
 		
 		if(!tag.equals("")) {
@@ -215,6 +218,7 @@ public class LinksController {
 		b.setSort("date_mod desc");
 		if(user != null) {
 			b.setUserId(user.getId());
+			b.setMode(user.getMode());
 		}
 		model.addAttribute("links", linkDAO.findAll(b));
 		int count = linkDAO.countAll(b);
@@ -412,6 +416,17 @@ public class LinksController {
 				response.getWriter().print("<b>NOT UPDATED</b></div>");
 			}
 		}
+	}
+	
+	@Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_XXX"})
+	@RequestMapping(value = "/settings.html")
+	public String settings(@RequestParam(defaultValue="-1", required=false,value="mode") Integer mode) {
+		if(mode != -1 && user != null) {
+			user.setMode(ListMode.values()[mode]);
+			log.info(ListMode.values()[mode]);
+			userDAO.update(user);
+		}
+		return "redirect:/index.html";
 	}
 	
 	/**

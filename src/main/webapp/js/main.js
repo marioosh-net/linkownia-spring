@@ -99,6 +99,10 @@ function visibility(id) {
 	});
 	
 }
+function mode(mode) {
+	jQuery.get('settings.html', {'mode': mode}, function(data){
+	});
+}
 function toplinks() {
 	jQuery('#toplinks').load('toplinks.html');
 }

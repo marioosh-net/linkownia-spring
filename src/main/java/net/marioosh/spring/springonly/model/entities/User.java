@@ -13,6 +13,8 @@ public class User {
 	
 	private UserRole role;
 	
+	private ListMode mode;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -45,6 +47,14 @@ public class User {
 		this.role = role;
 	}
 
+	public ListMode getMode() {
+		return mode;
+	}
+	
+	public void setMode(ListMode mode) {
+		this.mode = mode;
+	}
+	
 	@Override
 	public String toString() {
 		return "{"+id+","+login+","+role+"}";
@@ -52,5 +62,9 @@ public class User {
 
 	public enum UserRole {
 		ROLE_USER, ROLE_ADMIN, ROLE_XXX
+	}
+	
+	public enum ListMode {
+		ALL, PUBLIC, MY_OWN
 	}
 }

@@ -2,6 +2,7 @@ package net.marioosh.spring.springonly.model.helpers;
 
 import java.util.Set;
 import net.marioosh.spring.springonly.model.entities.Tag;
+import net.marioosh.spring.springonly.model.entities.User.ListMode;
 
 
 public class BrowseParams {
@@ -13,6 +14,7 @@ public class BrowseParams {
 	private Integer idGroup;
 	private Set<Tag> tags;
 	private Integer userId;
+	private ListMode mode;
 	
 	public String getSearch() {
 		return search;
@@ -76,5 +78,13 @@ public class BrowseParams {
 	
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	
+	public ListMode getMode() {
+		return mode;
+	}
+	
+	public void setMode(ListMode mode) {
+		this.mode = mode;
 	}
 }

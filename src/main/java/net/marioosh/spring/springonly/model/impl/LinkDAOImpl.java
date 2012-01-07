@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import net.marioosh.spring.springonly.model.dao.LinkDAO;
 import net.marioosh.spring.springonly.model.entities.Link;
 import net.marioosh.spring.springonly.model.entities.Tag;
+import net.marioosh.spring.springonly.model.entities.User.ListMode;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
 import net.marioosh.spring.springonly.utils.WebUtils;
@@ -155,8 +156,19 @@ public class LinkDAOImpl implements LinkDAO {
 			s += " and pub = " + browseParams.getPub() + " "; 
 		}
 		
+		ListMode mode = browseParams.getMode();
 		if(browseParams.getUserId() != null) {
-			s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+			if(mode != null) {
+				if(mode.equals(ListMode.ALL)) {
+					s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+				} else if(mode.equals(ListMode.MY_OWN)) {
+					s += " and (user_id = " + browseParams.getUserId() + ") ";
+				} else if(mode.equals(ListMode.PUBLIC)) {
+					s += " and (pub = true) ";
+				}
+			} else {
+				s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+			}
 		} else {
 			s += " and pub = true ";			
 		}
@@ -205,8 +217,19 @@ public class LinkDAOImpl implements LinkDAO {
 			s += " and pub = " + browseParams.getPub() + " "; 
 		}
 		
+		ListMode mode = browseParams.getMode();
 		if(browseParams.getUserId() != null) {
-			s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+			if(mode != null) {
+				if(mode.equals(ListMode.ALL)) {
+					s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+				} else if(mode.equals(ListMode.MY_OWN)) {
+					s += " and (user_id = " + browseParams.getUserId() + ") ";
+				} else if(mode.equals(ListMode.PUBLIC)) {
+					s += " and (pub = true) ";
+				}
+			} else {
+				s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+			}
 		} else {
 			s += " and pub = true ";
 		}
