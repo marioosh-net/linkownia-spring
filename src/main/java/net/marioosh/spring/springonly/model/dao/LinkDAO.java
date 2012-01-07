@@ -9,7 +9,7 @@ public interface LinkDAO {
 	public int countAll(BrowseParams browseParams);
 	public Link get(Integer id);
 	public Link get(Integer id, Integer userId);
-	public Link get(String address);
+	public Link get(String address, Integer userId);
 	public void add(Link link);
 	public Integer addOrUpdate(Link link);
 	public void delete(Integer id);

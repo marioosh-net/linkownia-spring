@@ -60,13 +60,13 @@
 			<div id="menu">
 				<div class="fixedwidth">
 					<div class="left">
-		       			<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+		       			<%--<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">--%>
 		       			<div class="menu-item first-item">
 							<a href="#" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
 						</div>
-						</security:authorize>
+						<%--</security:authorize>--%>
 						
-						<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+						<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
 						<div class="menu-item">
 							<%--<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
 							<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>
@@ -76,7 +76,7 @@
 					</div>
 					
 					<div class="right">
-						<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+						<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
 						<div class="menu-item">
 							<span class="username"><security:authentication property="principal.username" /></span>
 							<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
@@ -122,7 +122,7 @@
 					</div>
 						
 					<!-- new link form -->
-					<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">			
+					<%--<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">--%>			
 					<div class="panel" id="new" style="${someErrors ? '' : 'display: none;'}">
 						<!-- <form method="post" action="add.html"> -->
 						<form:form commandName="link" method="post" action="add.html" id="newform">
@@ -153,11 +153,11 @@
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>					
-					</security:authorize>
+					<%--</security:authorize>--%>
 					
                		<!-- links -->
                    	<div class="block-header" >Links by date <span class="main-count">(${count})</span> 
-                   		<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
+                   		<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
 							<form action="settings.html" method="post" style="display: inline;">
 							<select name="mode" onchange="submit();/*mode(jQuery(this).val());*/"><option ${user.mode == 'ALL' ? 'selected="selected"' : ''} value="0">All</option><option ${user.mode == 'PUBLIC' ? 'selected="selected"' : ''} value="1">Public</option><option ${user.mode == 'MY_OWN' ? 'selected="selected"' : ''} value="2">My own</option> </select>
 							</form>
@@ -200,9 +200,13 @@
 	                      				</c:forEach> 
 	                      			</div>
 	                      			
-	                      			<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
-                      				<div class="admin-funcs">
-                      					<security:authorize access="hasRole('ROLE_ADMIN')">
+                      				<c:set var="linkOwner" value="${user != null and user.id == link.userId}"/>
+	                      			<c:set var="adminLogged" value="${false}"/>
+	                      			<security:authorize ifAnyGranted="ROLE_ADMIN">
+	                      				<c:set var="adminLogged" value="${true}"/>
+	                      			</security:authorize>
+	                      			<c:if test="${linkOwner or adminLogged}">
+	                      				<div class="admin-funcs">
 	                      					<span class="func-item">
 		                      					<a class="del" href="#" onclick="deleteLink(${link.id})"><img src="images/del.png"/><span class="button-text">delete</span></a>
 		                      				</span>
@@ -212,14 +216,11 @@
 		                      				<span class="func-item">	
 		                      					<a class="refresh" href="#" onclick="refresh(${link.id}); return false;"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
 	                      					</span>                      					
-                      					</security:authorize>
-                      					<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER, ROLE_XXX">
-	                      					<span class="func-item">
+                      						<span class="func-item">
 	                      						<a class="visibility" href="#" onclick="visibility(${link.id}); return false;"><img src="images/icon_padlock.gif"/><span class="button-text">${link.pub ? 'make private' : 'make public'}</span></a>
 	                      					</span>
-                      					</security:authorize>
-                      				</div>                      				
-                      				</security:authorize>
+    	                  				</div>                      				
+                      				</c:if>
                       			</div>
                       			<div style="clear: both;"></div>
                       		</div>

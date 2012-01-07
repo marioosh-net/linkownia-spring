@@ -239,7 +239,6 @@ public class LinksController {
 	}
 	*/
 
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/add.html", method = RequestMethod.POST)
 	public String processSubmit(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
 		Link link = linkForm.getLink();
@@ -253,7 +252,7 @@ public class LinksController {
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
-			link.setUserId(user.getId());
+			link.setUserId(user != null ? user.getId(): null);
 			Integer linkId = linkDAO.addOrUpdate(link);
 			tagDAO.connect(tags1, linkId);			
 			return "redirect:/index.html";
@@ -290,7 +289,6 @@ public class LinksController {
 		}
 	}
 	
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/quickadd.html")
 	public String quickAdd(@RequestParam(value="url") String address) {
 		Link link = new Link();
@@ -318,7 +316,7 @@ public class LinksController {
 	/**
 	 * wykorzystanie Spring Security. Metoda wykona sie jesli jest zalogowany admin
 	 */
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/delete.html")
 	public String delete(@RequestParam(value="id", defaultValue="-1") Integer id) {
 		try {
@@ -334,7 +332,7 @@ public class LinksController {
 	 * @RequestBody - parametr metody bedzie zawieral request body
 	 */
 	@RequestMapping("/edit.html")
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException, JSONException {
 		Link link = linkDAO.get(id);
 		
@@ -350,7 +348,7 @@ public class LinksController {
 		json.write(response.getWriter());
 	}
 	
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/refresh.html")
 	public void refresh(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response) throws IOException, JSONException {
 		Link link = linkDAO.get(id);
@@ -397,6 +395,7 @@ public class LinksController {
 		response.getWriter().print(++i);
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/refreshall.html")
 	public void refreshAll(HttpServletResponse response) throws IOException {
 		for(Link l: linkDAO.findAll(new BrowseParams())) {
@@ -419,7 +418,7 @@ public class LinksController {
 		}
 	}
 	
-	@Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_XXX"})
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "/settings.html")
 	public String settings(@RequestParam(defaultValue="-1", required=false,value="mode") Integer mode) {
 		if(mode != -1 && user != null) {

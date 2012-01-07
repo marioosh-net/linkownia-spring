@@ -61,7 +61,7 @@ public class User {
 	}
 
 	public enum UserRole {
-		ROLE_USER, ROLE_ADMIN, ROLE_XXX
+		ROLE_USER, ROLE_ADMIN
 	}
 	
 	public enum ListMode {

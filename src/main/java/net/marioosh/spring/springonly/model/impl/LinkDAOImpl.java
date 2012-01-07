@@ -67,15 +67,27 @@ public class LinkDAOImpl implements LinkDAO {
 		}
 	}
 
-	public Link get(String address) {
+	public Link get(String address, Integer userId) {
 		String sql = "select * from tlink where address = ?";
-		try {
-			List<Link> links = jdbcTemplate.query(sql, new String[] { address }, new BeanPropertyRowMapper<Link>(Link.class));
-			if(links.size() > 0) {
-				return links.get(0);				
-			}
-		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
-			return null;
+		if(userId != null) {
+			sql += " and user_id = ?";
+			try {
+				List<Link> links = jdbcTemplate.query(sql, new Object[] { address, userId }, new BeanPropertyRowMapper<Link>(Link.class));
+				if(links.size() > 0) {
+					return links.get(0);				
+				}
+			} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+				return null;
+			}			
+		} else {
+			try {
+				List<Link> links = jdbcTemplate.query(sql, new Object[] { address}, new BeanPropertyRowMapper<Link>(Link.class));
+				if(links.size() > 0) {
+					return links.get(0);				
+				}
+			} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+				return null;
+			}						
 		}
 		return null;
 	}
@@ -107,8 +119,7 @@ public class LinkDAOImpl implements LinkDAO {
 	}
 
 	public Integer addOrUpdate(Link link) {
-		Link l = get(link.getAddress());
-		l = get(l.getId(), l.getUserId()); // getnij ale wlasny
+		Link l = get(link.getAddress(), link.getUserId());
 		if(l != null) {
 			// update
 			if(link.getDescription() != null && !link.getDescription().isEmpty()) {
