@@ -280,7 +280,7 @@ public class LinkDAOImpl implements LinkDAO {
 	public int update(Link link) {
 		Object[] params = {link.getAddress(), link.getName(), link.getDescription(), link.getClicks(), link.getLdate(), link.getDateMod(), link.getUserId(), link.getId()};
 		int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.TIMESTAMP, Types.TIMESTAMP, Types.SMALLINT, Types.SMALLINT};
-		int rows = jdbcTemplate.update("update tlink set address = ?, name = ?, description = ?, clicks = ?, ldate = ?, date_mod = ?, user_id = ?, pub = "+link.getPub().booleanValue()+" where id = ?", params, types);
+		int rows = jdbcTemplate.update("update tlink set address = ?, name = ?, description = ?, clicks = ?, ldate = ?, date_mod = ?, user_id = ?, pub = "+link.getPub()+" where id = ?", params, types);
 		log.debug("Updated "+rows +" rows.");
 		return rows;
 	}
