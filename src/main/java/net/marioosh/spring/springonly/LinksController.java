@@ -6,6 +6,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -37,6 +38,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -47,8 +49,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,12 +86,16 @@ public class LinksController {
 	 * zarejestrowanie innego validatora
 	 * @param binder
 	 */
-	/*
+
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        binder.setValidator(new LinkValidator());
+    	   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
+    	    dateFormat.setLenient(false);
+
+    	    // true passed to CustomDateEditor constructor means convert empty String to null
+    	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-    */
+
 
 	private User user;
 	
@@ -265,9 +273,11 @@ public class LinksController {
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@PreAuthorize("@linksController.isOwner(#id)")
 	@RequestMapping(value="/save.html", method = RequestMethod.POST)
-	public String processSave(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
+	public String processSave(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, @RequestParam Integer id, SessionStatus status, Model model) {
 		Link link = linkForm.getLink();
+		log.info(linkForm.getLink());
 		// String[] tags = linkForm.getTags().replaceAll("[\\s]{2,}", " ").split(" ");
 		String[] tags = linkForm.getTags().trim().replaceAll(" ", ",").replaceAll("[\\s]{2,}", " ").split(",");
 		log.debug("TAGS:" + tags);
@@ -277,6 +287,7 @@ public class LinksController {
 				tags1.add(tag);
 			}
 		}
+		log.info(result.hasErrors());
 		if(!result.hasErrors()) {
 			link.setDateMod(new Date());
 			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());

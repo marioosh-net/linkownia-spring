@@ -159,4 +159,20 @@ public class Link {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+	
+	@Override
+	public String toString() {
+		return "{\n" +
+				"id:"+id+",\n "+
+				"userId:"+userId+",\n "+
+				"pub:"+pub+",\n "+				
+				"address:"+address+",\n "+
+				"name:"+name+",\n "+
+				"description:"+description+",\n "+				
+				"dateMod:"+dateMod+",\n "+
+				"ldate:"+ldate+",\n "+
+				"clicks:"+clicks+",\n "+				
+				"tags:"+tags
+				+"\n}";
+	}
 }

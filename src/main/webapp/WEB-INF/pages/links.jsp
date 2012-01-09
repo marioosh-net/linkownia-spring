@@ -140,13 +140,19 @@
 					</div>
 					<div class="panel" id="edit" style="${someSaveErrors ? '' : 'display: none;'}">
 						<form:form commandName="link" method="post" action="save.html" id="editform">
-							<input type="hidden" id="id" name="link.id"/>
+						      <input type="hidden" name="id"/>
+							<input type="hidden" name="link.id"/>
+							<input type="hidden" name="link.ldate"/>
+							<input type="hidden" name="link.pub"/>
+							<input type="hidden" name="link.userId"/>
+							<input type="hidden" name="link.dateMod"/>
+							<input type="hidden" name="link.clicks"/>
 							<label>Address</label>&#160;<form:errors cssStyle="${someSaveErrors ? '' : 'display: none;'}" path="link.address" cssClass="errors" /><br/>
-							<input type="text" id="address2" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
+							<input type="text" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
-							<input type="text" id="name" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
+							<input type="text" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
 							<label>Description</label><br/>
-							<textarea id="description" name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
+							<textarea name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
 							<label>Tags</label><br/>
 							<input id="tags_edit" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter tags_input"/><br/>
 							<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>

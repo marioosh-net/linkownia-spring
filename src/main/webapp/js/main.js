@@ -50,10 +50,17 @@ function edit(id) {
 	jQuery('#editform')[0].reset();/* clear form */
 			
 	jQuery.post('edit.html', {'id': id}, function(data) {
-		jQuery('#id').val(data['id']);
-		jQuery('#name').val(data['name']);
-		jQuery('#address2').val(data['address']);
-		jQuery('#description').val(data['description']);
+		jQuery('#editform input[name="id"]').val(data['id']);
+		jQuery('#editform input[name="link.id"]').val(data['id']);
+		jQuery('#editform input[name="link.name"]').val(data['name']);
+		jQuery('#editform input[name="link.address"]').val(data['address']);
+		jQuery('#editform textarea[name="link.description"]').val(data['description']);
+		jQuery('#editform input[name="link.clicks"]').val(data['clicks']);
+		jQuery('#editform input[name="link.ldate"]').val(data['ldate']);
+		jQuery('#editform input[name="link.userId"]').val(data['userId']);
+		jQuery('#editform input[name="link.dateMod"]').val(data['dateMod']);
+		jQuery('#editform input[name="link.pub"]').val(data['pub']);
+		
 		jQuery('#debug-content').html('NAME:'+data['name']+'<br/>DESC:'+data['description']);
 		/*jQuery('#tags_edit').val(data['tags']);*/
 		/*hidepanels('edit', function() {jQuery('#address2').focus();});*/
