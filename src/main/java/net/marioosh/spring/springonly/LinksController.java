@@ -273,9 +273,9 @@ public class LinksController {
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
-	@PreAuthorize("@linksController.isOwner(#id)")
+	@PreAuthorize("@linksController.isOwner(#linkForm.link.id)")
 	@RequestMapping(value="/save.html", method = RequestMethod.POST)
-	public String processSave(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, @RequestParam Integer id, SessionStatus status, Model model) {
+	public String processSave(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, SessionStatus status, Model model) {
 		Link link = linkForm.getLink();
 		log.info(linkForm.getLink());
 		// String[] tags = linkForm.getTags().replaceAll("[\\s]{2,}", " ").split(" ");
@@ -339,25 +339,32 @@ public class LinksController {
 		}
 	}
 	
-	/**
-	 * @throws JSONException 
-	 * @RequestBody - parametr metody bedzie zawieral request body
-	 */
 	@PreAuthorize("@linksController.isOwner(#id)")
 	@RequestMapping("/edit.html")
-	public void edit(@RequestParam(value="id", required=false, defaultValue="-1") Integer id, HttpServletResponse response, @RequestBody String body) throws IOException, JSONException {
-		Link link = linkDAO.get(id);
+	public String edit(@Valid @ModelAttribute("link") LinkForm linkForm, BindingResult result, @RequestParam Integer id, Model model, HttpServletRequest request) {
+		LinkForm l = new LinkForm();
+		Link ln = linkDAO.get(id);
 		
-		Set<Tag> tags = new HashSet<Tag>();
+		/*
+		Object[] ln2 = linkDAO.getWithTags(id);
+		log.info("0:"+ln2[0]);
+		log.info("1:"+ln2[1]);
+		*/
+		
+		l.setLink(ln);
+		String tags = "";
+		Set<Tag> tagsSet = new HashSet<Tag>();
 		TagBrowseParams bp = new TagBrowseParams();
-		bp.setLinkId(link.getId());
-		tags.addAll(tagDAO.findAll(bp));
-		link.setTags(tags);
-		
-		JSONObject json = new JSONObject(link);
-		/*response.setContentType("text/x-json;charset=UTF-8");*/
-		json.write(new BufferedWriter(new OutputStreamWriter(System.out)));
-		json.write(response.getWriter());
+		bp.setLinkId(id);
+		tagsSet.addAll(tagDAO.findAll(bp));
+		if(!tagsSet.isEmpty()) {
+			for(Tag t: tagsSet) {
+				tags += t.getTag() + ", ";
+			}
+		}
+		l.setTags(tags);
+		model.addAttribute("link", l);
+		return "editform";
 	}
 	
 	@PreAuthorize("@linksController.isOwner(#id)")

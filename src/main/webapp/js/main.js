@@ -47,24 +47,7 @@ function openLink(id, url) {
 	window.open(url);
 }
 function edit(id) {
-	jQuery('#editform')[0].reset();/* clear form */
-			
-	jQuery.post('edit.html', {'id': id}, function(data) {
-		jQuery('#editform input[name="id"]').val(data['id']);
-		jQuery('#editform input[name="link.id"]').val(data['id']);
-		jQuery('#editform input[name="link.name"]').val(data['name']);
-		jQuery('#editform input[name="link.address"]').val(data['address']);
-		jQuery('#editform textarea[name="link.description"]').val(data['description']);
-		jQuery('#editform input[name="link.clicks"]').val(data['clicks']);
-		jQuery('#editform input[name="link.ldate"]').val(data['ldate']);
-		jQuery('#editform input[name="link.userId"]').val(data['userId']);
-		jQuery('#editform input[name="link.dateMod"]').val(data['dateMod']);
-		jQuery('#editform input[name="link.pub"]').val(data['pub']);
-		
-		jQuery('#debug-content').html('NAME:'+data['name']+'<br/>DESC:'+data['description']);
-		/*jQuery('#tags_edit').val(data['tags']);*/
-		/*hidepanels('edit', function() {jQuery('#address2').focus();});*/
-		
+	jQuery('#edit').load('edit.html', {'id': id}, function(data){
 		if(jQuery('#edit').css('display') != 'none') {
 			jQuery('.panel').each(function(index) {
 				jQuery(this).hide('fast', function(){
@@ -74,8 +57,10 @@ function edit(id) {
 		} else {
 			hidepanels('edit', function() {jQuery('#address2').focus();});
 		}
-	}, 'json');
+		autocomplete();
+	});
 }
+
 /* odswiez linka, pociagnij name, description */
 function refresh(id) {
 	jQuery('.ajax_'+id).show();
@@ -135,46 +120,50 @@ jQuery(document).ready(function(){
 			$(this).closest('form').submit();
 		}
 	});
-	
+	autocomplete();
+});
+function autocomplete() {
 	jQuery.ajax({
 		url: 'alltags.html',
 		success: function(data) {
-			jQuery('.tags_input')
-			.bind( 'keydown', function( event ) {
+			
+			jQuery('.tags_input').each(function(index){
+				jQuery(this)
+				.bind( 'keydown', function( event ) {
 					if ( event.keyCode === 13 && $(this).data('autocomplete').menu.active) {
 						event.preventDefault();
 					}
 					if ( event.keyCode === $.ui.keyCode.TAB && $(this).data('autocomplete').menu.active ) {
 						event.preventDefault();
 					}
-			})			
-			.autocomplete({
-				source: function(request, response) {
-					response($.ui.autocomplete.filter(data, extractLast(request.term)));
-					/*
-				      jQuery.getJSON('alltags.html?query='+request.term, function(data) {
-		                    response(data);
-		              });
-		            */
-				},
-				focus: function() {
-					// prevent value inserted on focus
-					return false;
-				},
-				select: function( event, ui ) {
-					var terms = split( this.value );
-					// remove the current input
-					terms.pop();
-					// add the selected item
-					terms.push( ui.item.value );
-					// add placeholder to get the comma-and-space at the end
-					terms.push( "" );
-					this.value = terms.join( ", " );
-					return false;
-				}				
+				})			
+				.autocomplete({
+					source: function(request, response) {
+						response($.ui.autocomplete.filter(data, extractLast(request.term)));
+						/*
+					      jQuery.getJSON('alltags.html?query='+request.term, function(data) {
+			                    response(data);
+			              });
+			            */
+					},
+					focus: function() {
+						// prevent value inserted on focus
+						return false;
+					},
+					select: function( event, ui ) {
+						var terms = split( this.value );
+						// remove the current input
+						terms.pop();
+						// add the selected item
+						terms.push( ui.item.value );
+						// add placeholder to get the comma-and-space at the end
+						terms.push( "" );
+						this.value = terms.join( ", " );
+						return false;
+					}				
+				});				
 			});
 		},
 		dataType: 'json'
-	});
-	
-});
+	});	
+}

@@ -49,7 +49,7 @@ a:focus {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -150px;  
+	margin: 0 auto -15em;  
 }
 #main {
 	/*overflow:auto;*/
@@ -149,7 +149,7 @@ a:focus {
     font-size: 13px;
 }
 #push, #footer {
-    height: 150px;
+    height: 15em;
 }
 #footer a {
 	color: #fff;
@@ -231,6 +231,14 @@ a:focus {
 }
 /* debug END */
 
+/* forms */
+#editform input[type="text"] {
+    width: 404px;
+}
+#qtext {
+    width: 150px;
+}
+/* forms end */
 
 #navi {
 }

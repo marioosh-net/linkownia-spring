@@ -11,6 +11,7 @@ import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.entities.User.ListMode;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.LinkRowMapper;
+import net.marioosh.spring.springonly.model.helpers.LinkWithTagsRowMapper;
 import net.marioosh.spring.springonly.utils.WebUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,15 @@ public class LinkDAOImpl implements LinkDAO {
 			return null;
 		}
 	}	
+	
+	public Object[] getWithTags(Integer id) {
+		String sql = "select l.*, array_to_string(array(select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id),',') as tags from tlink l where l.id = ?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] { id }, new LinkWithTagsRowMapper());
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			return null;
+		}		
+	}
 	
 	@Override
 	public Link get(Integer id, Integer userId) {
