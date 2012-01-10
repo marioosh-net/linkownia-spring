@@ -72,7 +72,7 @@
 							<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>
 						</div>
 						<div class="menu-item">
-                            <a href="#" onclick="register();"><img width="51" height="20" src="images/registerbutton.png"/></a>
+                            <a href="#" onclick="register();"><img width="70" height="20" src="images/registerbutton.png"/></a>
 						</div>
 						</security:authorize>
 						<div class="clear"></div>
