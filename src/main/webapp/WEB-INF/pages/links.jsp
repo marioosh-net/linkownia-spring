@@ -71,6 +71,9 @@
 							<%--<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
 							<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>
 						</div>
+						<div class="menu-item">
+                            <a href="#" onclick="register();"><img width="51" height="20" src="images/registerbutton.png"/></a>
+						</div>
 						</security:authorize>
 						<div class="clear"></div>
 					</div>
@@ -139,26 +142,9 @@
 						</form:form>
 					</div>
 					<div class="panel" id="edit" style="${someSaveErrors ? '' : 'display: none;'}">
-						<form:form commandName="link" method="post" action="save.html" id="editform">
-						      <input type="hidden" name="id"/>
-							<input type="hidden" name="link.id"/>
-							<input type="hidden" name="link.ldate"/>
-							<input type="hidden" name="link.pub"/>
-							<input type="hidden" name="link.userId"/>
-							<input type="hidden" name="link.dateMod"/>
-							<input type="hidden" name="link.clicks"/>
-							<label>Address</label>&#160;<form:errors cssStyle="${someSaveErrors ? '' : 'display: none;'}" path="link.address" cssClass="errors" /><br/>
-							<input type="text" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
-							<label>Name</label><br/>
-							<input type="text" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
-							<label>Description</label><br/>
-							<textarea name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
-							<label>Tags</label><br/>
-							<input id="tags_edit" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="enter tags_input"/><br/>
-							<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
-							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
-						</form:form>
 					</div>					
+                    <div class="panel" id="register" style="${someRegisterErrors ? '' : 'display: none;'}">
+                    </div>					
 					<%--</security:authorize>--%>
 					
                		<!-- links -->

@@ -3,6 +3,7 @@ package net.marioosh.spring.springonly.model.impl;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import net.marioosh.spring.springonly.model.dao.UserDAO;
@@ -19,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.DigestUtils;
 
 /**
  * 
@@ -78,8 +80,7 @@ public class UserDAOImpl implements UserDAO, UserDetailsService {
 
 	@Override
 	public void add(User user) {
-		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update("insert into tuser (login, pass, join_date) values(?, ?, ?)", user.getLogin(), DigestUtils.md5DigestAsHex(user.getPass().getBytes()), new Date());
 	}
 
 	@Override

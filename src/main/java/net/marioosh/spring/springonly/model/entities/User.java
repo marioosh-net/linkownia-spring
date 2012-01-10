@@ -1,5 +1,7 @@
 package net.marioosh.spring.springonly.model.entities;
 
+import java.util.Date;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class User {
@@ -11,9 +13,11 @@ public class User {
 	@NotEmpty
 	private String pass;
 	
-	private UserRole role;
+	private UserRole role = UserRole.ROLE_USER;
 	
-	private ListMode mode;
+	private ListMode mode = ListMode.ALL;
+	
+	private Date joinDate;
 	
 	public Integer getId() {
 		return id;
@@ -55,9 +59,17 @@ public class User {
 		this.mode = mode;
 	}
 	
+	public Date getJoinDate() {
+		return joinDate;
+	}
+	
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+	
 	@Override
 	public String toString() {
-		return "{"+id+","+login+","+role+"}";
+		return "{"+id+","+login+","+role+","+joinDate+"}";
 	}
 
 	public enum UserRole {

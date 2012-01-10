@@ -29,6 +29,7 @@ import net.marioosh.spring.springonly.model.entities.Search;
 import net.marioosh.spring.springonly.model.entities.Tag;
 import net.marioosh.spring.springonly.model.entities.User;
 import net.marioosh.spring.springonly.model.entities.User.ListMode;
+import net.marioosh.spring.springonly.model.entities.User.UserRole;
 import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 import net.marioosh.spring.springonly.model.helpers.Range;
 import net.marioosh.spring.springonly.model.helpers.SearchBrowseParams;
@@ -449,6 +450,25 @@ public class LinksController {
 			userDAO.update(user);
 		}
 		return "redirect:/index.html";
+	}
+	
+	@RequestMapping(value = "/register.html")
+	public String register(@Valid @ModelAttribute("user1") User user, BindingResult result, HttpServletRequest req, Model model) {
+		if(req.getMethod().equalsIgnoreCase("GET")) {
+			User u = new User();
+			model.addAttribute("user1", new User());
+		} else {
+			log.info(result.hasErrors());
+			if(!result.hasErrors()) {
+				log.info(user);
+				userDAO.add(user);
+				return "redirect:/index.html";
+			} else {
+				model.addAttribute("errors", result.getAllErrors());
+				model.addAttribute("someRegisterErrors", true);
+			}
+		}
+		return "registerform";
 	}
 	
 	/**

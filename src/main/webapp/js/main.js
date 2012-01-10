@@ -60,6 +60,11 @@ function edit(id) {
 		autocomplete();
 	});
 }
+function register() {
+	jQuery('#register').load('register.html', function(data){
+		hidepanels('register', function() {jQuery('#userlogin').focus();});
+	});
+}
 
 /* odswiez linka, pociagnij name, description */
 function refresh(id) {
