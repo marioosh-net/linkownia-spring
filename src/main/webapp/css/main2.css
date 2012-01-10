@@ -40,6 +40,10 @@ a:focus {
 	outline: 0px;
 }
 
+label {
+	font-size: 0.9em;
+}
+
 /** layout **/
 #body {
 	text-align: center;
@@ -146,7 +150,7 @@ a:focus {
 	background-color: #000;
 	color: #fff;
 	/*background: url(../images/footer_bg.gif)*/
-    font-size: 13px;
+    font-size: 1.08em;
 }
 #push, #footer {
     height: 15em;
@@ -218,7 +222,7 @@ a:focus {
 	left: 5px;
 	color: #000;
 	background-color: #f0f0f0;
-	font-size: 11px;
+	font-size: 0.91em;
 	border: 1px solid #000;
 }
 #debug a.debugbutton {
@@ -255,15 +259,14 @@ a:focus {
 
 #topnavi {
 	float: right;
+	font-size: 0.7em;
 }
 
 #topnavi .inactive {
-	font-size: 12px;
 	border-bottom: 1px solid #999;
 	color: #999;
 }
 #topnavi a {
-	font-size: 12px;
 	border-bottom: 1px solid #CEDBF1;
 	color: #5F88CE;
 }
@@ -290,7 +293,7 @@ a:focus {
 	text-decoration: none;
 	border-bottom: 1px solid #419bcb;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 1.25em;
 }
 #login a:hover, #new a:hover {
 	color: #000;
@@ -302,7 +305,7 @@ a:focus {
 	text-decoration: none;
 	border-bottom: 1px solid #419bcb;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 1.25em;
 }
 .panel a:hover {
 	color: #000;
@@ -323,7 +326,7 @@ span.search-item, div.search-item {
 span.search-item a, div.search-item a {
 	border-bottom: 1px solid #AEC3E7;
 	color: #2854BB;
-	font-size: 12px;
+	font-size: 1em;
 	word-wrap: break-word;
 	border-bottom: 1px solid #CEDBF1;
 	color: #5F88CE;	
@@ -377,7 +380,7 @@ div.copyright {
 
 div.copyright p {
 	color: #909090;
-	font-size: 11px;
+	font-size: 0.91em;
 	padding-left: 8px;
 }
 
@@ -395,7 +398,7 @@ div.copyright div.bookmarkIcons img {
 div.copyright p.rights {
 	/*width: 163px;*/
 	float: left;
-	font-size: 10px;
+	font-size: 0.83em;
 }
 
 div.copyright p.rights a {
@@ -418,7 +421,7 @@ div.copyright p.rights a {
 	padding: 0px;
 	width: 647px;
 	font-family: Arial;
-	font-size: 27px;
+	font-size: 2.5em;
 	font-weight: bold;
 	color: #000000;
 }
@@ -429,7 +432,7 @@ div.copyright p.rights a {
 	padding: 0px 0 16px 0;
 	width: 647px;
 	font-family: Arial;
-	font-size: 13px;
+	font-size: 1.08em;
 	font-weight: normal;
 	color: #000000;
 	line-height: 21px;
@@ -438,13 +441,13 @@ div.copyright p.rights a {
 #leftPan p a {
 	color: #419bcb;
 	/*text-decoration: underline;*/
-	font-size: 11px;
+	font-size: 0.91em;
 }
 
 #leftPan p a:hover {
 	color: #419bcb;
 	text-decoration: none;
-	font-size: 11px;
+	font-size: 0.91em;
 }
 
 /* --- stylin blog page --- */
@@ -461,7 +464,7 @@ div.copyright p.rights a {
 }
 
 #leftPan ul.blog li h3 {
-	font-size: 22px;
+	font-size: 1.83em;
 	font-weight: normal;
 	padding: 10px 0 0 0;
 	margin: 0;
@@ -496,7 +499,7 @@ div.copyright p.rights a {
 }
 
 #leftPan ul.portfolio li h3 {
-	font-size: 22px;
+	font-size: 1.83em;
 	font-weight: normal;
 	padding: 10px 0 0 0;
 	margin: 0;
@@ -531,7 +534,7 @@ div.copyright p.rights a {
 #bodyRight h5 {
 	width: 250px;
 	float: left;
-	font-size: 13px;
+	font-size: 1.08em;
 	padding: 9px 0 0 20px;
 }
 
@@ -556,7 +559,7 @@ div.copyright p.rights a {
 }
 
 #leftPan ul.usefullinks li h3 {
-	font-size: 22px;
+	font-size: 1.83em;
 	font-weight: normal;
 	padding: 10px 0 0 0;
 	margin: 0;
@@ -568,7 +571,7 @@ div.copyright p.rights a {
 }
 
 #leftPan ul.usefullinks li a.link {
-	font-size: 14px;
+	font-size: 1.16em;
 }
 
 #leftPan ul.usefullinks li span.date {
@@ -591,7 +594,7 @@ div.copyright p.rights a {
 }
 
 #leftPan ul.sitemap li a {
-	font-size: 12px;
+	font-size: 1em;
 	color: #0075ab;
 	text-decoration: none;
 	padding-left: 8px;
@@ -616,7 +619,7 @@ div.copyright p.rights a {
 	padding-bottom: 7px;
 	position: relative;
 	color: #383529;
-	font-size: 18px;
+	font-size: 1.5em;
 }
 
 .link-item-details {
@@ -640,7 +643,7 @@ div.copyright p.rights a {
 	border-bottom: 1px solid #AEC3E7;
 	color: #2854BB;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 1.25em;
 	word-wrap: break-word;
 }
 
@@ -667,7 +670,7 @@ div.copyright p.rights a {
 	float: left;
 	width: 40px;
 	height: 19px;
-	font-size: 18px;
+	font-size: 1.5em;
 	font-weight: bold;
 	color: #999;
 	text-align: center;
@@ -690,7 +693,7 @@ div.copyright p.rights a {
 
 /** tags **/
 .tags {
-	font-size: 11px;
+	font-size: 0.91em;
 	float: right;
 }
 .tags a {
@@ -708,7 +711,7 @@ div.copyright p.rights a {
 
 /** admin link buttons **/
 .admin-funcs {
-	font-size: 11px;
+	font-size: 0.91em;
 }
 .admin-funcs .button-text {
 	color: #5F88CE;
