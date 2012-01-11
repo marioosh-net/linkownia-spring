@@ -106,16 +106,21 @@ label {
 	font-weight: normal;
 }
 #menu .menu-item {
-	border-right: 1px solid #999;
-	padding-left: 5px;
-	padding-right: 5px;
-	width: 100px;
+	border-left: 1px solid #999;
+	padding-left: 10px;
+	padding-right: 10px;
 	float: left;
 	height: 20px;
 	/*text-align: center;*/
 }
 #menu .first-item {
-	border-left: 1px solid #999;
+	border-left: none;
+	padding-left: 0px;
+}
+#menu .last-item {
+    border-right: none;
+    border-left: none;
+    padding-right: 0px;
 }
 #menu .menu-item a {
 	color: #fff;

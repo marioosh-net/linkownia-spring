@@ -62,7 +62,7 @@
 					<div class="left">
 		       			<%--<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">--%>
 		       			<div class="menu-item first-item">
-							<a href="#" onclick="hidepanels('new', function() {jQuery('#address').focus();});"><img width="51" height="20" src="images/add.png"/></a>
+							<a href="#" onclick="hidepanels('new', function() {jQuery('#address').focus();});">New link</a>
 						</div>
 						<%--</security:authorize>--%>
 						
@@ -70,10 +70,10 @@
 						<div class="menu-item">
 							<%--<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
 							<%--<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
-							<a href="#" onclick="login();"><img width="51" height="20" src="images/loginbutton.png"/></a>
+							<a href="#" onclick="login();">Login</a>
 						</div>
 						<div class="menu-item">
-                            <a href="#" onclick="register();"><img width="70" height="20" src="images/registerbutton.png"/></a>
+                            <a href="#" onclick="register();">Register</a>
 						</div>
 						</security:authorize>
 						<div class="clear"></div>
@@ -81,7 +81,7 @@
 					
 					<div class="right">
 						<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
-						<div class="menu-item">
+						<div class="menu-item last-item">
 							<span class="username"><security:authentication property="principal.username" /></span>
 							<a href="<%= request.getContextPath() %>/logout.html" >Logout</a>
 						</div>

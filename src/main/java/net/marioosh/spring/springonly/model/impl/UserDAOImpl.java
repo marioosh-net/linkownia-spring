@@ -105,9 +105,7 @@ public class UserDAOImpl implements UserDAO, UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String login)
 			throws UsernameNotFoundException, DataAccessException {
-		log.info("login... "+login);
 		final User user = get(login);
-		log.info(user);
 		if(user != null) {
 			return new UserDetails() {
 				
