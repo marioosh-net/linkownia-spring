@@ -106,11 +106,11 @@ public class AjaxFormsController {
 		return "registerform";
 	}
 
-	@RequestMapping(value = "/login.html")
-	public String loginHandler(Model model) {
+	@RequestMapping(value = "/login2.html")
+	public String loginHandler2(Model model) {
 		return "login";
 	}
-	
+		
 	/**
 	 * @param ex
 	 * @param response

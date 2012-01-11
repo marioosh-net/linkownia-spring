@@ -214,6 +214,12 @@ public class LinksController {
 		return "links";
 	}
 	
+	@RequestMapping(value = "/login.html")
+	public String loginHandler(Model model) {
+		model.addAttribute("loginInProgress", true);
+		return "links";
+	}
+
 	@RequestMapping(value="/list.html")
 	public String list(@RequestParam(value="q", required=false, defaultValue="") String search, @RequestParam(value="p", required=false, defaultValue="1") int p, Model model, Principal principal) {		
 		BrowseParams b = new BrowseParams();

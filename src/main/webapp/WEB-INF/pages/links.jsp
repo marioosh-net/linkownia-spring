@@ -70,7 +70,8 @@
 						<div class="menu-item">
 							<%--<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
 							<%--<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
-							<a href="#" onclick="login();">Login</a>
+							<%--<a href="#" onclick="login();">Login</a>--%>
+							<a href="<c:url value="/login.html"/>">Login</a>
 						</div>
 						<div class="menu-item">
                             <a href="#" onclick="register();">Register</a>
@@ -104,7 +105,8 @@
                   	<div id="leftPan"> 
                   	
 					<!-- login form -->
-					<div class="panel" id="login" style="display: none;">
+					<div class="panel" id="login" style="${loginInProgress ? '' : 'display: none;'}">
+						<jsp:include page="login.jsp"/>
 					</div>
 						
 					<!-- new link form -->
