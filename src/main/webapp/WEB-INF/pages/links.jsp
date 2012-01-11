@@ -207,10 +207,12 @@
 	                      					</span>
 		                      				<span class="func-item">	
 		                      					<a class="refresh" href="#" onclick="refresh(${link.id}); return false;"><img src="images/reload.png"/><span class="button-text">refresh</span></a>
-	                      					</span>                      					
-                      						<span class="func-item">
-	                      						<a class="visibility" href="#" onclick="visibility(${link.id}); return false;"><img src="images/icon_padlock.gif"/><span class="button-text">${link.pub ? 'make private' : 'make public'}</span></a>
-	                      					</span>
+	                      					</span>           
+	                      					<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">           					
+	                      						<span class="func-item">
+		                      						<a class="visibility" href="#" onclick="visibility(${link.id}); return false;"><img src="images/icon_padlock.gif"/><span class="button-text">${link.pub ? 'make private' : 'make public'}</span></a>
+		                      					</span>
+	                      					</security:authorize>
     	                  				</div>                      				
                       				</c:if>
                       			</div>
