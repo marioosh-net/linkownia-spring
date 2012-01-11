@@ -59,7 +59,6 @@ public class UserDAOImpl implements UserDAO, UserDetailsService {
 		String sql = "select * from tuser where id = ?";
 		try {
 			User user = (User)jdbcTemplate.queryForObject(sql, new Object[] { id }, new UserRowMapper());
-			log.info(user);
 			return user;
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
 			return null;
@@ -71,10 +70,8 @@ public class UserDAOImpl implements UserDAO, UserDetailsService {
 		String sql = "select * from tuser where login = ?";
 		try {
 			User user = (User)jdbcTemplate.queryForObject(sql, new Object[] { login }, new UserRowMapper());
-			log.info(user);
 			return user;
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
-			log.info("no user " + login);			
 			return null;
 		}
 	}

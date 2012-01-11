@@ -19,6 +19,8 @@ public class User {
 	
 	private Date joinDate;
 	
+	private Date loginDate;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -65,6 +67,14 @@ public class User {
 	
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
+	}
+	
+	public Date getLoginDate() {
+		return loginDate;
+	}
+	
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
 	}
 	
 	@Override

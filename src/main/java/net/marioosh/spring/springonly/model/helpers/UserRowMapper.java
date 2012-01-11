@@ -18,6 +18,8 @@ public class UserRowMapper implements RowMapper<User> {
 		user.setPass(rs.getString("pass"));
 		user.setRole(UserRole.values()[rs.getInt("role")]);
 		user.setMode(ListMode.values()[rs.getInt("mode")]);
+		user.setJoinDate(rs.getDate("join_date"));
+		user.setLoginDate(rs.getDate("login_date"));
 		return user;
 	}
 

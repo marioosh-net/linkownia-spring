@@ -289,8 +289,8 @@
 		<!-- hibernate validator = default provider -->		
 		<dependency>
 		    <groupId>org.hibernate</groupId>
-		    <artifactId>com.springsource.org.hibernate.validator</artifactId>
-		    <version>4.1.0.GA</version>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>4.2.0.Final</version>
 		</dependency>		
 
 		<!-- db -->

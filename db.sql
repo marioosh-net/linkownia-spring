@@ -61,5 +61,6 @@ CREATE TABLE tuser (
     pass character varying(40) NOT NULL,
     "role" smallint DEFAULT 0 NOT NULL,
     "mode" smallint DEFAULT 0 NOT NULL,
-    "join_date" timestamp without time zone
+    "join_date" timestamp without time zone,
+    "login_date" timestamp without time zone
 );
