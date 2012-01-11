@@ -61,7 +61,7 @@
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- force ssl -->
+	<!-- force ssl 
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>protectedArea</web-resource-name>
@@ -70,5 +70,6 @@
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-	</security-constraint>	
+	</security-constraint>
+	-->	
 </web-app>
