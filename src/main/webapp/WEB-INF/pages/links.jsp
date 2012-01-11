@@ -69,7 +69,8 @@
 						<security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
 						<div class="menu-item">
 							<%--<a href="#" onclick="hidepanels('login', function() {jQuery('#username').focus();});"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
-							<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>
+							<%--<a href="<c:url value="/login.html"/>"><img width="51" height="20" src="images/loginbutton.png"/></a>--%>
+							<a href="#" onclick="login();"><img width="51" height="20" src="images/loginbutton.png"/></a>
 						</div>
 						<div class="menu-item">
                             <a href="#" onclick="register();"><img width="70" height="20" src="images/registerbutton.png"/></a>
@@ -103,38 +104,21 @@
                   	<div id="leftPan"> 
                   	
 					<!-- login form -->
-					<div class="panel" id="login" style="${not empty loginInProgress ? ' ' : 'display: none;'}">
-						<form id="jf" name="jf" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
-							<div style="float: left">
-								<label>Login</label><br/>
-								<div><input type="text" id="username" name="j_username" value="" size="5" class="enter" /></div>
-							</div>
-							<div style="float: left">
-								<label>&#160;Password</label><br/>
-								<div>&#160;<input type="password" name="j_password" value="" size="6" class="enter" /></div>
-							</div>
-							<div style="float: left">
-								<div>&#160;</div>
-								<div style="vertical-align: bottom; padding-top: 3px;">&#160;<a href="#" onclick="jQuery('#jf').submit();">Login</a><!-- <input type="button" class="button" onclick="submit()" /> --><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
-									<c:if test="${!empty param.loginfail}"><span class="errors">&#160;Login error!</span></c:if>
-								</div>
-							</div>
-							<div style="clear: both;"></div>
-							<div><input type='checkbox' name='_spring_security_remember_me'/>&#160;Remember me</div>
-						</form>
+					<div class="panel" id="login" style="display: none;">
 					</div>
 						
 					<!-- new link form -->
 					<%--<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">--%>			
 					<div class="panel" id="new" style="${someErrors ? '' : 'display: none;'}">
 						<!-- <form method="post" action="add.html"> -->
-						<form:form commandName="link" method="post" action="add.html" id="newform">
+						<div class="form-block-header">New link</div>
+						<form:form commandName="link" method="post" action="add.html" id="newform" cssClass="highlighted">
 							<label>Address</label>&#160;<form:errors cssStyle="${someErrors ? '' : 'display: none;'}" path="link.address" cssClass="errors" /><br/>
 							<input type="text" id="address" name="link.address" style="width: 404px;" value="${param['address']}" class="enter"/><br/>
 							<label>Name</label><br/>
 							<input type="text" name="link.name" style="width: 404px;" value="${param['name']}" class="enter"/><br/>
 							<label>Description</label><br/>
-							<textarea name="link.description" style="height: 70px; width: 648px;">${param['description']}</textarea><br/>
+							<textarea name="link.description" style="height: 70px; width: 625px;">${param['description']}</textarea><br/>
 							<label>Tags</label><br/>
 							<input id="tags_input" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="tags_input"/><br/>
 							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>

@@ -4,7 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
-<form:form commandName="link" method="post" action="save.html" id="editform">
+<div class="form-block-header">Edit</div>
+<form:form commandName="link" method="post" action="save.html" id="editform" cssClass="highlighted">
     <form:hidden id="id" path="link.id"/>
     <form:hidden path="link.id"/>
     <form:hidden path="link.ldate"/>
@@ -18,7 +19,7 @@
 	<label>Name</label><br/>
 	<form:input path="link.name" cssClass="enter in" /><br/>
 	<label>Description</label><br/>
-	<form:textarea path="link.description" cssStyle="height: 70px; width: 648px;"/><br/>
+	<form:textarea path="link.description" cssStyle="height: 70px; width: 625px;"/><br/>
 	<label>Tags</label><br/>
 	<form:input path="tags"/><br/>
 	<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>

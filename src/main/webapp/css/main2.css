@@ -242,6 +242,17 @@ label {
 #qtext {
     width: 150px;
 }
+.highlighted {
+	background-color: #F6F6F6;
+	padding: 10px;
+	border-top: 1px solid silver;
+	border-bottom: 1px solid silver;
+}
+.form-block-header {
+	padding-bottom: 7px;
+	color: #383529;
+	font-size: 1.5em;
+}
 /* forms end */
 
 #navi {

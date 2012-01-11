@@ -65,6 +65,11 @@ function register() {
 		hidepanels('register', function() {jQuery('#userlogin').focus();});
 	});
 }
+function login() {
+	jQuery('#login').load('login.html', function(data){
+		hidepanels('login', function() {jQuery('#username').focus();});
+	});
+}
 
 /* odswiez linka, pociagnij name, description */
 function refresh(id) {

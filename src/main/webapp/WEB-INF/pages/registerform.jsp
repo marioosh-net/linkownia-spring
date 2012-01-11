@@ -3,11 +3,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<div class="form-block-header">Register</div>
 <c:if test="${not empty param['done']}">
-    User registered successfuly. You can <a href="<c:url value="/login.html"/>">Login</a>.
+	<div class="highlighted">
+    User registered successfuly. You can <a href="#" onclick="login();">Login</a>.
+    </div>
 </c:if>
 <c:if test="${empty param['done']}">
-	<form:form commandName="user1" method="post" action="register.html" id="registerform">
+	<form:form commandName="user1" method="post" action="register.html" id="registerform" cssClass="highlighted">
 	    <label>Login</label>&#160;<form:errors path="login" cssClass="errors" /><br/>
 	    <form:input path="login" id="userlogin"/><br/>
 	    <label>Password</label>&#160;<form:errors path="pass" cssClass="errors" /><br/>
