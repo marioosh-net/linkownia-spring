@@ -82,8 +82,8 @@
 	<security:http auto-config="true" use-expressions="true">
 		<security:form-login default-target-url="/login.html" authentication-failure-url="/login.html?loginfail=1" />
 		<security:logout logout-success-url="/index.html" logout-url="/logout.html" />
+		<security:intercept-url pattern="/**" requires-channel="https"/>
 		<!--
-		<security:intercept-url pattern="/login.html"  requires-channel="https"/>
 		<security:intercept-url pattern="/index.html"  requires-channel="http"/>
 		-->
 		<security:remember-me key="rmelinkownia" />
