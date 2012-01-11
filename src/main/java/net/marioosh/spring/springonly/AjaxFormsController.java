@@ -90,6 +90,9 @@ public class AjaxFormsController {
 			User u = new User();
 			model.addAttribute("user1", new User());
 		} else {
+			if(userDAO.get(user.getLogin()) != null) {
+				result.rejectValue("login", "error.login.exist");
+			}
 			log.info(result.hasErrors());
 			if(!result.hasErrors()) {
 				log.info(user);
