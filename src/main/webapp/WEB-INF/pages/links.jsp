@@ -106,11 +106,11 @@
 					<div class="panel" id="login" style="${not empty loginInProgress ? ' ' : 'display: none;'}">
 						<form id="jf" name="jf" action="<%= request.getContextPath() %>/j_spring_security_check" method="post">
 							<div style="float: left">
-								<div class="smalllabel">login</div>
+								<label>Login</label><br/>
 								<div><input type="text" id="username" name="j_username" value="" size="5" class="enter" /></div>
 							</div>
 							<div style="float: left">
-								<div class="smalllabel">&#160;password</div>
+								<label>&#160;Password</label><br/>
 								<div>&#160;<input type="password" name="j_password" value="" size="6" class="enter" /></div>
 							</div>
 							<div style="float: left">

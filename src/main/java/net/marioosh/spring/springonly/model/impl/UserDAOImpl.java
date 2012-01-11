@@ -74,6 +74,7 @@ public class UserDAOImpl implements UserDAO, UserDetailsService {
 			log.info(user);
 			return user;
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			log.info("no user " + login);			
 			return null;
 		}
 	}
@@ -107,7 +108,9 @@ public class UserDAOImpl implements UserDAO, UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String login)
 			throws UsernameNotFoundException, DataAccessException {
+		log.info("login... "+login);
 		final User user = get(login);
+		log.info(user);
 		if(user != null) {
 			return new UserDetails() {
 				
