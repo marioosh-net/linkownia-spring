@@ -37,8 +37,8 @@
     --%>
 
 	<div id="wrapper">
-		<div id="header">
-			<div class="fixedwidth">
+		<div class="fixedwidth">
+			<div id="header">
 				<div class="left leftfixed">
 				<a href="index.html"><img src="images/logo.png" alt="" /></a>
 				</div>
