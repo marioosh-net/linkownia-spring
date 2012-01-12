@@ -12,7 +12,7 @@
 	<meta name="Keywords" lang="en" content="apricots, linkownia, links database, references, addresses, www, marioosh">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.14.custom.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main2.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css" media="screen">
 	<link type="text/css" href="css/jquery-ui.css" rel="stylesheet" />	
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/main.js"></script>
 	<title>Linkownia - przechowalnia linków</title>
