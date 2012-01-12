@@ -1,0 +1,5 @@
+#!/bin/sh
+git pull && 
+mvn clean package && 
+cp target/linkownia.war /opt/jetty/webapps/linkownia.war
+
