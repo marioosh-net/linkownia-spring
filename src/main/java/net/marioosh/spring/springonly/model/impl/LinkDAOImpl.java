@@ -26,6 +26,10 @@ import org.springframework.stereotype.Repository;
  * wybierz linki z tagiem 'allegro' lub 'dupa','jas','wacek'
  * select * from tlink where id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ('allegro','dupa','jas','wacek'));
  * 
+ * wybierz linki od razu z tagami
+ * select l.id, array(select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id) from tlink l 
+ * 
+ * 
  * @author marioosh
  *
  */
@@ -175,11 +179,15 @@ public class LinkDAOImpl implements LinkDAO {
 			String[] split = q.split(" ");
 			for(String p: split) {			
 				if(i == 0) {
-					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "+
-					"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)";
+					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
+					// wyszukiwanie w tagach
+					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					;
 				} else {
-					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "+
-					"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)";
+					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
+					// wyszukiwanie w tagach
+					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					;
 				}
 				if(i == split.length - 1) {
 					s += ")";
@@ -237,9 +245,15 @@ public class LinkDAOImpl implements LinkDAO {
 			String[] split = q.split(" ");
 			for(String p: split) {
 				if(i == 0) {
-					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
+					// wyszukiwanie w tagach
+					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					;
 				} else {
-					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
+					// wyszukiwanie w tagach
+					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					;
 				}
 				if(i == split.length - 1) {
 					s += ")";
@@ -280,7 +294,7 @@ public class LinkDAOImpl implements LinkDAO {
 			s += " and id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ("+ tags +")) ";
 		}
 		
-		String sql = "select count(*) from tlink where 1 = 1 "+s;
+		String sql = "select count(*) from tlink l where 1 = 1 "+s;
 		log.debug("SQL: "+sql);
 		return jdbcTemplate.queryForInt(sql);
 	}
