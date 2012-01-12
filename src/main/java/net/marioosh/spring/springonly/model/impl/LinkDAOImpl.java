@@ -218,7 +218,7 @@ public class LinkDAOImpl implements LinkDAO {
 		}
 		
 		String sql = "select * from tlink where 1 = 1 "+s+" order by "+sort + " " + limit;
-		log.debug("LINKS SQL: " + sql);
+		log.info("LinkDAO.findAll() SQL: " + sql);
 		// return jdbcTemplate.query(sql, new LinkRowMapper());
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Link>(Link.class));
 		
