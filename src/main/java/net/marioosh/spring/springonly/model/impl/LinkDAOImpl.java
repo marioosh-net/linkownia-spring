@@ -175,9 +175,11 @@ public class LinkDAOImpl implements LinkDAO {
 			String[] split = q.split(" ");
 			for(String p: split) {			
 				if(i == 0) {
-					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "+
+					"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)";
 				} else {
-					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') ";
+					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "+
+					"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)";
 				}
 				if(i == split.length - 1) {
 					s += ")";
@@ -217,7 +219,7 @@ public class LinkDAOImpl implements LinkDAO {
 			s += " and id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ("+ tags +")) ";
 		}
 		
-		String sql = "select * from tlink where 1 = 1 "+s+" order by "+sort + " " + limit;
+		String sql = "select * from tlink l where 1 = 1 "+s+" order by "+sort + " " + limit;
 		log.info("LinkDAO.findAll() SQL: " + sql);
 		// return jdbcTemplate.query(sql, new LinkRowMapper());
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Link>(Link.class));
