@@ -56,6 +56,10 @@
 				        <configuration>
 				        	<!-- nie przykrywaj mi skompresowanych yuicompressorem .js i .css -->
 				        	<warSourceExcludes>**/*.css,**/*.js</warSourceExcludes>
+				        	<!-- nie generuj META-INF/maven z pom.properties etc -->
+							<archive>
+								<addMavenDescriptor>false</addMavenDescriptor>
+							</archive>				        	
 				        </configuration>
 					</plugin>			
 				</plugins>	
