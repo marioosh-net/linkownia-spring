@@ -27,7 +27,7 @@
 	<label>Description</label><br/>
 	<form:textarea path="link.description" cssStyle="height: 70px; width: 625px;"/><br/>
 	<label>Tags</label><br/>
-	<form:input path="tags"/><br/>
+	<form:input path="tags" cssClass="tags_input"/><br/>
 	<div class="buttons">
 		<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
 	</div>
