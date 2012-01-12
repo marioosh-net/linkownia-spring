@@ -123,7 +123,9 @@
 							<textarea name="link.description" style="height: 70px; width: 625px;">${param['description']}</textarea><br/>
 							<label>Tags</label><br/>
 							<input id="tags_input" type="text" name="tags" style="width: 404px;" value="${param['tags']}" class="tags_input"/><br/>
-							<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
+							<div class="buttons">
+								<a href="#" onclick="jQuery('#newform').submit();">Add link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#new').hide('fast');">Cancel</a>
+							</div>
 							<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 						</form:form>
 					</div>
@@ -164,7 +166,7 @@
                       			<div class="link-data">
                       				<div>
 									<div class="link-item-title">
-									<a href="#" title="${link.address}" onclick="openLink(${link.id},'${link.address}'); return false;" class="name ${link.pub ? '' : 'private-link'}">${link.name != '' ? link.name : link.address}</a>
+									<a href="#" title="${link.addressWithHttp}" onclick="openLink(${link.id},'${link.addressWithHttp}'); return false;" class="name ${link.pub ? '' : 'private-link'}">${link.name != '' ? link.name : link.addressWithHttp}</a>
 									</div>                   				
 									<a href="index.html?site=1&amp;q=${link.hostName}" class="link-item-source">${link.hostName}</a>
 									<span class="link-item-teaser">— <span class="descr">${link.description}</span><span class="timestamp">${link.dateModFormatted}</span></span>										

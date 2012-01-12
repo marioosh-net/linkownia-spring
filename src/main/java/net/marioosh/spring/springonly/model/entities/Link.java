@@ -55,7 +55,7 @@ public class Link {
 		this.id = id;
 	}
 
-	public String getAddress() {
+	public String getAddressWithHttp() {
 		// return address;
 		if(address != null) {
 			return address.startsWith("http://") || address.startsWith("https://") ? address : "http://"+address;
@@ -63,6 +63,10 @@ public class Link {
 		return null;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+	
 	public void setAddress(String address) {
 		this.address = address;
 	}

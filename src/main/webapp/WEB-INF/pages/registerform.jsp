@@ -15,7 +15,9 @@
 	    <form:input path="login" id="userlogin"/><br/>
 	    <label>Password</label>&#160;<form:errors path="pass" cssClass="errors" /><br/>
 	    <form:password path="pass"/><br/>
-		<a href="#" onclick="jQuery('#registerform').submit();">Register</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#register').hide('fast');">Cancel</a>
+	    <div class="buttons">
+			<a href="#" onclick="jQuery('#registerform').submit();">Register</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#register').hide('fast');">Cancel</a>
+		</div>
 		<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 	</form:form>
 	

@@ -5,6 +5,12 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <div class="form-block-header">Edit</div>
+<c:if test="${saved}">
+	<div class="highlighted">
+		Link saved. <a href="#" onclick="jQuery('#edit').hide('fast');">Close</a>.
+	</div>
+</c:if>
+<c:if test="${not saved}">
 <form:form commandName="link" method="post" action="save.html" id="editform" cssClass="highlighted">
     <form:hidden id="id" path="link.id"/>
     <form:hidden path="link.id"/>
@@ -22,6 +28,26 @@
 	<form:textarea path="link.description" cssStyle="height: 70px; width: 625px;"/><br/>
 	<label>Tags</label><br/>
 	<form:input path="tags"/><br/>
-	<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
+	<div class="buttons">
+		<a href="#" onclick="jQuery('#editform').submit();">Save link</a>&#160;&#160;&#160;&#160;<a href="#" onclick="jQuery('#edit').hide('fast');">Cancel</a>
+	</div>
 	<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 </form:form>
+
+<script>
+	jQuery('form[id=editform]').submit(function(){
+		/*
+	    jQuery('#register').load(this.action, jQuery(this).serialize());
+	    */
+	    jQuery.ajax({
+	    	type: 'post',
+	        url: this.action, 
+	        data: jQuery(this).serialize(), 
+	        success: function(res){
+	            jQuery('#edit').html(res);
+	        }
+	    });
+	    return false; // prevent default action
+	}); 
+</script>
+</c:if>

@@ -261,7 +261,7 @@ public class LinksController {
 		}
 		if(!result.hasErrors()) {
 			link.setLdate(new Date());
-			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
+			// link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			link.setUserId(user != null ? user.getId(): null);
 			Integer linkId = linkDAO.addOrUpdate(link);
 			tagDAO.connect(tags1, linkId);			
@@ -291,14 +291,16 @@ public class LinksController {
 		log.info(result.hasErrors());
 		if(!result.hasErrors()) {
 			link.setDateMod(new Date());
-			link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
+			// link.setAddress((link.getAddress().startsWith("http://") || link.getAddress().startsWith("https://")) ? link.getAddress() : "http://"+link.getAddress());
 			linkDAO.update(link);// addOrUpdate(link);
 			tagDAO.connect(tags1, link.getId());
-			return "redirect:/index.html";
+			model.addAttribute("saved", true);
+			return "editform";
+			// return "redirect:/index.html";
 		} else {
 			model.addAttribute("errors", result.getAllErrors());
 			model.addAttribute("someSaveErrors", true);
-			return "links";
+			return "editform";
 		}
 	}
 	
