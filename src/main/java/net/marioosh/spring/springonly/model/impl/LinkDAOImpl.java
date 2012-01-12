@@ -181,12 +181,14 @@ public class LinkDAOImpl implements LinkDAO {
 				if(i == 0) {
 					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
 					// wyszukiwanie w tagach
-					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					+"or exists (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id and upper(t.tag) like upper('%"+p+"%'))"
+					//+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
 					;
 				} else {
 					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
 					// wyszukiwanie w tagach
-					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					+"or exists (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id and upper(t.tag) like upper('%"+p+"%'))"
+					//+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
 					;
 				}
 				if(i == split.length - 1) {
@@ -247,12 +249,14 @@ public class LinkDAOImpl implements LinkDAO {
 				if(i == 0) {
 					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
 					// wyszukiwanie w tagach
-					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					+"or exists (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id and upper(t.tag) like upper('%"+p+"%'))"
+					//+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
 					;
 				} else {
 					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
 					// wyszukiwanie w tagach
-					+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					+"or exists (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id and upper(t.tag) like upper('%"+p+"%'))"
+					//+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
 					;
 				}
 				if(i == split.length - 1) {
