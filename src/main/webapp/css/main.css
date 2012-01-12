@@ -12,6 +12,7 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: normal;
+	background-color: #000;
 }
 
 img {
@@ -116,12 +117,12 @@ label {
 }
 #menu .first-item {
 	border-left: none;
-	padding-left: 0px;
+	padding-left: 10px;
 }
 #menu .last-item {
     border-right: none;
     border-left: none;
-    padding-right: 0px;
+    padding-right: 10px;
 }
 #menu .menu-item a {
 	color: #fff;
@@ -134,9 +135,20 @@ label {
 
 /* content */
 #content {
-	margin-top: 10px;
-	margin-bottom: 30px;
+	/*margin-top: 10px;
+	margin-bottom: 30px;*/
+	padding-top: 10px;
+	padding-bottom: 30px;
 }
+.fixedwidth #content  {
+	background-color: #fff;
+}
+/*
+.fixedwidth #content, .fixedwidth #menu {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+*/
 #content .panel {
 	/*border: 1px solid silver;*/
 	margin-bottom: 10px;
@@ -201,10 +213,12 @@ label {
 .leftfixed {
 	margin-right: 15px; 
 	width: 647px;
+	padding-left: 10px;
 }
 
 .rightfixed {
 	width: 275px;
+	padding-right: 10px;
 }
 .panel {
 	margin-bottom: 35px;

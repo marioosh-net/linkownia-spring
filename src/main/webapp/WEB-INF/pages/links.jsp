@@ -57,8 +57,9 @@
 		</div>
 	
 		<div id="main">
-			<div id="menu">
-				<div class="fixedwidth">
+			<div class="fixedwidth">
+				<div id="menu">
+				
 					<div class="left">
 		       			<%--<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">--%>
 		       			<div class="menu-item first-item">
@@ -98,8 +99,9 @@
 				</div>
 			</div>
 			
-			<div id="content">		
-				<div class="fixedwidth">
+			<div class="fixedwidth">
+				<div id="content">		
+				
  
               	  <div class="left leftfixed"> 
                   	<div id="leftPan"> 
