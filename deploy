@@ -1,15 +1,5 @@
 #!/bin/sh
-git pull -q && mvn -q clean package
-if [ $? -eq 1 ]; then
-    echo "build fail";
-else
-    diff -q target/linkownia.war /opt/jetty/webapps/linkownia.war 
-    if [ $? -ne 0 ]; then
-        cp target/linkownia.war /opt/jetty/webapps/linkownia.war
-        echo "ok - deployed";
-    else
-        echo "not updating - the same war"
-    fi
-fi
-
+git pull && 
+mvn clean package && 
+cp target/linkownia.war /opt/jetty/webapps/linkownia.war
 
