@@ -23,11 +23,12 @@ public class LinkWithTagsRowMapper implements RowMapper<Object[]> {
 		Link link = new Link(rs.getInt("id"), rs.getString("address"), rs.getString("name"));
 		link.setDateMod(rs.getDate("date_mod"));
 		link.setPub(rs.getBoolean("pub"));
-		link.setUserId(rs.getInt("user_id"));
+		link.setUserId((Integer)rs.getObject("user_id"));
 		link.setLdate(rs.getDate("ldate"));
 		link.setDescription(rs.getString("description"));
 		link.setClicks(rs.getInt("clicks"));
-		return new Object[]{link, rs.getString("tags")};
+		String tags = rs.getString("tags");
+		return new Object[]{link, tags != null ? tags.split(",") : null};
 	}
 
 }

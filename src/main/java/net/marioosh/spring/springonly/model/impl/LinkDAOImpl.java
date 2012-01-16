@@ -235,6 +235,86 @@ public class LinkDAOImpl implements LinkDAO {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Link>(Link.class));
 		
 	}
+	
+	@Override
+	public List<Object[]> findAllWithTags(BrowseParams browseParams) {
+
+		String sort = "id desc";
+		if(browseParams.getSort() != null) {
+			sort = browseParams.getSort();
+		}
+		String limit = "";
+		if(browseParams.getRange() != null) {
+			 limit = "limit " + browseParams.getRange().getMax() + " offset " + browseParams.getRange().getStart(); 
+		}
+		
+		String s = "";
+		if(browseParams.getSearch() != null) {
+			String q = browseParams.getSearch();
+			q = q.replaceAll("[ ]{2,}", " ");
+			s = " and ";
+			int i = 0;
+			
+			String[] split = q.split(" ");
+			for(String p: split) {			
+				if(i == 0) {
+					s += "(upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
+					// wyszukiwanie w tagach
+					+"or exists (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id and upper(t.tag) like upper('%"+p+"%'))"
+					//+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					;
+				} else {
+					s += "or upper(address) like upper('%" + p + "%') or upper(name) like upper('%" + p + "%') "
+					// wyszukiwanie w tagach
+					+"or exists (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id and upper(t.tag) like upper('%"+p+"%'))"
+					//+"or '"+p+"' in (select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id)"
+					;
+				}
+				if(i == split.length - 1) {
+					s += ")";
+				}
+				i++;
+			}
+		}		
+		
+		if(browseParams.getPub() != null) {
+			s += " and pub = " + browseParams.getPub() + " "; 
+		}
+		
+		ListMode mode = browseParams.getMode();
+		if(browseParams.getUserId() != null) {
+			if(mode != null) {
+				if(mode.equals(ListMode.ALL)) {
+					s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+				} else if(mode.equals(ListMode.MY_OWN)) {
+					s += " and (user_id = " + browseParams.getUserId() + ") ";
+				} else if(mode.equals(ListMode.PUBLIC)) {
+					s += " and (pub = true) ";
+				}
+			} else {
+				s += " and (user_id = " + browseParams.getUserId() + " or pub = true) ";
+			}
+		} else {
+			s += " and pub = true ";			
+		}
+		
+		if(browseParams.getTags() != null && !browseParams.getTags().isEmpty()) {
+			String tags = "";
+			int i = 0;
+			for(Tag tag: browseParams.getTags()) {
+				tags += (i > 0 ? ", ": "") + "'"+tag.getTag()+"'";
+				i++;
+			}
+			s += " and id in (select tl.link_id from tlinktag tl, ttag t where tl.tag_id = t.id and t.tag in ("+ tags +")) ";
+		}
+		
+		String sql = "select l.*, array_to_string(array(select tag from ttag t, tlinktag lt where t.id = lt.tag_id and lt.link_id = l.id),',') as tags from tlink l where 1 = 1 "+s+" order by "+sort + " " + limit;
+		log.info("LinkDAO.findAllWithTags() SQL: " + sql);
+		// return jdbcTemplate.query(sql, new LinkRowMapper());
+		// return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Link>(Link.class));		
+		return jdbcTemplate.query(sql, new LinkWithTagsRowMapper());
+		
+	}
 
 	public int countAll(BrowseParams browseParams) {
 		String s = "";

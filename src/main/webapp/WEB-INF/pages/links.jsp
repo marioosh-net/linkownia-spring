@@ -162,7 +162,9 @@
                    		</c:if>
                    		</span>
                    		<!-- <span style="float: right; font-size: 12px;">Open links in new window&#160;<input type="checkbox"/></span> --></div>
-                      	<c:forEach items="${links}" var="link" varStatus="i">
+                      	<c:forEach items="${links}" var="li" varStatus="i">
+                            <c:set var="link" value="${li[0]}"/>
+                            <c:set var="tagsTab" value="${li[1]}"/>
                       		<div class="link-item link-item_${link.id}">
                       			<div class="clicks count_${link.id}">${link.clicks}<div><img class="ajax_${link.id}" style="display:none;" src="images/ajax.gif"/></div></div>
                       			<div class="link-data">
@@ -174,13 +176,13 @@
 									<span class="link-item-teaser">— <span class="descr">${link.description}</span><span class="timestamp">${link.dateModFormatted}</span></span>										
                       				</div>
                       				<%-- tags --%>
-	                      			<div class="tags">
-	                      				<c:forEach items="${link.tags}" var="tag">
-		                      				<span class="tag">	
-		                      					<a href="index.html?site=1&amp;qt=${tag.tag}"><span class="button-text">${tag.tag}</span></a>
-	                      					</span>                      				
-	                      				</c:forEach> 
-	                      			</div>
+                                    <div class="tags">
+                                        <c:forEach items="${tagsTab}" var="tag">
+                                            <span class="tag">  
+                                                <a href="index.html?site=1&amp;qt=${tag}"><span class="button-text">${tag}</span></a>
+                                            </span>                                     
+                                        </c:forEach> 
+                                    </div>
 	                      			
                       				<c:set var="linkOwner" value="${(user == null and link.userId == null) or(user != null and user.id == link.userId)}"/>
 	                      			<c:set var="adminLogged" value="${false}"/>

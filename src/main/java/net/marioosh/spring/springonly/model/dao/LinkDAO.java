@@ -6,6 +6,7 @@ import net.marioosh.spring.springonly.model.helpers.BrowseParams;
 
 public interface LinkDAO {
 	public List<Link> findAll(BrowseParams browseParams);
+	public List<Object[]> findAllWithTags(BrowseParams browseParams);
 	public int countAll(BrowseParams browseParams);
 	public Link get(Integer id);
 	public Object[] getWithTags(Integer id);

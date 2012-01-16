@@ -121,7 +121,7 @@ public class LinksController {
 	 * wywoływana jest PRZED metoda handlera (adnotowaną przez @RequestMapping) 
 	 */
 	@ModelAttribute("links")
-	public List<Link> populateLinks(Model model, HttpServletRequest request, 
+	public List<Object[]> populateLinks(Model model, HttpServletRequest request, 
 			@RequestParam(value="q", required=false, defaultValue="") String search, 
 			@RequestParam(value="qt" +
 					"", required=false, defaultValue="") String tag,
@@ -181,11 +181,12 @@ public class LinksController {
 		model.addAttribute("q", search);
 		model.addAttribute("qencoded", URLEncoder.encode(search, "UTF-8"));
 		
+		/*
 		List<Link> l = linkDAO.findAll(b);
 		
 		/** 
 		 * sciagnij tagi dla linkow
-		 */
+		 *
 		for(Link l1: l) {
 			Set<Tag> tags = new HashSet<Tag>();
 			TagBrowseParams bp = new TagBrowseParams();
@@ -193,8 +194,10 @@ public class LinksController {
 			tags.addAll(tagDAO.findAll(bp));
 			l1.setTags(tags);
 		}
+		*/
 		
-		return l;
+		return linkDAO.findAllWithTags(b);
+		// return l;
 	}
 	
 	@RequestMapping(value = "/search.html")
