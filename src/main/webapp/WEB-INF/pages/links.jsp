@@ -37,8 +37,8 @@
     --%>
 
 	<div id="wrapper">
-		<div class="fixedwidth">
-			<div id="header">
+		<div id="header">
+			<div class="fixedwidth">
 				<div class="left leftfixed">
 				<a href="index.html"><img src="images/logo.png" alt="" /></a>
 				</div>
@@ -57,8 +57,8 @@
 		</div>
 	
 		<div id="main">
-			<div class="fixedwidth">
-				<div id="menu">
+			<div id="menu">
+    			<div class="fixedwidth">
 				
 					<div class="left">
 		       			<%--<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">--%>
