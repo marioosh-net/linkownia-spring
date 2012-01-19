@@ -6,7 +6,7 @@
 <div class="form-block-header">Login</div>
 <security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
 	<div class="highlighted">
-    User logged successfuly. You have to <a href="<c:url value="/index.html"/>">Reload</a>.
+    User logged successfuly. You have to <a href="<c:url value="/index.html?reload=1"/>">Reload</a>.
     </div>
 </security:authorize>
 <security:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
