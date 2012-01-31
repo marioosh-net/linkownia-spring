@@ -5,7 +5,7 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>linkownia</name>
-	<url>http://marioosh.net</url>
+	<url>http://ramtatam.com</url>
 
 	<profiles>
 		<profile>
@@ -151,7 +151,7 @@
 			    </executions>
 			    <configuration>
 			        <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
-			        <dname>cn=marioosh.net</dname>
+			        <dname>cn=ramtatam.com</dname>
 			        <keypass>jetty6</keypass>
 			        <storepass>jetty6</storepass>
 			        <alias>jetty6</alias>
