@@ -68,9 +68,8 @@ label {
 	background-color: #000;
 	color: #fff;
 	padding-top: 20px;
-    background: url(../images/dotter4.png);
-    background-repeat: repeat-x;
-    background-color: #fff;	
+    /*background: url(../images/dotter4.png);
+    background-repeat: repeat-x;*/
 }
 #header a {
 	color: #fff;
