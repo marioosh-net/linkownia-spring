@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="Linkownia - przechowalnia linków" />
-	<meta name="author" content="ramtatam.com">
+	<meta name="author" content="marioosh.net">
 	<meta name="Keywords" lang="pl" content="morele, linkownia, baza linków, odnośniki, adresy, www, marioosh">
 	<meta name="Keywords" lang="en" content="apricots, linkownia, links database, references, addresses, www, marioosh">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
@@ -262,15 +262,15 @@
 			<div class="pages"> 
 				<ul> 
 					<li><a href="index.html">Linkownia</a></li> 
-					<li><a href="http://ramtatam.com">Home</a></li> 
-					<li><a href="http://ramtatam.com/blog/">Blog</a></li> 
+					<li><a href="http://marioosh.net">Home</a></li> 
+					<li><a href="http://marioosh.net/blog/">Blog</a></li> 
 				</ul> 
 			</div> 
             --%>
-            Powered by <a href="http://springsource.org"><img style="vertical-align: -7px;" src="<c:url value="/images/spring.png"/>"/></a> | <a href="http://ramtatam.com">ramtatam.com</a>
+            Powered by <a href="http://springsource.org"><img style="vertical-align: -7px;" src="<c:url value="/images/spring.png"/>"/></a> | <a href="http://marioosh.net">marioosh.net</a>
             <%--
 			<div class="copyright"> 
-				<p class="rights">&copy; 2011. Designed by: <strong><a href="http://ramtatam.com" target="_blank">ramtatam.com</a></strong></p> 
+				<p class="rights">&copy; 2011. Designed by: <strong><a href="http://marioosh.net" target="_blank">marioosh.net</a></strong></p> 
 			</div>
             --%>
 		</div>
