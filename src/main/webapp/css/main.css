@@ -158,7 +158,7 @@ label {
 */
 #content .panel {
 	/*border: 1px solid silver;*/
-	margin-bottom: 10px;
+	margin-bottom: 30px;
 }
 #content a {
 }
@@ -280,6 +280,9 @@ label {
 	padding-bottom: 7px;
 	color: #383529;
 	font-size: 1.5em;
+	background-color: #E9E9E9;
+	padding: 10px;
+	border-top: 1px solid silver;
 }
 .buttons {
 	margin-top: 10px;
